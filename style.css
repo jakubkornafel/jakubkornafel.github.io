@@ -1,0 +1,36 @@
+body{
+	background-image: url("bg.jpg");
+	/*background-color: #DED6D6;*/
+	background-size: cover;
+	font-family: 'Pacifico', cursive;
+	font-family: 'Shadows Into Light', cursive;
+	font-size: 1.85em;
+	opacity: 0.7;
+}
+
+#icon{
+	text-align: right;
+	padding: 25px 25px 0 25px;
+	opacity: 0.5;
+}
+
+
+#div1 {
+	text-align: center;	
+	margin: 30px;
+	padding: 50px;
+	
+}
+
+button{
+	background-color: darkgrey;
+	border-radius: 15px;
+	border: 2px solid;
+	border-color: #837A7A;
+	opacity: 0.	5;
+	padding: 10px;
+	font-family: 'Pacifico', cursive;
+	font-family: 'Shadows Into Light', cursive;
+	font-size: 1em;
+}
+
