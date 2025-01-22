@@ -80,3 +80,13 @@ h3 {
 .projects a {
     font-weight: bold;
 }
+
+.profile-photo {
+    width: 200px;  /* adjust size as needed */
+    height: auto;
+    border-radius: 50%;  /* makes the image circular */
+    margin: 20px 0;  /* adds some space above and below */
+    display: block;  /* ensures proper centering */
+    margin-left: auto;
+    margin-right: auto;
+}
