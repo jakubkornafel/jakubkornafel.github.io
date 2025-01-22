@@ -1,36 +1,82 @@
-body{
-	background-image: url("bg.jpg");
-	/*background-color: #DED6D6;*/
-	background-size: cover;
-	font-family: 'Pacifico', cursive;
-	font-family: 'Shadows Into Light', cursive;
-	font-size: 1.85em;
-	opacity: 0.7;
+/* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    background-color: #f9f9f9;
+    color: #333;
 }
 
-#icon{
-	text-align: right;
-	padding: 25px 25px 0 25px;
-	opacity: 0.5;
+.container {
+    width: 80%;
+    margin: 20px auto;
+    overflow: hidden;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-
-#div1 {
-	text-align: center;	
-	margin: 30px;
-	padding: 50px;
-	
+header {
+    text-align: center;
+    margin-bottom: 20px;
 }
 
-button{
-	background-color: darkgrey;
-	border-radius: 15px;
-	border: 2px solid;
-	border-color: #837A7A;
-	opacity: 0.	5;
-	padding: 10px;
-	font-family: 'Pacifico', cursive;
-	font-family: 'Shadows Into Light', cursive;
-	font-size: 1em;
+header h1 {
+    margin: 0;
+    font-size: 2.5em;
 }
 
+header p {
+    font-size: 1.2em;
+    color: #555;
+}
+
+section {
+    margin-bottom: 20px;
+}
+
+section h2 {
+    border-bottom: 2px solid #333;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+    font-size: 1.8em;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    margin: 5px 0;
+}
+
+a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.contact p, .languages p, .interests p {
+    margin: 5px 0;
+}
+
+h3 {
+    font-size: 1.4em;
+    margin-top: 10px;
+}
+
+.projects ul {
+    margin: 10px 0;
+    padding-left: 20px;
+    list-style: disc;
+}
+
+.projects a {
+    font-weight: bold;
+}
