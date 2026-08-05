@@ -1,2 +1,4 @@
-# jakubkornafel.github.io
-List of personal and professional Project
+# jakubkornafel.com
+
+Osobista strona. Statyczny HTML, bez kroku budowania.
+Servowana przez GitHub Pages z gałęzi `master`, domena w pliku `CNAME`.

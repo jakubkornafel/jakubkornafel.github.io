@@ -1,109 +1,404 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jakub Kornafel - Resume & Projects</title>
-    <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jakub Kornafel — AI systems a human can check</title>
+<meta name="description" content="Technical AI product and delivery lead. I build AI systems a human can check, and I ship them: Robot Security System, SofiaOS, SI2 Studio. Previously a 40+ person delivery org at IOG (Cardano).">
+<meta property="og:title" content="Jakub Kornafel — AI systems a human can check">
+<meta property="og:description" content="Three systems with a gate that can say no, and the agentic SDLC that built them. Previously a 40+ person delivery org at IOG (Cardano).">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://jakubkornafel.com/">
+<meta property="og:image" content="https://jakubkornafel.com/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Jakub Kornafel — I build AI systems a human can check.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%2312161D'/><text y='23' x='16' text-anchor='middle' font-family='monospace' font-size='17' fill='%23F4F5F7'>jk</text></svg>">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/archivo.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/sourceserif4.woff2">
+<style>
+@font-face{font-family:Archivo; src:url(assets/fonts/archivo.woff2) format('woff2');
+  font-weight:500 800; font-style:normal; font-display:swap}
+@font-face{font-family:'IBM Plex Mono'; src:url(assets/fonts/plexmono-400.woff2) format('woff2');
+  font-weight:400; font-style:normal; font-display:swap}
+@font-face{font-family:'IBM Plex Mono'; src:url(assets/fonts/plexmono-500.woff2) format('woff2');
+  font-weight:500; font-style:normal; font-display:swap}
+@font-face{font-family:'IBM Plex Mono'; src:url(assets/fonts/plexmono-600.woff2) format('woff2');
+  font-weight:600; font-style:normal; font-display:swap}
+@font-face{font-family:'Source Serif 4'; src:url(assets/fonts/sourceserif4.woff2) format('woff2');
+  font-weight:400 600; font-style:normal; font-display:swap}
+
+:root{
+  --paper:#F4F5F7; --card:#FFFFFF; --ink:#12161D; --graphite:#5C6573;
+  --rule:#DCE0E7; --rule-strong:#12161D; --open:#C2410C; --dark:#0A0D12;
+  --display:"Archivo","Helvetica Neue",sans-serif;
+  --body:"Source Serif 4",Georgia,serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%; scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--body); font-size:1.0625rem; line-height:1.62; font-synthesis-weight:none}
+img{max-width:100%; height:auto; display:block}
+a{color:inherit; text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:.2em; text-decoration-color:#AEB5C0}
+a:hover{text-decoration-color:currentColor}
+a:focus-visible{outline:2px solid var(--ink); outline-offset:3px; border-radius:2px}
+.close a:focus-visible{outline-color:#F4F5F7}
+
+.wrap{width:min(100% - 2.5rem, 74rem); margin-inline:auto}
+.hr{border-top:1px solid var(--rule)}
+
+/* masthead */
+.masthead{padding:1.5rem 0; display:flex; justify-content:space-between; align-items:baseline; gap:1rem; flex-wrap:wrap}
+.mark{font-family:var(--mono); font-weight:600; font-size:.8125rem; letter-spacing:.08em; text-transform:uppercase; text-decoration:none}
+.masthead nav{font-family:var(--mono); font-size:.8125rem; display:flex; gap:1.5rem}
+.masthead nav a{color:var(--graphite); text-decoration:none}
+.masthead nav a:hover{color:var(--ink)}
+
+/* hero */
+.hero{padding:4.5rem 0 0}
+.kicker{font-family:var(--mono); font-size:.75rem; letter-spacing:.16em; text-transform:uppercase; color:var(--graphite); margin:0 0 2rem}
+.hero h1{font-family:var(--display); font-weight:800; margin:0;
+  font-size:clamp(2.9rem,9.4vw,7.6rem); line-height:.92; letter-spacing:-.045em; max-width:14ch}
+.hero-cols{display:grid; gap:1.75rem 3.5rem; margin:2.75rem 0 0}
+.hero-cols p{margin:0; max-width:52ch; font-size:1.125rem; color:#1E242E}
+@media (min-width:56rem){ .hero-cols{grid-template-columns:1fr 1fr} }
+
+/* status band — the signature */
+.band{margin:4rem 0 0; border-top:2px solid var(--rule-strong)}
+.band-key{display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap;
+  font-family:var(--mono); font-size:.6875rem; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--graphite); padding:.85rem 0 1.5rem}
+.band-key b{color:var(--open); font-weight:600}
+.band ol{list-style:none; margin:0; padding:0 0 1rem; display:grid; gap:0; grid-template-columns:1fr}
+.band li{border-top:1px solid var(--rule); display:grid; grid-template-columns:1fr;
+  gap:.25rem 1.5rem; align-items:baseline; padding:.95rem 0}
+.band .sys{font-family:var(--display); font-weight:700; font-size:1.125rem; letter-spacing:-.02em}
+.band .st{font-family:var(--mono); font-weight:500; font-size:.8125rem; line-height:1.45; text-align:left; margin-top:.3rem}
+@media (min-width:40rem){
+  .band li{grid-template-columns:1fr auto}
+  .band .st{text-align:right; margin-top:0}
+}
+@media (min-width:60rem){
+  .band ol{grid-template-columns:repeat(4,1fr)}
+  .band li{display:block; padding:1.1rem 1.5rem 1.4rem 0}
+  .band .sys{display:block}
+  .band .st{display:block; margin-top:.5rem; text-align:left}
+}
+.is-open{color:var(--open)}
+.is-done{color:var(--graphite)}
+
+/* sections */
+.section{padding:5.5rem 0}
+.shead{margin:0 0 3rem}
+.shead p{font-family:var(--mono); font-size:.6875rem; letter-spacing:.16em; text-transform:uppercase; color:var(--graphite); margin:0 0 .75rem}
+.shead h2{font-family:var(--display); font-weight:800; font-size:clamp(1.9rem,4.4vw,3rem); letter-spacing:-.035em; margin:0; line-height:1}
+
+/* systems */
+.systems{display:grid; gap:2rem}
+.sys-card{margin:0; background:var(--card); border:1px solid var(--rule); border-radius:12px; overflow:hidden; display:flex; flex-direction:column}
+.shot{background:var(--dark); padding:1.5rem 1.5rem 0}
+.shot img{border-radius:6px 6px 0 0}
+.shot--pair{display:grid; gap:1rem; padding-bottom:1.5rem}
+.shot--pair{justify-items:center}
+.shot--pair figure{width:100%}
+.shot--pair figcaption{font-family:var(--mono); font-size:.8125rem; letter-spacing:.04em; color:#9AA4B2; margin-top:.7rem; max-width:78ch}
+.shot--pair img{border-radius:6px}
+.sys-body{padding:1.75rem; display:flex; flex-direction:column; flex:1}
+.sys-body h3{font-family:var(--display); font-weight:700; font-size:1.5rem; letter-spacing:-.025em; margin:0}
+.meta{font-family:var(--mono); font-size:.75rem; margin:.65rem 0 0; display:flex; gap:.5rem 1rem; flex-wrap:wrap; align-items:center; color:var(--graphite)}
+.meta .st{font-weight:500}
+.sys-body > p{margin:1.15rem 0 0; max-width:56ch}
+.gate{margin:1.5rem 0 0; padding:1rem 1.15rem; background:var(--paper); border-left:2px solid var(--ink); border-radius:0 6px 6px 0}
+.gate span{font-family:var(--mono); font-weight:600; font-size:.6875rem; letter-spacing:.14em; text-transform:uppercase; color:var(--graphite); display:block; margin:0 0 .45rem}
+.gate p{margin:0; font-size:1rem}
+
+@media (min-width:64rem){
+  .sys-card .shot{padding:2rem 2rem 0}
+  .sys-card .shot img{border-radius:6px}
+  .shot--pair{padding-bottom:2rem}
+  .shot--pair > img{width:68%}
+  .sys-body{display:grid; grid-template-columns:1fr 1fr; gap:0 3rem; align-items:start; padding:2.25rem 2rem 2.5rem}
+  .sys-card h3{font-size:1.875rem}
+  .sys-card .meta{grid-column:1; margin-top:.75rem}
+  .sys-card > .sys-body > p{grid-column:1; margin-top:1.25rem}
+  .sys-card .gate{grid-column:2; grid-row:1 / span 3; margin:0}
+}
+
+/* community */
+.comm-shot{margin:0 0 2.5rem; border-radius:12px; overflow:hidden; border:1px solid var(--rule)}
+.comm-shot img{width:100%}
+.comm-grid{display:grid; gap:2.5rem}
+.comm-grid h3{font-family:var(--display); font-weight:700; font-size:1.375rem; letter-spacing:-.025em; margin:0}
+.comm-grid p{margin:1rem 0 0; max-width:52ch}
+.comm-grid .meta{margin-top:.6rem}
+@media (min-width:56rem){ .comm-grid{grid-template-columns:1fr 1fr; gap:3.5rem} }
+
+/* credits — names, not logos */
+.credits-note{font-family:var(--mono); font-size:.6875rem; letter-spacing:.14em; text-transform:uppercase; color:var(--graphite); margin:0 0 1.5rem}
+.credits{list-style:none; margin:0; padding:0 0 2rem;
+  display:flex; flex-wrap:wrap; gap:1.75rem 3rem; align-items:baseline}
+.credits li{display:flex; flex-direction:column; gap:.3rem}
+.credits b{font-family:var(--display); font-weight:700; font-size:clamp(1.25rem,2.6vw,1.75rem);
+  letter-spacing:-.03em; line-height:1}
+.credits span{font-family:var(--mono); font-size:.6875rem; letter-spacing:.06em; color:var(--graphite)}
+
+/* record */
+.record{list-style:none; margin:0; padding:0}
+.record li{display:grid; gap:.35rem 2.5rem; padding:1.75rem 0; border-top:1px solid var(--rule)}
+.record li:last-child{border-bottom:1px solid var(--rule)}
+.when{font-family:var(--mono); font-size:.75rem; color:var(--graphite)}
+.role{font-family:var(--display); font-weight:700; font-size:1.1875rem; letter-spacing:-.02em}
+.record p{margin:0; max-width:60ch; color:#1E242E}
+@media (min-width:48rem){
+  .record li{grid-template-columns:10rem minmax(0,62ch)}
+  .when{grid-row:span 2; padding-top:.4rem}
+  .record p{grid-column:2}
+}
+
+/* close */
+.close{background:var(--dark); color:#E9ECF1; border-radius:14px; padding:clamp(2rem,5.5vw,4rem);
+  display:grid; gap:2rem 3.5rem}
+.portrait{margin:0; width:clamp(7rem,22vw,11rem); flex:none}
+.portrait img{width:100%;
+  -webkit-mask-image:radial-gradient(circle at 50% 46%, #000 40%, transparent 66%);
+  mask-image:radial-gradient(circle at 50% 46%, #000 40%, transparent 66%)}
+.close-body{min-width:0}
+@media (min-width:52rem){
+  .close{grid-template-columns:auto 1fr; align-items:start}
+  .portrait{width:13rem; margin-top:.5rem}
+}
+.close h2{font-family:var(--display); font-weight:800; font-size:clamp(1.9rem,4.6vw,3.1rem); letter-spacing:-.035em; line-height:1.02; margin:0 0 1.75rem; max-width:16ch; color:#fff}
+.close p{max-width:56ch; color:#A9B1BF; margin:0 0 1rem}
+.close .lead{color:#E9ECF1; font-size:1.125rem}
+.close a{text-decoration-color:#4C5568}
+.mailto{display:inline-block; margin-top:1.25rem; font-family:var(--mono); font-weight:500; font-size:1.0625rem; color:#fff; text-decoration:none; border-bottom:1px solid #4C5568; padding-bottom:.3rem}
+.mailto:hover{border-color:#fff}
+.close-meta{font-family:var(--mono); font-size:.75rem; color:#78818F; margin-top:2.75rem; padding-top:1.5rem; border-top:1px solid #1E242E; display:flex; gap:1.75rem; flex-wrap:wrap}
+.close-meta a{color:#78818F; text-decoration-color:#333B48}
+
+footer{padding:3rem 0 4.5rem; font-family:var(--mono); font-size:.75rem; color:var(--graphite);
+  display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap}
+
+@media (prefers-reduced-motion:no-preference){
+  .sys-card{transition:border-color .2s ease}
+  .sys-card:hover{border-color:#BFC6D1}
+}
+</style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <img src="profile-photo.png" alt="Jakub Kornafel" class="profile-photo">
-            <h1>Jakub Kornafel</h1>
-            <p>Technical Product Manager | Agile & Product Delivery Expert | Web3 & AI Enthusiast</p>
-        </header>
 
-        <section class="contact">
-            <h2>Contact Information</h2>
-            <p>📞 Phone: <a href="tel:+48 791 800 108">+48 791 800 108</a></p>
-            <p>✉️ Email: <a href="mailto:jakubkornafel@gmail.com">jakubkornafel@gmail.com</a></p>
-            <p>🌐 LinkedIn: <a href="https://www.linkedin.com/in/jakubkornafel/">Jakub Kornafel</a></p> 
-            <p>📍 Based in Malaga, Spain & Warsaw, Poland</p>
-        </section>
+<div class="wrap">
+  <header class="masthead">
+    <a class="mark" href="/">Jakub Kornafel</a>
+    <nav>
+      <a href="#systems">Systems</a>
+      <a href="#community">Community</a>
+      <a href="#record">Record</a>
+      <a href="#work">Work together</a>
+    </nav>
+  </header>
+</div>
 
-        <section class="summary">
-            <h2>Professional Summary</h2>
-            <p>Experienced Technical Product & Program Manager with 12+ years of expertise in IT Product Delivery, Agile methodologies, and software development lifecycle management. I specialize in leading cross-functional teams, implementing Agile transformations, and managing complex technical programs. With a proven track record of delivering large-scale IT projects, including blockchain platforms, I thrive at the intersection of innovation and strategy.</p>
-        </section>
+<main>
+  <div class="wrap">
+    <section class="hero">
+      <p class="kicker">Technical AI product &amp; delivery · Málaga · Warsaw</p>
+      <h1>I build AI systems a human can check.</h1>
 
-        <section class="skills">
-            <h2>Core Skills</h2>
-            <ul>
-                <li><strong>Product Development:</strong> Lean Product, Lean Startup</li>
-                <li><strong>Project Management:</strong> Jira, Confluence, Asana, SAFe, Scrum, Kanban, Prince2</li>
-                <li><strong>AI:</strong> Prompt engineering, custom chatbots, OpenAI API, LM Studio</li>
-                <li><strong>CI/CD:</strong> GitHub, GitLab, CircleCI, Sentry</li>
-                <li><strong>Tech Stack:</strong> Python, React.js, Node.js</li>
-                <li><strong>Web3 Expertise:</strong> Bitcoin, Ethereum, Cardano, Substrate</li>
-            </ul>
-        </section>
+      <div class="hero-cols">
+        <p>A person approves the step, the data has to permit the claim, and there is a record of what actually happened. It is the least impressive part of an AI demo, the only part that decides whether the thing can be used at all, and the part I build first.</p>
+        <p>Before that I ran delivery for other people — a 40+ person organisation at IOG (Cardano) shipping the Partner Chains SDK, an EVM sidechain and a cross-chain bridge. I still do both halves: architecture in the morning, the deploy playbook in the afternoon.</p>
+      </div>
 
-        <section class="experience">
-            <h2>Professional Experience</h2>
-            <ul>
-                <li><strong>Technical Program & Product Manager</strong> - Sofia Team Blockchain Consulting (2024 - Present)</li>
-                <li><strong>Head of Product Delivery</strong> - IOG (Cardano) (2021 - 2024)</li>
-                <li><strong>Head of Blockchain R&D Department</strong> - CloudBest (2021)</li>
-                <li><strong>Technical Program Manager</strong> - CloudBest (2020 - 2021)</li>
-                <li><strong>Technical Project Manager</strong> - Sunscrapers (2019 - 2020)</li>
-            </ul>
-        </section>
+      <div class="band">
+        <div class="band-key">
+          <span>Where each system actually stands</span>
+          <span><b>Orange</b> marks what is not finished.</span>
+        </div>
+        <ol>
+          <li>
+            <span class="sys">Robot Security System</span>
+            <span class="st is-open">Built · first pilot being scheduled</span>
+          </li>
+          <li>
+            <span class="sys">SofiaOS</span>
+            <span class="st is-open">Early access · design partners</span>
+          </li>
+          <li>
+            <span class="sys">SI2 Studio</span>
+            <span class="st is-open">In development · pre-release</span>
+          </li>
+          <li>
+            <span class="sys">Agentic SDLC</span>
+            <span class="st is-done">In daily use · built the three above</span>
+          </li>
+        </ol>
+      </div>
+    </section>
+  </div>
 
-        <section class="education">
-            <h2>Education</h2>
-            <ul>
-                <li>Strategic Management & Process Management Seminars, Warsaw University of Technology (2011)</li>
-                <li>Master of Arts Diploma, Music Conservatory of Lodz (2009)</li>
-                <li>Spanish C2 Certificate, Instituto Cervantes (2008)</li>
-            </ul>
-        </section>
+  <div class="wrap hr">
+    <section class="section" id="systems">
+      <div class="shead">
+        <p>What each one refuses to do</p>
+        <h2>Every system here has a gate</h2>
+      </div>
 
-        <section class="languages">
-            <h2>Languages</h2>
-            <p>Polish: Native</p>
-            <p>English: Fluent</p>
-            <p>Spanish: C2-certified</p>
-        </section>
+      <div class="systems">
 
-        <section class="interests">
-            <h2>Interests</h2>
-            <p>Blockchain innovation, decentralized systems, AI-driven marketing automation, history, geopolitics, and mindfulness practices.</p>
-        </section>
+        <figure class="sys-card">
+          <div class="shot shot--pair">
+            <img src="assets/rss-console.webp" alt="Operator console: a four-camera CCTV grid of a simulated building, a live robot camera, an alert feed, fleet status for two robots, a re-identification gallery, floor plan and mission control." width="1600" height="901">
+            <figure style="margin:0"><img src="assets/alert-feed.webp" alt="Detail of the alert feed: teleoperation granted, then teleoperation timed out on a deadman timeout, and a notification that a patrol mission has started." width="2226" height="822" loading="lazy"><figcaption>Detail: teleoperation granted, then expired on the deadman timer; below it, the feed announcing a patrol mission.</figcaption></figure>
+          </div>
+          <div class="sys-body">
+            <h3>Robot Security System</h3>
+            <p class="meta"><span class="st is-open">Built · first pilot being scheduled</span><a href="https://robotsecuritysystem.io/" rel="noopener">robotsecuritysystem.io</a></p>
+            <p>An operator console for dispatch, teleoperation, re-identification and mission control — over CCTV perception and robots on ROS2, with missions dispatched as sequences of primitives over MQTT. Two robots on the fleet today, both simulated. Not my product: I run technical product delivery for the team that builds it. First pilot: a datacenter in Japan, with BlockValue.</p>
+            <div class="gate">
+              <span>The gate</span>
+              <p>The system does not only watch — it sends a robot somewhere. The part gated first is teleoperation: the operator's control lease runs on a <strong>deadman timer</strong> and drops the robot to zero velocity by itself, two seconds after the operator goes quiet. Every mission the system starts announces itself in the operator feed. Mission approval — the machine asking before it acts — is designed and not yet built; that is the next gate. The failure mode is the robot stopping, not the robot carrying on.</p>
+            </div>
+          </div>
+        </figure>
 
-        <section class="projects">
-            <h2>Projects</h2>
+        <figure class="sys-card">
+          <div class="shot">
+            <img src="assets/si2-studio-process.webp" alt="SI2 Studio: a mined process map of intake, quench and inspect; an evidence chain from deviation through candidate and conditions to verdict; and an honesty gate panel reporting that claims are permitted. The run is labelled synthetic." width="1400" height="817" loading="lazy">
+          </div>
+          <div class="sys-body">
+            <h3>SI2 Studio</h3>
+            <p class="meta"><span class="st is-open">In development · pre-release</span><span>My own product</span></p>
+            <p>Process mining for the physical world: it reconstructs how a plant actually runs from the plant's own event log, not from the process diagram someone drew once. The run in the screenshot is a synthetic factory — 3,000 cases, 9,000 events, every one attributable to a case — the benchmark the engine is built against before the first real line.</p>
+            <div class="gate">
+              <span>The gate</span>
+              <p>A correlation is marked <strong>candidate</strong> and nothing more. It is promoted to confirmed — or refuted — only after someone authorised an intervention and reality answered. Before any of that, an honesty gate decides whether the data even permits the claim. Amber and green are never drawn alike, because one of them is a guess.</p>
+            </div>
+          </div>
+        </figure>
 
-            <h3>Sofia Team Blockchain Consulting (AI & Blockchain) – since June 2024</h3>
-            <ul>
-                <li>Developing and implementing product & delivery strategies for Web3 and AI products, including decentralized physical networks (DePIN), e.g., plug-and-play Ethereum Node on Raspberry Pi.</li>
-                <li>Conducting market research and competitive analysis to define unique value propositions, particularly in the blockchain infrastructure domain.</li>
-                <li><a href="https://www.web3pi.io/" target="_blank" rel="noopener noreferrer">Web3 Pi</a> | <a href="https://github.com/Web3-Pi" target="_blank" rel="noopener noreferrer">GitHub Repo</a></li>
-            </ul>
+        <figure class="sys-card">
+          <div class="shot">
+            <img src="assets/sofiaos-landing.webp" alt="SofiaOS landing page: run your business processes with agents you can supervise." width="1400" height="686" loading="lazy">
+          </div>
+          <div class="sys-body">
+            <h3>SofiaOS</h3>
+            <p class="meta"><span class="st is-open">Early access · design partners</span><span>My own product</span><a href="https://sofiaos.com/" rel="noopener">sofiaos.com</a></p>
+            <p>A desktop application where agents do the real work of a business process, on a git-versioned workspace — the state of the work is a folder of files you can open and read, not a database you have to trust. Early access is by invitation while it ships to the first design partners.</p>
+            <div class="gate">
+              <span>The gate</span>
+              <p>Deterministic rules keep the agents in bounds, a human approves every step, and git records exactly what happened. No vibes, no black box, no blind trust.</p>
+            </div>
+          </div>
+        </figure>
 
-            <h3>Head of Product Delivery (Sidechains Tribe, IOG - Cardano) – November 2021 – May 2024</h3>
-            <ul>
-                <li>Leading teams in building solutions like the EVM Sidechain, enabling Ethereum-based applications to run within the Cardano ecosystem.</li>
-                <li>Managing the development of the Sidechains Toolkit, a tool supporting the integration and development of sidechains on the Cardano platform.</li>
-                <li>Overseeing SDLC processes and risk management to ensure the consistent delivery of high-quality blockchain products.</li>
-                <li><a href="https://github.com/input-output-hk/partner-chains" target="_blank" rel="noopener noreferrer">Partner Chains Repo</a> | <a href="https://github.com/input-output-hk/sc-evm" target="_blank" rel="noopener noreferrer">EVM Sidechain Repo</a> | <a href="https://iohk.io/en/blog/posts/2022/07/08/bridges-and-sidechains-wanchain-making-cardano-interoperable/" target="_blank" rel="noopener noreferrer">Blog on Cardano Interoperability</a></li>
-            </ul>
+      </div>
+    </section>
+  </div>
 
-            <h3>Head of Blockchain R&D Department (CloudBest) – February 2021 – October 2021</h3>
-            <ul>
-                <li>Leading a team in developing new blockchain technologies, including two Layer 1 (L1) blockchain projects.</li>
-                <li>Utilizing Lean Startup and Lean Product methodologies to prototype and implement innovative solutions.</li>
-                <li><a href="https://elcash.info/" target="_blank" rel="noopener noreferrer">Electric Cash Info</a> | <a href="https://github.com/electric-cash" target="_blank" rel="noopener noreferrer">Electric Cash GitHub</a></li>
-            </ul>
+  <div class="wrap hr">
+    <section class="section" id="community">
+      <div class="shead">
+        <p>Why I know who to call</p>
+        <h2>Getting people into the room</h2>
+      </div>
 
-            <h3>Technical Program Manager (CloudBest) – September 2020 – October 2021</h3>
-            <ul>
-                <li>Delivering projects related to building an ecosystem of applications for L1 blockchain (Web3 apps: mobile & desktop wallets, web apps, block explorer, mining pools).</li>
-                <li>Managing R&D teams and ensuring alignment with business objectives.</li>
-                <li><a href="https://btcv.com/" target="_blank" rel="noopener noreferrer">Bitcoin Vault</a> | <a href="https://github.com/bitcoinvault" target="_blank" rel="noopener noreferrer">Bitcoin Vault GitHub</a></li>
-            </ul>
-        </section>
-    </div>
-    <script src="scripts.js"></script>
+      <div class="community">
+        <figure class="comm-shot">
+          <img src="assets/robotics-breakfast.webp" alt="Robotics Breakfast: a person facing a humanoid robot against a city skyline at sunrise, with the line “Where robotics engineers meet over breakfast”." width="1400" height="800" loading="lazy">
+        </figure>
+
+        <div class="comm-grid">
+          <article>
+            <h3>Web3 Pi</h3>
+            <p class="meta"><span class="st is-done">Open source · Ethereum node on a Raspberry Pi</span><a href="https://www.web3pi.io/" rel="noopener">web3pi.io</a></p>
+            <p>At <a href="https://cfp.ethwarsaw.dev/ethwarsaw-2024/talk/S88ZJU/" rel="noopener">ETH&nbsp;Warsaw 2024</a> I was one of four speakers on the talk and the hands-on workshop. People walked out with an Ethereum node running on a Raspberry Pi — not with slides about one.</p>
+            <p>I was product manager on the project. Its entire design goal is lowering a barrier: a full node, set up by someone who is not an infrastructure engineer.</p>
+          </article>
+
+          <article>
+            <h3>Robotics Breakfast</h3>
+            <p class="meta"><span class="st is-done">Monthly · Warsaw, Tokyo, Los Angeles opening</span><a href="https://roboticsbreakfast.com/" rel="noopener">roboticsbreakfast.com</a></p>
+            <p>Robotics engineers meet over breakfast, once a month, in Warsaw and Tokyo, with Los Angeles opening this year. The house rule is no sales pitches — researchers and founders show the work.</p>
+            <p>I build and run the site — the domain, the design and the code are mine. It is the surface the whole thing is found through, and it is where I meet most of the robotics people I end up working with.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="wrap hr">
+    <section class="section" id="record">
+      <div class="shead">
+        <p>Since 2012</p>
+        <h2>The delivery record</h2>
+      </div>
+
+      <p class="credits-note">Where I have worked — employers and projects, not endorsements</p>
+      <ul class="credits">
+        <li><b>IOG</b><span>Cardano · 2021–24</span></li>
+        <li><b>CloudBest</b><span>Blockchain R&amp;D · 2020–21</span></li>
+        <li><b>Web3 Pi</b><span>Product · open source</span></li>
+        <li><b>Sunscrapers</b><span>2019–20</span></li>
+        <li><b>Eyedea</b><span>2018–19</span></li>
+        <li><b>Marpa Studios</b><span>Co-founder · 2012–17</span></li>
+      </ul>
+
+      <ul class="record">
+        <li>
+          <span class="when">2024 — now</span>
+          <span class="role">Founder · Sofia Team</span>
+          <p>My own practice across applied AI, EVM and DePIN. I set the direction, win the work, build the thing and run the infrastructure — self-hosted, with me on the pager. The systems above were built on an agentic SDLC I run every day: named agent roles with explicit guardrails, specs before code, and a grader I run over the output before I accept it.</p>
+        </li>
+        <li>
+          <span class="when">2021 — 2024</span>
+          <span class="role">Head of Product Delivery · IOG (Cardano)</span>
+          <p>A 40+ person cross-functional organisation — engineering, DevOps, QA, release and program management — delivering the Partner Chains SDK, the EVM sidechain and a cross-chain bridge. The code is public: <a href="https://github.com/input-output-hk/partner-chains" rel="noopener">partner-chains</a> and <a href="https://github.com/input-output-hk/sc-evm" rel="noopener">sc-evm</a>. I owned risk, dependencies, the release process, vendor contracts and C-suite reporting.</p>
+        </li>
+        <li>
+          <span class="when">2020 — 2021</span>
+          <span class="role">IT PM → Technical Program Manager → Head of Blockchain R&amp;D · CloudBest</span>
+          <p>Built the R&amp;D function from zero — development, DevOps, QA and PMO — then ran it with 30+ people. Two Layer-1 chains and their application ecosystems: Electric Cash and Bitcoin Vault, with wallets, block explorer and mining pools.</p>
+        </li>
+        <li>
+          <span class="when">2012 — 2017</span>
+          <span class="role">Co-founder · Marpa Studios</span>
+          <p>My first company, from zero: fundraising, contracts, recruitment, product and delivery.</p>
+        </li>
+      </ul>
+    </section>
+  </div>
+
+  <div class="wrap">
+    <section class="section" id="work">
+      <div class="close">
+        <figure class="portrait">
+          <img src="assets/jakub.webp" alt="Jakub Kornafel" width="560" height="560" loading="lazy">
+        </figure>
+        <div class="close-body">
+        <h2>Send me the system and the deadline.</h2>
+        <p class="lead">You get a yes or a no, plus where I think the risk sits.</p>
+        <p>What I am looking for: one AI system that has to work for real — one at a time. Full-time, fractional at 10–20 hours a week, or a fixed-scope engagement invoiced through my own practice. Remote-first, European hours.</p>
+        <a class="mailto" href="mailto:jakubkornafel@gmail.com">jakubkornafel@gmail.com</a>
+        <div class="close-meta">
+          <a href="https://linkedin.com/in/jakubkornafel" rel="noopener">linkedin.com/in/jakubkornafel</a>
+          <span>EN · PL · ES (C2)</span>
+        </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<div class="wrap">
+  <footer>
+    <span>Jakub Kornafel · Málaga, Spain · Warsaw, Poland</span>
+    <span>jakubkornafel@gmail.com</span>
+  </footer>
+</div>
+
 </body>
 </html>
