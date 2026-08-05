@@ -218,18 +218,17 @@ footer{padding:3rem 0 4.5rem; font-family:var(--mono); font-size:.75rem; color:v
           <span>Where each system actually stands</span>
           <span><b>Orange</b> marks what is not finished.</span>
         </div>
-        <ol>
-          <li>
-            <span class="sys">Robot Security System</span>
-            <span class="st is-open">Built · first pilot being scheduled</span>
+        <ol>          <li>
+            <span class="sys">SI2 Studio</span>
+            <span class="st is-open">In development · pre-release</span>
           </li>
           <li>
             <span class="sys">SofiaOS</span>
             <span class="st is-open">Early access · design partners</span>
           </li>
           <li>
-            <span class="sys">SI2 Studio</span>
-            <span class="st is-open">In development · pre-release</span>
+            <span class="sys">Robot Security System</span>
+            <span class="st is-open">Built · first pilot being scheduled</span>
           </li>
           <li>
             <span class="sys">Agentic SDLC</span>
@@ -248,22 +247,6 @@ footer{padding:3rem 0 4.5rem; font-family:var(--mono); font-size:.75rem; color:v
       </div>
 
       <div class="systems">
-
-        <figure class="sys-card">
-          <div class="shot shot--pair">
-            <img src="assets/rss-console.webp" alt="Operator console: a four-camera CCTV grid of a simulated building, a live robot camera, an alert feed, fleet status for two robots, a re-identification gallery, floor plan and mission control." width="1600" height="901">
-            <figure style="margin:0"><img src="assets/alert-feed.webp" alt="Detail of the alert feed: teleoperation granted, then teleoperation timed out on a deadman timeout, and a notification that a patrol mission has started." width="2226" height="822" loading="lazy"><figcaption>Detail: teleoperation granted, then expired on the deadman timer; below it, the feed announcing a patrol mission.</figcaption></figure>
-          </div>
-          <div class="sys-body">
-            <h3>Robot Security System</h3>
-            <p class="meta"><span class="st is-open">Built · first pilot being scheduled</span><a href="https://robotsecuritysystem.io/" rel="noopener">robotsecuritysystem.io</a></p>
-            <p>An operator console for dispatch, teleoperation, re-identification and mission control — over CCTV perception and robots on ROS2, with missions dispatched as sequences of primitives over MQTT. Two robots on the fleet today, both simulated. Not my product: I run technical product delivery for the team that builds it. First pilot: a datacenter in Japan, with BlockValue.</p>
-            <div class="gate">
-              <span>The gate</span>
-              <p>The system does not only watch — it sends a robot somewhere. The part gated first is teleoperation: the operator's control lease runs on a <strong>deadman timer</strong> and drops the robot to zero velocity by itself, two seconds after the operator goes quiet. Every mission the system starts announces itself in the operator feed. Mission approval — the machine asking before it acts — is designed and not yet built; that is the next gate. The failure mode is the robot stopping, not the robot carrying on.</p>
-            </div>
-          </div>
-        </figure>
 
         <figure class="sys-card">
           <div class="shot">
@@ -295,7 +278,23 @@ footer{padding:3rem 0 4.5rem; font-family:var(--mono); font-size:.75rem; color:v
           </div>
         </figure>
 
-      </div>
+              <figure class="sys-card">
+          <div class="shot shot--pair">
+            <img src="assets/rss-console.webp" alt="Operator console: a four-camera CCTV grid of a simulated building, a live robot camera, an alert feed, fleet status for two robots, a re-identification gallery, floor plan and mission control." width="1600" height="901">
+            <figure style="margin:0"><img src="assets/alert-feed.webp" alt="Detail of the alert feed: teleoperation granted, then teleoperation timed out on a deadman timeout, and a notification that a patrol mission has started." width="2226" height="822" loading="lazy"><figcaption>Detail: teleoperation granted, then expired on the deadman timer; below it, the feed announcing a patrol mission.</figcaption></figure>
+          </div>
+          <div class="sys-body">
+            <h3>Robot Security System</h3>
+            <p class="meta"><span class="st is-open">Built · first pilot being scheduled</span><a href="https://robotsecuritysystem.io/" rel="noopener">robotsecuritysystem.io</a></p>
+            <p>An operator console for dispatch, teleoperation, re-identification and mission control — over CCTV perception and robots on ROS2, with missions dispatched as sequences of primitives over MQTT. Two robots on the fleet today, both simulated. Not my product: I run technical product delivery for the team that builds it. First pilot: a datacenter in Japan, with BlockValue.</p>
+            <div class="gate">
+              <span>The gate</span>
+              <p>The system does not only watch — it sends a robot somewhere. The part gated first is teleoperation: the operator's control lease runs on a <strong>deadman timer</strong> and drops the robot to zero velocity by itself, two seconds after the operator goes quiet. Every mission the system starts announces itself in the operator feed. Mission approval — the machine asking before it acts — is designed and not yet built; that is the next gate. The failure mode is the robot stopping, not the robot carrying on.</p>
+            </div>
+          </div>
+        </figure>
+
+</div>
     </section>
   </div>
 
