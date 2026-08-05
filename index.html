@@ -61,9 +61,9 @@ a:focus-visible{outline:2px solid var(--ink); outline-offset:3px; border-radius:
 .hero{padding:4.5rem 0 0}
 .kicker{font-family:var(--mono); font-size:.75rem; letter-spacing:.16em; text-transform:uppercase; color:var(--graphite); margin:0 0 2rem}
 .hero h1{font-family:var(--display); font-weight:800; margin:0;
-  font-size:clamp(2.9rem,9.4vw,7.6rem); line-height:.92; letter-spacing:-.045em; max-width:14ch}
+  font-size:clamp(2.7rem,8vw,6.25rem); line-height:.92; letter-spacing:-.045em; max-width:14ch}
 .hero-cols{display:grid; gap:1.75rem 3.5rem; margin:2.75rem 0 0}
-.hero-cols p{margin:0; max-width:52ch; font-size:1.125rem; color:#1E242E}
+.hero-cols p{margin:0; max-width:46ch; font-size:1.3125rem; color:#1E242E}
 @media (min-width:56rem){ .hero-cols{grid-template-columns:1fr 1fr} }
 
 /* status band — the signature */
@@ -103,9 +103,10 @@ a:focus-visible{outline:2px solid var(--ink); outline-offset:3px; border-radius:
 .shot img{border-radius:6px 6px 0 0}
 .shot--pair{display:grid; gap:1rem; padding-bottom:1.5rem}
 .shot--pair{justify-items:center}
-.shot--pair figure{width:100%}
+.shot--pair figure{width:100%; max-width:462px}
 .shot--pair figcaption{font-family:var(--mono); font-size:.8125rem; letter-spacing:.04em; color:#9AA4B2; margin-top:.7rem; max-width:78ch}
 .shot--pair img{border-radius:6px}
+.shot--pair figure img{image-rendering:-webkit-optimize-contrast}
 .sys-body{padding:1.75rem; display:flex; flex-direction:column; flex:1}
 .sys-body h3{font-family:var(--display); font-weight:700; font-size:1.5rem; letter-spacing:-.025em; margin:0}
 .meta{font-family:var(--mono); font-size:.75rem; margin:.65rem 0 0; display:flex; gap:.5rem 1rem; flex-wrap:wrap; align-items:center; color:var(--graphite)}
@@ -281,7 +282,7 @@ footer{padding:3rem 0 4.5rem; font-family:var(--mono); font-size:.75rem; color:v
               <figure class="sys-card">
           <div class="shot shot--pair">
             <img src="assets/rss-console.webp" alt="Operator console: a four-camera CCTV grid of a simulated building, a live robot camera, an alert feed, fleet status for two robots, a re-identification gallery, floor plan and mission control." width="1600" height="901">
-            <figure style="margin:0"><img src="assets/alert-feed.webp" alt="Detail of the alert feed: teleoperation granted, then teleoperation timed out on a deadman timeout, and a notification that a patrol mission has started." width="2226" height="822" loading="lazy"><figcaption>Detail: teleoperation granted, then expired on the deadman timer; below it, the feed announcing a patrol mission.</figcaption></figure>
+            <figure style="margin:0"><img src="assets/alert-feed.webp" alt="Detail of the alert feed: teleoperation granted, then teleoperation timed out on a deadman timeout, and a notification that a patrol mission has started." width="462" height="168" loading="lazy"><figcaption>Detail: teleoperation granted, then expired on the deadman timer; below it, the feed announcing a patrol mission.</figcaption></figure>
           </div>
           <div class="sys-body">
             <h3>Robot Security System</h3>
@@ -384,7 +385,7 @@ footer{padding:3rem 0 4.5rem; font-family:var(--mono); font-size:.75rem; color:v
         <a class="mailto" href="mailto:jakubkornafel@gmail.com">jakubkornafel@gmail.com</a>
         <div class="close-meta">
           <a href="https://linkedin.com/in/jakubkornafel" rel="noopener">linkedin.com/in/jakubkornafel</a>
-          <span>EN · PL · ES (C2)</span>
+          <span>EN · PL · ES</span>
         </div>
         </div>
       </div>
