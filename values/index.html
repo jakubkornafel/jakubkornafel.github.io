@@ -111,7 +111,7 @@ button.word.kept8{border-color:var(--ink); background:var(--ink); color:var(--pa
 .btn:hover{border-color:var(--ink)}
 .note{font-family:var(--mono); font-size:.75rem; color:var(--graphite); line-height:1.6; margin:.6rem 0 0; max-width:70ch}
 
-details{margin-top:2rem; border-top:1px solid var(--rule); padding-top:1rem}
+details{margin-top:2.5rem; border-top:1px solid var(--rule); padding-top:1rem}
 summary{cursor:pointer; font-family:var(--mono); font-size:.75rem; letter-spacing:.08em; text-transform:uppercase; font-weight:600}
 .steps{font-size:.9375rem; line-height:1.9; margin-top:.85rem}
 .steps b{font-family:var(--mono); font-size:.8125rem; font-weight:600; color:var(--open)}
@@ -188,6 +188,11 @@ footer{border-top:1px solid var(--rule); margin-top:4rem; padding:1.5rem 0 3rem;
     <p class="privacy" data-i18n="privacy">Wszystko dzieje się w Twojej przeglądarce. Nic nie jest wysyłane na serwer, nie ma logowania ani analityki. Postęp zapisuje się lokalnie na tym urządzeniu — możesz zamknąć kartę i wrócić później.</p>
   </div>
 
+  <details open>
+    <summary data-i18n="stepsSummary">Kroki ćwiczenia</summary>
+    <div class="steps" id="stepsBox"></div>
+  </details>
+
   <div class="status">
     <div class="stat"><span class="num" id="remainingNum">90</span><span class="lbl" data-i18n="remaining">Pozostało</span></div>
     <div class="divider"></div>
@@ -207,11 +212,6 @@ footer{border-top:1px solid var(--rule); margin-top:4rem; padding:1.5rem 0 3rem;
     <button class="btn" id="resetBtn" data-i18n="resetBtn">Zacznij od nowa</button>
   </div>
   <p class="note" data-i18n="clickNote">Kliknij słowo, żeby je skreślić lub przywrócić. Gdy zostanie dokładnie osiem, podświetlą się na czarno, a niżej odblokuje się sekcja refleksji.</p>
-
-  <details>
-    <summary data-i18n="stepsSummary">Kroki ćwiczenia</summary>
-    <div class="steps" id="stepsBox"></div>
-  </details>
 
   <h2 class="section-title" data-i18n="reflectionTitle">Refleksja nad ósemką</h2>
   <p class="section-sub" data-i18n="reflectionSub">Dla każdej wartości: jak bardzo jest ważna, na ile realizujesz ją dzisiaj, a na ile chcesz. Różnica między dwoma ostatnimi to Twoja luka.</p>
