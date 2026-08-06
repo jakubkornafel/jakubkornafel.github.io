@@ -362,9 +362,11 @@ const I18N = {
    ============================================================ */
 const STORAGE_KEY = "jk-values-v1";
 
+/* Domyślnie polski i jasny motyw — niezależnie od ustawień przeglądarki.
+   Wybór użytkownika z przełączników nadpisuje to i zostaje zapisany. */
 const defaultState = () => ({
-  lang: (navigator.language || "").toLowerCase().startsWith("pl") ? "pl" : "en",
-  theme: null,               // null = idź za ustawieniem systemu
+  lang: "pl",
+  theme: "light",
   crossed: [],               // lista ID skreślonych
   reflection: {}             // ID -> {importance, current, desired, step}
 });
@@ -407,19 +409,13 @@ function orderedIds(){
 /* ============================================================
    MOTYW I JĘZYK
    ============================================================ */
-const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
-
-function effectiveTheme(){
-  return state.theme || (prefersDark.matches ? "dark" : "light");
-}
 function applyTheme(){
-  const th = effectiveTheme();
+  const th = state.theme === "dark" ? "dark" : "light";
   document.documentElement.setAttribute("data-theme", th);
   document.querySelectorAll("#themeSwitch button").forEach(b => {
     b.setAttribute("aria-pressed", String(b.dataset.theme === th));
   });
 }
-prefersDark.addEventListener("change", () => { if(!state.theme) applyTheme(); });
 
 document.getElementById("themeSwitch").addEventListener("click", e => {
   const btn = e.target.closest("button");
