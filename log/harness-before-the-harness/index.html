@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>I nearly got fired for the thing that later saved the project — Jakub Kornafel</title>
-<meta name="description" content="In January I built gates nobody wanted. In March, two frontier labs published the same design. In between, the project that had no use for it needed rescuing.">
-<meta property="og:title" content="I nearly got fired for the thing that later saved the project — Jakub Kornafel">
-<meta property="og:description" content="In January I built gates nobody wanted. In March, two frontier labs published the same design. In between, the project that had no use for it needed rescuing.">
+<title>I nearly got fired for building a category that had no name yet — Jakub Kornafel</title>
+<meta name="description" content="In January I built an agentic SDLC framework. My team lead could not see the value in it, and he was not being unreasonable — the vocabulary for what it was would not exist for another six months.">
+<meta property="og:title" content="I nearly got fired for building a category that had no name yet — Jakub Kornafel">
+<meta property="og:description" content="In January I built an agentic SDLC framework. My team lead could not see the value in it, and he was not being unreasonable — the vocabulary for what it was would not exist for another six months.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://jakubkornafel.com/log/harness-before-the-harness/">
 <meta property="og:image" content="https://jakubkornafel.com/assets/og-log.png">
@@ -37,46 +37,62 @@
     <article class="post">
       <a class="back" href="/log/">&larr; Log</a>
       <p class="entry-meta"><span class="date">2026-08-27</span><span class="kind build">Build</span></p>
-      <h1>I nearly got fired for the thing that later saved the project</h1>
-      <p class="dek">In January I built gates nobody wanted. In March, two frontier labs published the same design. In between, the project that had no use for it needed rescuing.</p>
+      <h1>I nearly got fired for building a category that had no name yet</h1>
+      <p class="dek">In January I built an agentic SDLC framework. My team lead could not see the value in it, and he was not being unreasonable — the vocabulary for what it was would not exist for another six months.</p>
       <div class="body">
-<p>In January I was building something my stakeholders could not see the point of.</p>
+<p>"I don't see the value."</p>
 
-<p>A QA agent. Gates between stages. A reviewer that was not the same agent that wrote the thing. Artifacts handed forward with IDs so you could trace any decision back to where it came from. From the outside it looked like I was building paperwork while everyone else was shipping features.</p>
+<p>My team lead said it plainly, more than once, and he was not being difficult. He was describing the situation accurately. I was several weeks into building something I could not name, whose entire output was the absence of things going wrong.</p>
 
-<p>The conversation about whether I was worth keeping was not hypothetical.</p>
+<p>Try defending that in a conversation about headcount.</p>
 
-<p>Meanwhile the actual approach on the project was the one everybody was excited about: agents let loose, no gate, no verification, ship what comes out. It produced a lot of code very fast. It also brought the system down every few days, and every few days someone spent a night finding out why.</p>
+<h3>What it actually was</h3>
 
-<p>Then the call came. Could I take a look.</p>
+<p>Not an agent. Not a script that calls a model in a loop. What I was building was an agentic SDLC framework: the whole path from a raw idea to an implementable architecture package, decomposed into specialised roles that hand work to each other under rules.</p>
 
-<p>The pipeline I had been quietly building did the boring thing: it refused to let work move forward until something other than the author had checked it, and it ran the actual application in a browser rather than asking the agent whether it was happy. The crashes stopped. The project shipped.</p>
+<p>Structurally it was a graph. Each role was a node — research, reverse engineering, product definition, architecture, a reviewer that was deliberately not any of them. The edges between them were typed: an artifact moved forward only if it carried the identifiers that let you trace every claim back to where it came from. State lived in files that survived the death of any individual run, so nothing important lived inside a conversation window. Transitions were gated, and a gate could say no and send the work back to a specific earlier node.</p>
 
-<p>Nobody remembers this. Rescues get remembered as events, not as authorship, and prevention is invisible by construction — the outage that does not happen leaves no trace, no incident channel, no war story.</p>
+<p>I did not have language for any of that in January. I described it as "the pipeline" and watched people's eyes glaze.</p>
 
-<h3>The part I did not expect</h3>
+<h3>Why nobody could see it</h3>
 
-<p>On 11 February, OpenAI published a piece describing repository knowledge as the system of record, plans as first-class artifacts with decision logs checked into git. On 24 March, Anthropic published one describing a planner, a generator, and an evaluator kept deliberately separate, because an agent asked to grade its own work will praise it.</p>
+<p>The team's approach at the time was the exciting one: agents let loose on the codebase, no gate, no independent verification, ship whatever comes out. It produced a great deal of code very quickly. It also took the system down every few days, and every few days somebody lost an evening working out why.</p>
 
-<p>Four mechanisms. The same four I had running since January: context reset instead of compaction, state in files rather than in a conversation, an evaluator outside the generator, explicit criteria for what "done" means.</p>
+<p>My framework's pitch, translated honestly, was: this will make that stop happening. Which is a promise about an absence. There is no demo for an absence. No screenshot, no burndown chart, no moment in a sprint review where anyone claps.</p>
 
-<p>My first commit is dated 21 January. By 17 February the pipeline had processed a real production project end to end. I have the git log, which is more than most people have when they say they were early.</p>
+<p>Then the system went down badly enough that the question changed from whether my work had value to whether I could take a look.</p>
 
-<p>But I want to be precise, because the precise version is stronger. OpenAI describe work that started in August 2025 — months before mine. Nothing was public in January. So this is not precedence. It is convergence: two teams looking at the same failure modes, arriving at the same fixes, with nothing to copy from.</p>
+<p>The pipeline did the unglamorous thing. It refused to let work proceed until something other than the author had checked it. It ran the actual application in a browser instead of asking an agent whether it was satisfied. The crashes stopped. The project shipped.</p>
+
+<p>Nobody remembers this, which is normal. Rescues get remembered as events, not as authorship.</p>
+
+<h3>Then the vocabulary showed up</h3>
+
+<p>On 11 February, OpenAI published a piece on harness engineering: repository knowledge as the system of record, plans as first-class artifacts with decision logs committed to git.</p>
+
+<p>On 24 March, Anthropic published one on harness design: a planner, a generator, and an evaluator kept deliberately apart, because an agent asked to grade its own work will praise it.</p>
+
+<p>On 4 July, someone finally named the other half. Graph engineering: designing agentic systems as explicit graphs instead of implicit loops. Nodes as units of capability. Edges as typed transitions carrying state. State as a checkpointed object rather than whatever survived in the context window.</p>
+
+<p>Read that list back. Nodes, typed edges, checkpointed state, an evaluator outside the generator, gates that can refuse. That was the thing I could not explain in January, described in a vocabulary that did not exist yet.</p>
+
+<p>My first commit is dated 21 January. By 17 February the framework had taken a real production project end to end. I have the git history, which is more than most people have when they say they were early.</p>
+
+<p>And I want to be precise, because precision is what makes it defensible: OpenAI describe work that began in August 2025, months before mine. This is not precedence. It is convergence — different people hitting the same failure modes and arriving at the same structure, with nothing public to copy from.</p>
 
 <h3>What I actually took from it</h3>
 
 <p>Not "trust your instincts." That is a poster, not a lesson.</p>
 
-<p>The lesson is that my instinct was fine and my sequencing was terrible. Process work has no visible counterfactual, so it looks like nothing until the thing it prevents finally happens. I let it stay invisible until the system was on fire, and then I was right in the most expensive way available.</p>
+<p>My instinct was fine. My sequencing was terrible. I was working in a category with no name, and an unnamed category cannot survive a budget conversation — there is nothing for the other person to hold. My team lead was not failing to see something obvious. I was failing to make it visible.</p>
 
 <div class="pull">
   <span>What I would do differently</span>
-  <p>Attach the unglamorous work to a number that is already bleeding on someone's dashboard, on day one. Not to prove a point later — to make the value legible while there is still a choice about whether to fund it.</p>
+  <p>Name the thing, then bolt it to a number that is already bleeding on someone's dashboard — crashes per week, hours lost to rework — on day one. Not to win the argument later. To make the work legible while there is still a choice about whether to fund it.</p>
 </div>
 
 <div class="cta">
-  <p><b>If your agents are producing code faster than anyone can check it</b>, that is the conversation I want. Send me the system and the deadline — <a href="mailto:jakubkornafel@gmail.com">jakubkornafel@gmail.com</a>. You get a yes or a no, and where I think the risk sits.</p>
+  <p><b>If your agents are shipping code faster than anyone can check it</b>, that is the conversation I want to have. Send me the system and the deadline — <a href="mailto:jakubkornafel@gmail.com">jakubkornafel@gmail.com</a>. You get a yes or a no, plus where I think the risk actually sits.</p>
 </div>
       </div>
     </article>
