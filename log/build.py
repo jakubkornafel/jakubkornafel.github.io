@@ -229,7 +229,7 @@ def head(lang, title, description, url, slug=None, depth=1):
 
 def masthead(lang, on_index):
     mark = ' aria-current="page"' if on_index else ""
-    return f"""<div class="wrap">
+    return f"""<div class="wrap topbar">
   <header class="masthead">
     <a class="mark" href="/">{AUTHOR}</a>
     <nav>
