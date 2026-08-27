@@ -14,56 +14,66 @@
       <guid isPermaLink="true">https://jakubkornafel.com/log/harness-before-the-harness/</guid>
       <pubDate>Thu, 27 Aug 2026 00:00:00 +0000</pubDate>
       <category>Build</category>
-      <description>In January I built an agentic SDLC framework. My team lead could not see the value in it, and he was not being unreasonable — the vocabulary for what it was would not exist for another six months.</description>
+      <description>We started sketching it in November 2025. My team lead could not see the value, and he was not being unreasonable — the vocabulary for what we were building would not exist for another six months.</description>
       <content:encoded><![CDATA[<p>"I don't see the value."</p>
 
-<p>My team lead said it plainly, more than once, and he was not being difficult. He was describing the situation accurately. I was several weeks into building something I could not name, whose entire output was the absence of things going wrong.</p>
+<p>My team lead said it plainly, more than once, and he was not being difficult. He was describing the situation accurately. I was weeks into building something I could not name, whose entire output was the absence of things going wrong.</p>
 
 <p>Try defending that in a conversation about headcount.</p>
 
+<h3>Where it started</h3>
+
+<p>November 2025. A calendar invite titled "Agentic Coding Setup" — me, Szymon, one more colleague, one hour.</p>
+
+<p>By the working sessions on 24 and 26 November we had the shape of it. The notes from those calls read strangely now: a vendor-agnostic repository of practice so a new person could be productive immediately. A model we called delegate, review, own — the human reviews what the agent produced, and ownership never transfers. Four agents as a first target, each with its own folder, its own tools, its own instructions. Templates for the documents each role hands to the next.</p>
+
+<p>We were not building an agent. We were building the process an agent works inside.</p>
+
+<p>And I should be straight about this: I did not build it alone. Szymon built it with me — the repository structure, the tooling, half the arguments that made it better.</p>
+
 <h3>What it actually was</h3>
 
-<p>Not an agent. Not a script that calls a model in a loop. What I was building was an agentic SDLC framework: the whole path from a raw idea to an implementable architecture package, decomposed into specialised roles that hand work to each other under rules.</p>
+<p>An agentic SDLC framework. The whole path from a raw idea to an implementable architecture package, decomposed into specialised roles that hand work to each other under rules.</p>
 
-<p>Structurally it was a graph. Each role was a node — research, reverse engineering, product definition, architecture, a reviewer that was deliberately not any of them. The edges between them were typed: an artifact moved forward only if it carried the identifiers that let you trace every claim back to where it came from. State lived in files that survived the death of any individual run, so nothing important lived inside a conversation window. Transitions were gated, and a gate could say no and send the work back to a specific earlier node.</p>
+<p>Structurally it was a graph. Each role was a node — research, reverse engineering, product definition, architecture, and a reviewer that was deliberately none of them. The edges were typed: work moved forward only if it carried the identifiers that let you trace any claim back to where it came from. State lived in files that outlived any single run, so nothing important lived inside a conversation window. Transitions were gated, and a gate could refuse and send the work back to a named earlier node.</p>
 
-<p>I did not have language for any of that in January. I described it as "the pipeline" and watched people's eyes glaze.</p>
+<p>I had no language for that in January 2026. I said "the pipeline" and watched people's eyes glaze.</p>
 
 <h3>Why nobody could see it</h3>
 
-<p>The team's approach at the time was the exciting one: agents let loose on the codebase, no gate, no independent verification, ship whatever comes out. It produced a great deal of code very quickly. It also took the system down every few days, and every few days somebody lost an evening working out why.</p>
+<p>The exciting approach at the time was the other one: agents let loose on the codebase, no gate, no independent verification, ship whatever comes out. It produced a great deal of code very quickly. It also took the system down every few days, and every few days somebody lost an evening finding out why.</p>
 
-<p>My framework's pitch, translated honestly, was: this will make that stop happening. Which is a promise about an absence. There is no demo for an absence. No screenshot, no burndown chart, no moment in a sprint review where anyone claps.</p>
+<p>Our pitch, translated honestly, was: this will make that stop happening. A promise about an absence. There is no demo for an absence — no screenshot, no burndown, no moment in a review where anyone claps.</p>
 
-<p>Then the system went down badly enough that the question changed from whether my work had value to whether I could take a look.</p>
+<p>Then the system went down badly enough that the question changed from whether the work had value to whether I could take a look.</p>
 
-<p>The pipeline did the unglamorous thing. It refused to let work proceed until something other than the author had checked it. It ran the actual application in a browser instead of asking an agent whether it was satisfied. The crashes stopped. The project shipped.</p>
+<p>The framework did the unglamorous thing. It refused to let work proceed until something other than the author had checked it. It ran the actual application in a browser rather than asking an agent whether it was satisfied. The crashes stopped. The project shipped.</p>
 
 <p>Nobody remembers this, which is normal. Rescues get remembered as events, not as authorship.</p>
 
 <h3>Then the vocabulary showed up</h3>
 
-<p>On 11 February, OpenAI published a piece on harness engineering: repository knowledge as the system of record, plans as first-class artifacts with decision logs committed to git.</p>
+<p>On 11 February 2026, OpenAI published a piece on harness engineering: repository knowledge as the system of record, plans as first-class artifacts with decision logs committed to git.</p>
 
-<p>On 24 March, Anthropic published one on harness design: a planner, a generator, and an evaluator kept deliberately apart, because an agent asked to grade its own work will praise it.</p>
+<p>On 24 March 2026, Anthropic published one on harness design: a planner, a generator and an evaluator kept deliberately apart, because an agent asked to grade its own work will praise it.</p>
 
-<p>On 4 July, someone finally named the other half. Graph engineering: designing agentic systems as explicit graphs instead of implicit loops. Nodes as units of capability. Edges as typed transitions carrying state. State as a checkpointed object rather than whatever survived in the context window.</p>
+<p>On 4 July 2026, someone finally named the other half. Graph engineering: designing agentic systems as explicit graphs instead of implicit loops. Nodes as units of capability. Edges as typed transitions carrying state. State as a checkpointed object rather than whatever survived in the context window.</p>
 
-<p>Read that list back. Nodes, typed edges, checkpointed state, an evaluator outside the generator, gates that can refuse. That was the thing I could not explain in January, described in a vocabulary that did not exist yet.</p>
+<p>Read that back. Nodes, typed edges, checkpointed state, an evaluator outside the generator, gates that can refuse. That is the thing we could not explain in November, described in a vocabulary that arrived eight months later.</p>
 
-<p>My first commit is dated 21 January. By 17 February the framework had taken a real production project end to end. I have the git history, which is more than most people have when they say they were early.</p>
+<p>The first commit is dated 21 January 2026. By 17 February the framework had taken a real production project end to end. There is a git history, which is more than most people have when they say they were early.</p>
 
-<p>And I want to be precise, because precision is what makes it defensible: OpenAI describe work that began in August 2025, months before mine. This is not precedence. It is convergence — different people hitting the same failure modes and arriving at the same structure, with nothing public to copy from.</p>
+<p>And precision matters here, because precision is what makes it defensible: OpenAI describe work that began in August 2025, before ours. This is not precedence. It is convergence — different people hitting the same failure modes and arriving at the same structure, with nothing public to copy from.</p>
 
 <h3>What I actually took from it</h3>
 
 <p>Not "trust your instincts." That is a poster, not a lesson.</p>
 
-<p>My instinct was fine. My sequencing was terrible. I was working in a category with no name, and an unnamed category cannot survive a budget conversation — there is nothing for the other person to hold. My team lead was not failing to see something obvious. I was failing to make it visible.</p>
+<p>The instinct was fine. The sequencing was terrible. We were working in a category with no name, and an unnamed category cannot survive a budget conversation — there is nothing for the other person to hold on to. My team lead was not failing to see something obvious. I was failing to make it visible.</p>
 
 <div class="pull">
   <span>What I would do differently</span>
-  <p>Name the thing, then bolt it to a number that is already bleeding on someone's dashboard — crashes per week, hours lost to rework — on day one. Not to win the argument later. To make the work legible while there is still a choice about whether to fund it.</p>
+  <p>Name the thing, then bolt it to a number already bleeding on someone's dashboard — crashes per week, hours lost to rework — on day one. Not to win the argument later. To make the work legible while there is still a choice about whether to fund it.</p>
 </div>
 
 <div class="cta">
