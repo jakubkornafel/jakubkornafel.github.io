@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Три недели мой собственный сайт мне врал — Jakub Kornafel</title>
+<meta name="description" content="Три деплоя упали. Сайт как ни в чём не бывало отвечал двухсоткой. Я узнал об этом только потому, что искал совсем другое.">
+<meta property="og:title" content="Три недели мой собственный сайт мне врал — Jakub Kornafel">
+<meta property="og:description" content="Три деплоя упали. Сайт как ни в чём не бывало отвечал двухсоткой. Я узнал об этом только потому, что искал совсем другое.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://jakubkornafel.com/log/ru/three-failed-deploys/">
+<meta property="og:image" content="https://jakubkornafel.com/assets/og-log.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ru">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" hreflang="en" href="https://jakubkornafel.com/log/three-failed-deploys/">
+<link rel="alternate" hreflang="pl" href="https://jakubkornafel.com/log/pl/three-failed-deploys/">
+<link rel="alternate" hreflang="es" href="https://jakubkornafel.com/log/es/three-failed-deploys/">
+<link rel="alternate" hreflang="ru" href="https://jakubkornafel.com/log/ru/three-failed-deploys/">
+<link rel="alternate" type="application/rss+xml" title="Jakub Kornafel — Log (RU)" href="https://jakubkornafel.com/log/ru/feed.xml">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%2312161D'/><text y='23' x='16' text-anchor='middle' font-family='monospace' font-size='17' fill='%23F4F5F7'>jk</text></svg>">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../assets/fonts/archivo.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../assets/fonts/sourceserif4.woff2">
+<link rel="stylesheet" href="../../../assets/log.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <a class="mark" href="/">Jakub Kornafel</a>
+    <nav>
+      <a href="/#systems">Systems</a>
+      <a href="/#record">Record</a>
+      <a href="/log/ru/">Log</a>
+      <a href="/research/who-checks-the-agent/">Research</a>
+      <a href="/#work">Work together</a>
+    </nav>
+  </header>
+</div>
+<div class="wrap"><nav class="langs" aria-label="Language"><a href="/log/three-failed-deploys/" hreflang="en">EN</a><a href="/log/pl/three-failed-deploys/" hreflang="pl">PL</a><a href="/log/es/three-failed-deploys/" hreflang="es">ES</a><a href="/log/ru/three-failed-deploys/" hreflang="ru" aria-current="true">RU</a></nav></div>
+
+<main>
+  <div class="wrap">
+    <article class="post">
+      <a class="back" href="/log/ru/">&larr; Log</a>
+      <p class="entry-meta"><span class="date">2026-08-27</span><span class="kind note">Note</span></p>
+      <h1>Три недели мой собственный сайт мне врал</h1>
+      <p class="dek">Три деплоя упали. Сайт как ни в чём не бывало отвечал двухсоткой. Я узнал об этом только потому, что искал совсем другое.</p>
+      <div class="body">
+<p>Я профессионально строю системы, которые умеют сказать человеку, что что-то пошло не так.</p>
+
+<p>Мой собственный сайт три недели отдавал версию на два коммита назад, а я об этом не знал.</p>
+
+<p>Как было дело. 6 августа я отправил две правки на подстраницу. Запустились три деплоя. Все три упали. Каждый записал длительность сборки в ноль миллисекунд и сообщение «Page build failed.» — ни подробностей, ни уведомления, ничего в почте.</p>
+
+<p>Ноль миллисекунд значит, что сборка даже не стартовала, то есть дело было не в моём коде. Легло что-то выше.</p>
+
+<p>А сайт? Сайт чувствовал себя прекрасно. HTTP 200, валидный сертификат, всё грузится. Потому что отдавалась последняя удачная сборка, ровно так же, как накануне. У аварии не было никакой видимой поверхности. Снаружи, из моего браузера, из чьего угодно — здоровый сайт.</p>
+
+<p>Нашёл я это только потому, что ковырялся в совершенно другом месте и из любопытства заглянул в статус деплоев.</p>
+
+<h3>Неприятная параллель</h3>
+
+<p>Это ровно тот способ ломаться, против которого я целыми днями ставлю ворота. Просто пришёл он с той стороны, которую я не оборонял.</p>
+
+<p>Агент рапортует об успехе. Тесты зелёные. Диф выглядит чисто. Всё на поверхности говорит, что работа сделана, и убедиться в обратном можно единственным способом: проверить то, чем не управляет тот, кто рапортует. Запустить настоящее приложение, спросить настоящее состояние, сравнить с тем, до чего оптимизирующая сторона не дотянется.</p>
+
+<p>По отношению к агентам этот рефлекс у меня был. По отношению к собственному деплой-пайплайну — нет, и он двадцать один день тихо отдавал протухшее.</p>
+
+<p>Починка, кстати, состояла в удалении, а не в добавлении. Сайт — чистый HTML, и всё равно каждый деплой прогонял его через шаблонизатор, который ему никогда не был нужен: 165 секунд на публикацию половины мегабайта. Один пустой файл спустя деплой стал обычным копированием файлов и занимает 19 секунд. Девять десятых времени уходило на шаг, единственным реальным вкладом которого была способность сломаться.</p>
+
+<div class="pull">
+  <span>Что я отсюда забираю</span>
+  <p>Система, которая не умеет сказать, что упала, будет позволять вам верить в успех ровно столько, сколько вы ей позволите. Тишина — не статус. Если три недели никто не сообщал о проблеме, это утверждение, которое стоит проверить, а не повод расслабиться.</p>
+</div>
+
+<div class="cta">
+  <p>Проверьте прямо сейчас последний удачный деплой той штуки, в которой уверены больше всего. Я подожду. Если результат вас удивит, <a href="mailto:jakubkornafel@gmail.com">напишите мне</a> — я такое коллекционирую.</p>
+</div>
+      </div>
+    </article>
+  </div>
+</main>
+
+<div class="wrap">
+  <footer>
+    <span>Jakub Kornafel · Málaga, Spain · Warsaw, Poland</span>
+    <span><a href="/log/ru/feed.xml">RSS</a> · jakubkornafel@gmail.com</span>
+  </footer>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Цифра, которую все повторяют, меряет не то — Jakub Kornafel</title>
+<meta name="description" content="Поменяй harness — бенчмарк сдвинется на три пункта. Поменяй модель — на двадцать пять. Значит, harness почти ни при чём. Пока не посмотришь на то, чего бенчмарк не меряет вовсе.">
+<meta property="og:title" content="Цифра, которую все повторяют, меряет не то — Jakub Kornafel">
+<meta property="og:description" content="Поменяй harness — бенчмарк сдвинется на три пункта. Поменяй модель — на двадцать пять. Значит, harness почти ни при чём. Пока не посмотришь на то, чего бенчмарк не меряет вовсе.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://jakubkornafel.com/log/ru/the-measurement-nobody-publishes/">
+<meta property="og:image" content="https://jakubkornafel.com/assets/og-log.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ru">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" hreflang="en" href="https://jakubkornafel.com/log/the-measurement-nobody-publishes/">
+<link rel="alternate" hreflang="pl" href="https://jakubkornafel.com/log/pl/the-measurement-nobody-publishes/">
+<link rel="alternate" hreflang="es" href="https://jakubkornafel.com/log/es/the-measurement-nobody-publishes/">
+<link rel="alternate" hreflang="ru" href="https://jakubkornafel.com/log/ru/the-measurement-nobody-publishes/">
+<link rel="alternate" type="application/rss+xml" title="Jakub Kornafel — Log (RU)" href="https://jakubkornafel.com/log/ru/feed.xml">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%2312161D'/><text y='23' x='16' text-anchor='middle' font-family='monospace' font-size='17' fill='%23F4F5F7'>jk</text></svg>">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../assets/fonts/archivo.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../assets/fonts/sourceserif4.woff2">
+<link rel="stylesheet" href="../../../assets/log.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <a class="mark" href="/">Jakub Kornafel</a>
+    <nav>
+      <a href="/#systems">Systems</a>
+      <a href="/#record">Record</a>
+      <a href="/log/ru/">Log</a>
+      <a href="/research/who-checks-the-agent/">Research</a>
+      <a href="/#work">Work together</a>
+    </nav>
+  </header>
+</div>
+<div class="wrap"><nav class="langs" aria-label="Language"><a href="/log/the-measurement-nobody-publishes/" hreflang="en">EN</a><a href="/log/pl/the-measurement-nobody-publishes/" hreflang="pl">PL</a><a href="/log/es/the-measurement-nobody-publishes/" hreflang="es">ES</a><a href="/log/ru/the-measurement-nobody-publishes/" hreflang="ru" aria-current="true">RU</a></nav></div>
+
+<main>
+  <div class="wrap">
+    <article class="post">
+      <a class="back" href="/log/ru/">&larr; Log</a>
+      <p class="entry-meta"><span class="date">2026-08-27</span><span class="kind note">Note</span></p>
+      <h1>Цифра, которую все повторяют, меряет не то</h1>
+      <p class="dek">Поменяй harness — бенчмарк сдвинется на три пункта. Поменяй модель — на двадцать пять. Значит, harness почти ни при чём. Пока не посмотришь на то, чего бенчмарк не меряет вовсе.</p>
+      <div class="body">
+<p>На этой неделе мне задали честный вопрос: насколько хорошо собранный harness улучшает агента, который пишет код? Дай цифру.</p>
+
+<p>Я пошёл за цифрами.</p>
+
+<p>В публичных рейтингах иногда попадается одна и та же модель, запущенная под двумя разными harness. Разрыв — от трёх до восьми процентных пунктов. А оставьте harness в покое и подмените под ним модель, и результат сдвинется на двадцать пять.</p>
+
+<p>Прочитайте только это, и вывод напишется сам: harness почти не важен, купите модель получше, идите домой.</p>
+
+<h3>Вот только боимся мы совсем не этого</h3>
+
+<p>Эти бенчмарки меряют одну задачу в одном контейнере, которая либо проходит, либо нет. Никто в продакшене не теряет сон из-за одной задачи в одном контейнере.</p>
+
+<p>Сон отнимает другое. Система, которая падает раз в несколько дней. Результат, который во вторник уже не повторить. Вердикт, который потом никто не проверит. Прогон, который рапортует об успехе, а файл, где он якобы что-то поправил, попросту выдумал.</p>
+
+<p>И вот на это — на устойчивость, воспроизводимость, проверяемость — публичного бенчмарка нет вообще. Ближайшая попытка, которую я нашёл, появилась три недели назад, а её собственный предзарегистрированный аудит вернулся без однозначного вывода.</p>
+
+<p>Там, где цифры всё-таки есть, они немаленькие. Одно исследование срезало регрессии на 70%, подсунув агенту один файл с контекстом. Другое намерило падение доли проваленных задач на 9,5% после того, как к пайплайну добавили критика, проверяющего план до исполнения. И то и другое — изменения в harness. Ни то ни другое в рейтинге не появится.</p>
+
+<div class="pull">
+  <span>Честный ответ</span>
+  <p>Цифры, которую вы хотите, пока нет. Цифры, которые есть, меряют другое. А в зазоре между ними и живут продакшен-системы.</p>
+</div>
+
+<p>Значит, пока что груз на вас. Мерьте то, что вас правда волнует: как часто падает система, сколько работы уходит в переделку, как часто вердикт выдерживает ревью. За вас этого никто не опубликует.</p>
+
+<div class="cta">
+  <p><b>Если у вас такой замер есть и выглядит он плохо</b>, я честно хотел бы на него посмотреть. Это ровно та задача, над которой я работаю. <a href="mailto:jakubkornafel@gmail.com">jakubkornafel@gmail.com</a></p>
+</div>
+      </div>
+    </article>
+  </div>
+</main>
+
+<div class="wrap">
+  <footer>
+    <span>Jakub Kornafel · Málaga, Spain · Warsaw, Poland</span>
+    <span><a href="/log/ru/feed.xml">RSS</a> · jakubkornafel@gmail.com</span>
+  </footer>
+</div>
+
+</body>
+</html>
