@@ -1,9 +1,34 @@
 date: 2026-08-27
 kind: Note
-title: The measurement nobody publishes
-dek: 
+title: The number everyone quotes is measuring the wrong thing
+dek: Swap the harness and the benchmark moves three points. Swap the model and it moves twenty-five. So the harness barely matters — unless you look at what the benchmark never measures.
 rank: 1
 ---
-<p>Every public benchmark for coding agents measures single tasks in an isolated container. Swap the harness under one model and the score moves three to eight points; swap the model under one harness and it moves twenty-five. Read only that, and the obvious conclusion is that the harness barely matters.</p>
-        <p>But the reason I build harnesses has never been the score on one task. It is that a system stops falling over every few days, that a result is reproducible, that a verdict can be audited afterwards. There is no public benchmark for any of that. The closest attempt I found is three weeks old and its own audit came back inconclusive.</p>
-        <p>So the honest position is: the number you want does not exist yet, and the numbers that do exist are measuring something else.</p>
+<p>Someone asked me a fair question this week: by how much does a well-built harness actually improve a coding agent? Give me a number.</p>
+
+<p>So I went and got the numbers.</p>
+
+<p>On the public leaderboards you can occasionally find the same model running under two different harnesses. The gap is three to eight percentage points. Meanwhile, keep the harness fixed and swap the model underneath, and the score moves twenty-five.</p>
+
+<p>Read only that, and the conclusion writes itself: the harness barely matters, buy a better model, go home.</p>
+
+<h3>Except that is not what any of us are actually worried about</h3>
+
+<p>Those benchmarks measure one task, in one container, that either passes or fails. Nobody in production is losing sleep over one task in one container.</p>
+
+<p>What people lose sleep over is a system that falls over every few days. A result that cannot be reproduced next Tuesday. A verdict nobody can audit after the fact. A run that reports success while quietly having invented the file it claims to have edited.</p>
+
+<p>For that — for stability, reproducibility, auditability — there is no public benchmark at all. The closest attempt I could find is three weeks old, and its own preregistered audit came back inconclusive.</p>
+
+<p>Where the numbers do exist, they are not small. One study cut regressions by 70% by handing the agent a single context file. Another measured a 9.5% drop in failed tasks from adding a critic that checks the plan before execution. Both of those are harness changes. Neither shows up on a leaderboard.</p>
+
+<div class="pull">
+  <span>The honest position</span>
+  <p>The number you want does not exist yet. The numbers that do exist are measuring something else, and the gap between them is exactly where production systems live.</p>
+</div>
+
+<p>Which means for now the burden is on you. Measure the thing you actually care about — crash frequency, rework rate, how often a verdict survives review — because nobody is going to publish it for you.</p>
+
+<div class="cta">
+  <p><b>If you have that measurement and it looks bad</b>, I would genuinely like to see it. That is the problem I work on. <a href="mailto:jakubkornafel@gmail.com">jakubkornafel@gmail.com</a></p>
+</div>

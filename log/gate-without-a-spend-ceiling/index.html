@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>A gate without a spend ceiling is not a gate — Jakub Kornafel</title>
-<meta name="description" content="Iteration caps bound how many times a loop runs, not what it costs. So I shipped a ledger that stops a run at a declared ceiling and reports where the money went.">
+<meta name="description" content="My pipeline could tell you whether the work was good. It could not tell you that the answer had cost four hours and eight failed attempts to reach.">
 <meta property="og:title" content="A gate without a spend ceiling is not a gate — Jakub Kornafel">
-<meta property="og:description" content="Iteration caps bound how many times a loop runs, not what it costs. So I shipped a ledger that stops a run at a declared ceiling and reports where the money went.">
+<meta property="og:description" content="My pipeline could tell you whether the work was good. It could not tell you that the answer had cost four hours and eight failed attempts to reach.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://jakubkornafel.com/log/gate-without-a-spend-ceiling/">
 <meta property="og:image" content="https://jakubkornafel.com/assets/og-log.png">
@@ -38,16 +38,42 @@
       <a class="back" href="/log/">&larr; Log</a>
       <p class="entry-meta"><span class="date">2026-08-27</span><span class="kind build">Build</span></p>
       <h1>A gate without a spend ceiling is not a gate</h1>
-      <p class="dek">Iteration caps bound how many times a loop runs, not what it costs. So I shipped a ledger that stops a run at a declared ceiling and reports where the money went.</p>
+      <p class="dek">My pipeline could tell you whether the work was good. It could not tell you that the answer had cost four hours and eight failed attempts to reach.</p>
       <div class="body">
-<p>The pipeline already capped iterations per phase. That turns out to bound the wrong thing: one review round fanning out to eight parallel verifiers can cost more than the four phases before it, and no cap notices. Evaluation answered "is this good enough" and never "at what price".</p>
-        <p>What went in: a budget declared before work starts, checked at phase boundaries and on every loop-back, never mid-phase. A run that crosses an edge already over budget stops with an explicit verdict instead of quietly finishing. Cost and wall clock are recorded per phase, and the final report carries them, so no verdict leaves without its price.</p>
-        <p>The part I did not expect to matter most is the route analysis. It measures spend that did not move the run forward — everything consumed by iterations that ended in a loop-back — and flags reasons that repeat. A run that reached a pass on the tenth identical retry is a failing run wearing a passing badge, and nothing in the old reports would have shown that.</p>
-        <p>There is good evidence this class of change is worth more than it looks. A study this March added one thing to a coding agent — a map of which tests cover which code, handed over as a plain skill file — and regressions fell from 6.08% to 1.82%. The same study's other branch gave the agent procedural instructions to work test-first instead, and regressions rose to 9.94%, worse than no intervention at all.</p>
-        <div class="pull">
-          <span>The rule I am keeping</span>
-          <p>Give the agent context, not procedure. Telling it how to behave made things worse; telling it what is true made things better by 70%.</p>
-        </div>
+<p>My pipeline had gates I was proud of. Criteria, thresholds, a reviewer that was not the author, a verdict that could say no.</p>
+
+<p>Then I asked it a question it could not answer: <em>what did this cost?</em></p>
+
+<p>It knew the artifact was good enough. It had no idea whether reaching that verdict took forty minutes or four hours, twelve dollars or two hundred. It could not tell a clean first-pass approval from a run that limped over the line on its tenth attempt at the same unresolved issue.</p>
+
+<p>Those two runs are not the same result. Only one of them is a working system.</p>
+
+<h3>The cap that bounds the wrong thing</h3>
+
+<p>I had iteration caps — ten loops per phase, maximum. That felt like control. It is not. An iteration cap bounds how many times a loop runs, not what each turn costs, and in my pipeline one review round fans out to eight verifiers running in parallel. That single step can cost more than every phase before it combined, and no cap anywhere notices.</p>
+
+<p>So I shipped a ledger. A budget declared before work starts. Checked when crossing between phases and on every loop back, never mid-work. Cross an edge already over the ceiling and the run stops with an explicit verdict instead of quietly finishing and presenting you with a bill.</p>
+
+<p>The part I underestimated is the route analysis. It measures the spend that did not move the run forward — everything consumed by attempts that ended in a loop back — and flags reasons that repeat. That last number is the uncomfortable one. A run that reached a pass on the tenth identical retry is a failing run wearing a passing badge, and nothing in my old reports would have shown it.</p>
+
+<h3>Why this is worth more than it looks</h3>
+
+<p>There is a study from March that made me rethink how I add anything to an agent at all.</p>
+
+<p>Researchers gave a coding agent one extra thing: a map of which tests cover which code, handed over as a plain text file the agent could read. Regressions — tests that used to pass and stopped — fell from 6.08% to 1.82%. A 70% drop from one file.</p>
+
+<p>The same study ran a second branch. Instead of the map, they gave the agent procedural instructions: work test-first, follow this discipline. Regressions rose to 9.94%. Worse than doing nothing at all.</p>
+
+<div class="pull">
+  <span>The rule I am keeping</span>
+  <p>Give an agent context, not procedure. Telling it how to behave made things measurably worse. Telling it what is true made things 70% better. Every instruction I am tempted to write now gets that test first.</p>
+</div>
+
+<p>Which is also why the budget lives in the state file rather than in a prompt asking the agent to be careful with money. An agent cannot be careful with a number it cannot see.</p>
+
+<div class="cta">
+  <p><b>If you are running agents and cannot say what last week cost you</b>, you are not running an autonomous system — you are running up a bill. I build the part that can say no. <a href="mailto:jakubkornafel@gmail.com">Send me the system and the deadline.</a></p>
+</div>
       </div>
     </article>
   </div>

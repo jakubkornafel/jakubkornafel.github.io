@@ -93,3 +93,13 @@ footer{border-top:1px solid var(--rule); padding:2rem 0 3rem; display:flex; just
 .post .dek{margin:1.5rem 0 0; max-width:56ch; font-size:1.3125rem; color:#1E242E}
 .post .body{margin-top:2.5rem; border-top:1px solid var(--rule); padding-top:2rem}
 .post .body p:first-child{margin-top:0}
+
+/* śródtytuły i wezwanie do działania we wpisie */
+.entry h3, .post .body h3{font-family:var(--display); font-weight:700; font-size:1.375rem;
+  letter-spacing:-.02em; line-height:1.15; margin:2.5rem 0 0; max-width:30ch}
+.cta{margin:2.5rem 0 0; padding:1.4rem 1.5rem; background:var(--ink); border-radius:8px; max-width:62ch}
+.cta p{margin:0; color:#F4F5F7; font-size:1.0625rem}
+.cta b{color:#FFFFFF; font-weight:600}
+.cta a{color:#F4F5F7; text-decoration-color:#7C8698}
+.cta a:hover{text-decoration-color:#F4F5F7}
+.cta a:focus-visible{outline-color:#F4F5F7}

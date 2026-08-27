@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Harness before the harness — Jakub Kornafel</title>
-<meta name="description" content="A pipeline I built in January turned out to implement the same four mechanisms two frontier labs described publicly weeks later. The interesting part is what the git log proves — and what it does not.">
-<meta property="og:title" content="Harness before the harness — Jakub Kornafel">
-<meta property="og:description" content="A pipeline I built in January turned out to implement the same four mechanisms two frontier labs described publicly weeks later. The interesting part is what the git log proves — and what it does not.">
+<title>I nearly got fired for the thing that later saved the project — Jakub Kornafel</title>
+<meta name="description" content="In January I built gates nobody wanted. In March, two frontier labs published the same design. In between, the project that had no use for it needed rescuing.">
+<meta property="og:title" content="I nearly got fired for the thing that later saved the project — Jakub Kornafel">
+<meta property="og:description" content="In January I built gates nobody wanted. In March, two frontier labs published the same design. In between, the project that had no use for it needed rescuing.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://jakubkornafel.com/log/harness-before-the-harness/">
 <meta property="og:image" content="https://jakubkornafel.com/assets/og-log.png">
@@ -37,16 +37,47 @@
     <article class="post">
       <a class="back" href="/log/">&larr; Log</a>
       <p class="entry-meta"><span class="date">2026-08-27</span><span class="kind build">Build</span></p>
-      <h1>Harness before the harness</h1>
-      <p class="dek">A pipeline I built in January turned out to implement the same four mechanisms two frontier labs described publicly weeks later. The interesting part is what the git log proves — and what it does not.</p>
+      <h1>I nearly got fired for the thing that later saved the project</h1>
+      <p class="dek">In January I built gates nobody wanted. In March, two frontier labs published the same design. In between, the project that had no use for it needed rescuing.</p>
       <div class="body">
-<p>In January I put together a multi-agent pipeline for turning a product idea into an architecture package: roles as separate agents, artifacts handed between stages with cross-reference IDs, an evaluator that is not the generator, gates that can say no, and a loop that resets context between iterations rather than compacting it.</p>
-        <p>On 11 February OpenAI published a piece on harness engineering. On 24 March Anthropic published one on harness design. Between them they name the same mechanisms: repository knowledge as the system of record, plans as first-class artifacts with progress and decision logs checked in, an evaluator separated from the generator because an agent asked to judge its own work praises it, and concrete grading criteria instead of an impression.</p>
-        <p>The first commit is dated 21 January, and by 17 February the pipeline had run a real production project end to end. So the dates hold. What they do not establish is precedence in any deeper sense: OpenAI describe work that started in August 2025, months before mine. The honest claim is convergence — two sides looking at the same failure modes and arriving at the same four fixes, with nothing public to copy from at the time.</p>
-        <div class="pull">
-          <span>What I took from it</span>
-          <p>Trusting a technical hunch is cheap. Making it falsifiable early is the expensive part, and the part I skipped. The pipeline only became visibly valuable once a system it replaced had been falling over every few days — which is a bad way to discover you were right.</p>
-        </div>
+<p>In January I was building something my stakeholders could not see the point of.</p>
+
+<p>A QA agent. Gates between stages. A reviewer that was not the same agent that wrote the thing. Artifacts handed forward with IDs so you could trace any decision back to where it came from. From the outside it looked like I was building paperwork while everyone else was shipping features.</p>
+
+<p>The conversation about whether I was worth keeping was not hypothetical.</p>
+
+<p>Meanwhile the actual approach on the project was the one everybody was excited about: agents let loose, no gate, no verification, ship what comes out. It produced a lot of code very fast. It also brought the system down every few days, and every few days someone spent a night finding out why.</p>
+
+<p>Then the call came. Could I take a look.</p>
+
+<p>The pipeline I had been quietly building did the boring thing: it refused to let work move forward until something other than the author had checked it, and it ran the actual application in a browser rather than asking the agent whether it was happy. The crashes stopped. The project shipped.</p>
+
+<p>Nobody remembers this. Rescues get remembered as events, not as authorship, and prevention is invisible by construction — the outage that does not happen leaves no trace, no incident channel, no war story.</p>
+
+<h3>The part I did not expect</h3>
+
+<p>On 11 February, OpenAI published a piece describing repository knowledge as the system of record, plans as first-class artifacts with decision logs checked into git. On 24 March, Anthropic published one describing a planner, a generator, and an evaluator kept deliberately separate, because an agent asked to grade its own work will praise it.</p>
+
+<p>Four mechanisms. The same four I had running since January: context reset instead of compaction, state in files rather than in a conversation, an evaluator outside the generator, explicit criteria for what "done" means.</p>
+
+<p>My first commit is dated 21 January. By 17 February the pipeline had processed a real production project end to end. I have the git log, which is more than most people have when they say they were early.</p>
+
+<p>But I want to be precise, because the precise version is stronger. OpenAI describe work that started in August 2025 — months before mine. Nothing was public in January. So this is not precedence. It is convergence: two teams looking at the same failure modes, arriving at the same fixes, with nothing to copy from.</p>
+
+<h3>What I actually took from it</h3>
+
+<p>Not "trust your instincts." That is a poster, not a lesson.</p>
+
+<p>The lesson is that my instinct was fine and my sequencing was terrible. Process work has no visible counterfactual, so it looks like nothing until the thing it prevents finally happens. I let it stay invisible until the system was on fire, and then I was right in the most expensive way available.</p>
+
+<div class="pull">
+  <span>What I would do differently</span>
+  <p>Attach the unglamorous work to a number that is already bleeding on someone's dashboard, on day one. Not to prove a point later — to make the value legible while there is still a choice about whether to fund it.</p>
+</div>
+
+<div class="cta">
+  <p><b>If your agents are producing code faster than anyone can check it</b>, that is the conversation I want. Send me the system and the deadline — <a href="mailto:jakubkornafel@gmail.com">jakubkornafel@gmail.com</a>. You get a yes or a no, and where I think the risk sits.</p>
+</div>
       </div>
     </article>
   </div>

@@ -9,19 +9,50 @@
     <language>en</language>
     <lastBuildDate>Thu, 27 Aug 2026 00:00:00 +0000</lastBuildDate>
     <item>
-      <title>Harness before the harness</title>
+      <title>I nearly got fired for the thing that later saved the project</title>
       <link>https://jakubkornafel.com/log/harness-before-the-harness/</link>
       <guid isPermaLink="true">https://jakubkornafel.com/log/harness-before-the-harness/</guid>
       <pubDate>Thu, 27 Aug 2026 00:00:00 +0000</pubDate>
       <category>Build</category>
-      <description>A pipeline I built in January turned out to implement the same four mechanisms two frontier labs described publicly weeks later. The interesting part is what the git log proves — and what it does not.</description>
-      <content:encoded><![CDATA[<p>In January I put together a multi-agent pipeline for turning a product idea into an architecture package: roles as separate agents, artifacts handed between stages with cross-reference IDs, an evaluator that is not the generator, gates that can say no, and a loop that resets context between iterations rather than compacting it.</p>
-        <p>On 11 February OpenAI published a piece on harness engineering. On 24 March Anthropic published one on harness design. Between them they name the same mechanisms: repository knowledge as the system of record, plans as first-class artifacts with progress and decision logs checked in, an evaluator separated from the generator because an agent asked to judge its own work praises it, and concrete grading criteria instead of an impression.</p>
-        <p>The first commit is dated 21 January, and by 17 February the pipeline had run a real production project end to end. So the dates hold. What they do not establish is precedence in any deeper sense: OpenAI describe work that started in August 2025, months before mine. The honest claim is convergence — two sides looking at the same failure modes and arriving at the same four fixes, with nothing public to copy from at the time.</p>
-        <div class="pull">
-          <span>What I took from it</span>
-          <p>Trusting a technical hunch is cheap. Making it falsifiable early is the expensive part, and the part I skipped. The pipeline only became visibly valuable once a system it replaced had been falling over every few days — which is a bad way to discover you were right.</p>
-        </div>]]></content:encoded>
+      <description>In January I built gates nobody wanted. In March, two frontier labs published the same design. In between, the project that had no use for it needed rescuing.</description>
+      <content:encoded><![CDATA[<p>In January I was building something my stakeholders could not see the point of.</p>
+
+<p>A QA agent. Gates between stages. A reviewer that was not the same agent that wrote the thing. Artifacts handed forward with IDs so you could trace any decision back to where it came from. From the outside it looked like I was building paperwork while everyone else was shipping features.</p>
+
+<p>The conversation about whether I was worth keeping was not hypothetical.</p>
+
+<p>Meanwhile the actual approach on the project was the one everybody was excited about: agents let loose, no gate, no verification, ship what comes out. It produced a lot of code very fast. It also brought the system down every few days, and every few days someone spent a night finding out why.</p>
+
+<p>Then the call came. Could I take a look.</p>
+
+<p>The pipeline I had been quietly building did the boring thing: it refused to let work move forward until something other than the author had checked it, and it ran the actual application in a browser rather than asking the agent whether it was happy. The crashes stopped. The project shipped.</p>
+
+<p>Nobody remembers this. Rescues get remembered as events, not as authorship, and prevention is invisible by construction — the outage that does not happen leaves no trace, no incident channel, no war story.</p>
+
+<h3>The part I did not expect</h3>
+
+<p>On 11 February, OpenAI published a piece describing repository knowledge as the system of record, plans as first-class artifacts with decision logs checked into git. On 24 March, Anthropic published one describing a planner, a generator, and an evaluator kept deliberately separate, because an agent asked to grade its own work will praise it.</p>
+
+<p>Four mechanisms. The same four I had running since January: context reset instead of compaction, state in files rather than in a conversation, an evaluator outside the generator, explicit criteria for what "done" means.</p>
+
+<p>My first commit is dated 21 January. By 17 February the pipeline had processed a real production project end to end. I have the git log, which is more than most people have when they say they were early.</p>
+
+<p>But I want to be precise, because the precise version is stronger. OpenAI describe work that started in August 2025 — months before mine. Nothing was public in January. So this is not precedence. It is convergence: two teams looking at the same failure modes, arriving at the same fixes, with nothing to copy from.</p>
+
+<h3>What I actually took from it</h3>
+
+<p>Not "trust your instincts." That is a poster, not a lesson.</p>
+
+<p>The lesson is that my instinct was fine and my sequencing was terrible. Process work has no visible counterfactual, so it looks like nothing until the thing it prevents finally happens. I let it stay invisible until the system was on fire, and then I was right in the most expensive way available.</p>
+
+<div class="pull">
+  <span>What I would do differently</span>
+  <p>Attach the unglamorous work to a number that is already bleeding on someone's dashboard, on day one. Not to prove a point later — to make the value legible while there is still a choice about whether to fund it.</p>
+</div>
+
+<div class="cta">
+  <p><b>If your agents are producing code faster than anyone can check it</b>, that is the conversation I want. Send me the system and the deadline — <a href="mailto:jakubkornafel@gmail.com">jakubkornafel@gmail.com</a>. You get a yes or a no, and where I think the risk sits.</p>
+</div>]]></content:encoded>
     </item>
     <item>
       <title>A gate without a spend ceiling is not a gate</title>
@@ -29,41 +60,115 @@
       <guid isPermaLink="true">https://jakubkornafel.com/log/gate-without-a-spend-ceiling/</guid>
       <pubDate>Thu, 27 Aug 2026 00:00:00 +0000</pubDate>
       <category>Build</category>
-      <description>Iteration caps bound how many times a loop runs, not what it costs. So I shipped a ledger that stops a run at a declared ceiling and reports where the money went.</description>
-      <content:encoded><![CDATA[<p>The pipeline already capped iterations per phase. That turns out to bound the wrong thing: one review round fanning out to eight parallel verifiers can cost more than the four phases before it, and no cap notices. Evaluation answered "is this good enough" and never "at what price".</p>
-        <p>What went in: a budget declared before work starts, checked at phase boundaries and on every loop-back, never mid-phase. A run that crosses an edge already over budget stops with an explicit verdict instead of quietly finishing. Cost and wall clock are recorded per phase, and the final report carries them, so no verdict leaves without its price.</p>
-        <p>The part I did not expect to matter most is the route analysis. It measures spend that did not move the run forward — everything consumed by iterations that ended in a loop-back — and flags reasons that repeat. A run that reached a pass on the tenth identical retry is a failing run wearing a passing badge, and nothing in the old reports would have shown that.</p>
-        <p>There is good evidence this class of change is worth more than it looks. A study this March added one thing to a coding agent — a map of which tests cover which code, handed over as a plain skill file — and regressions fell from 6.08% to 1.82%. The same study's other branch gave the agent procedural instructions to work test-first instead, and regressions rose to 9.94%, worse than no intervention at all.</p>
-        <div class="pull">
-          <span>The rule I am keeping</span>
-          <p>Give the agent context, not procedure. Telling it how to behave made things worse; telling it what is true made things better by 70%.</p>
-        </div>]]></content:encoded>
+      <description>My pipeline could tell you whether the work was good. It could not tell you that the answer had cost four hours and eight failed attempts to reach.</description>
+      <content:encoded><![CDATA[<p>My pipeline had gates I was proud of. Criteria, thresholds, a reviewer that was not the author, a verdict that could say no.</p>
+
+<p>Then I asked it a question it could not answer: <em>what did this cost?</em></p>
+
+<p>It knew the artifact was good enough. It had no idea whether reaching that verdict took forty minutes or four hours, twelve dollars or two hundred. It could not tell a clean first-pass approval from a run that limped over the line on its tenth attempt at the same unresolved issue.</p>
+
+<p>Those two runs are not the same result. Only one of them is a working system.</p>
+
+<h3>The cap that bounds the wrong thing</h3>
+
+<p>I had iteration caps — ten loops per phase, maximum. That felt like control. It is not. An iteration cap bounds how many times a loop runs, not what each turn costs, and in my pipeline one review round fans out to eight verifiers running in parallel. That single step can cost more than every phase before it combined, and no cap anywhere notices.</p>
+
+<p>So I shipped a ledger. A budget declared before work starts. Checked when crossing between phases and on every loop back, never mid-work. Cross an edge already over the ceiling and the run stops with an explicit verdict instead of quietly finishing and presenting you with a bill.</p>
+
+<p>The part I underestimated is the route analysis. It measures the spend that did not move the run forward — everything consumed by attempts that ended in a loop back — and flags reasons that repeat. That last number is the uncomfortable one. A run that reached a pass on the tenth identical retry is a failing run wearing a passing badge, and nothing in my old reports would have shown it.</p>
+
+<h3>Why this is worth more than it looks</h3>
+
+<p>There is a study from March that made me rethink how I add anything to an agent at all.</p>
+
+<p>Researchers gave a coding agent one extra thing: a map of which tests cover which code, handed over as a plain text file the agent could read. Regressions — tests that used to pass and stopped — fell from 6.08% to 1.82%. A 70% drop from one file.</p>
+
+<p>The same study ran a second branch. Instead of the map, they gave the agent procedural instructions: work test-first, follow this discipline. Regressions rose to 9.94%. Worse than doing nothing at all.</p>
+
+<div class="pull">
+  <span>The rule I am keeping</span>
+  <p>Give an agent context, not procedure. Telling it how to behave made things measurably worse. Telling it what is true made things 70% better. Every instruction I am tempted to write now gets that test first.</p>
+</div>
+
+<p>Which is also why the budget lives in the state file rather than in a prompt asking the agent to be careful with money. An agent cannot be careful with a number it cannot see.</p>
+
+<div class="cta">
+  <p><b>If you are running agents and cannot say what last week cost you</b>, you are not running an autonomous system — you are running up a bill. I build the part that can say no. <a href="mailto:jakubkornafel@gmail.com">Send me the system and the deadline.</a></p>
+</div>]]></content:encoded>
     </item>
     <item>
-      <title>The measurement nobody publishes</title>
+      <title>The number everyone quotes is measuring the wrong thing</title>
       <link>https://jakubkornafel.com/log/the-measurement-nobody-publishes/</link>
       <guid isPermaLink="true">https://jakubkornafel.com/log/the-measurement-nobody-publishes/</guid>
       <pubDate>Thu, 27 Aug 2026 00:00:00 +0000</pubDate>
       <category>Note</category>
-      <description>Every public benchmark for coding agents measures single tasks in an isolated container. Swap the harness under one model and the score moves three to eight points; swap the model under one harness and it moves twenty-five. Read only that, and the obvious conclusion is that the harness barely matters.</description>
-      <content:encoded><![CDATA[<p>Every public benchmark for coding agents measures single tasks in an isolated container. Swap the harness under one model and the score moves three to eight points; swap the model under one harness and it moves twenty-five. Read only that, and the obvious conclusion is that the harness barely matters.</p>
-        <p>But the reason I build harnesses has never been the score on one task. It is that a system stops falling over every few days, that a result is reproducible, that a verdict can be audited afterwards. There is no public benchmark for any of that. The closest attempt I found is three weeks old and its own audit came back inconclusive.</p>
-        <p>So the honest position is: the number you want does not exist yet, and the numbers that do exist are measuring something else.</p>]]></content:encoded>
+      <description>Swap the harness and the benchmark moves three points. Swap the model and it moves twenty-five. So the harness barely matters — unless you look at what the benchmark never measures.</description>
+      <content:encoded><![CDATA[<p>Someone asked me a fair question this week: by how much does a well-built harness actually improve a coding agent? Give me a number.</p>
+
+<p>So I went and got the numbers.</p>
+
+<p>On the public leaderboards you can occasionally find the same model running under two different harnesses. The gap is three to eight percentage points. Meanwhile, keep the harness fixed and swap the model underneath, and the score moves twenty-five.</p>
+
+<p>Read only that, and the conclusion writes itself: the harness barely matters, buy a better model, go home.</p>
+
+<h3>Except that is not what any of us are actually worried about</h3>
+
+<p>Those benchmarks measure one task, in one container, that either passes or fails. Nobody in production is losing sleep over one task in one container.</p>
+
+<p>What people lose sleep over is a system that falls over every few days. A result that cannot be reproduced next Tuesday. A verdict nobody can audit after the fact. A run that reports success while quietly having invented the file it claims to have edited.</p>
+
+<p>For that — for stability, reproducibility, auditability — there is no public benchmark at all. The closest attempt I could find is three weeks old, and its own preregistered audit came back inconclusive.</p>
+
+<p>Where the numbers do exist, they are not small. One study cut regressions by 70% by handing the agent a single context file. Another measured a 9.5% drop in failed tasks from adding a critic that checks the plan before execution. Both of those are harness changes. Neither shows up on a leaderboard.</p>
+
+<div class="pull">
+  <span>The honest position</span>
+  <p>The number you want does not exist yet. The numbers that do exist are measuring something else, and the gap between them is exactly where production systems live.</p>
+</div>
+
+<p>Which means for now the burden is on you. Measure the thing you actually care about — crash frequency, rework rate, how often a verdict survives review — because nobody is going to publish it for you.</p>
+
+<div class="cta">
+  <p><b>If you have that measurement and it looks bad</b>, I would genuinely like to see it. That is the problem I work on. <a href="mailto:jakubkornafel@gmail.com">jakubkornafel@gmail.com</a></p>
+</div>]]></content:encoded>
     </item>
     <item>
-      <title>Three failed deploys nobody saw</title>
+      <title>My own site lied to me for three weeks</title>
       <link>https://jakubkornafel.com/log/three-failed-deploys/</link>
       <guid isPermaLink="true">https://jakubkornafel.com/log/three-failed-deploys/</guid>
-      <pubDate>Thu, 06 Aug 2026 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 27 Aug 2026 00:00:00 +0000</pubDate>
       <category>Note</category>
-      <description>This site sat for three weeks serving a version two commits behind, and it looked completely healthy the whole time.</description>
-      <content:encoded><![CDATA[<p>This site sat for three weeks serving a version two commits behind, and it looked completely healthy the whole time.</p>
-        <p>Three consecutive deploys failed, each with a build duration of zero milliseconds and the message "Page build failed." Zero milliseconds means the build never started, so it was not my code. The site kept answering with 200 because the last successful build was still being served — the failure had no visible surface at all.</p>
-        <p>The fix was removing a step that never needed to be there: the site is plain HTML with no template engine, yet every deploy ran it through one, taking 165 seconds for half a megabyte. One empty <code>.nojekyll</code> file later, deploys are a file copy and take 19 seconds.</p>
-        <div class="pull">
-          <span>What this is really about</span>
-          <p>A system that cannot tell you it failed will let you believe it succeeded for as long as you let it. That is the same argument as the one for evaluator agents, arriving from a completely different direction.</p>
-        </div>]]></content:encoded>
+      <description>Three deploys failed. The site kept answering with 200. I only found out because I went looking for something else entirely.</description>
+      <content:encoded><![CDATA[<p>I spend my working life building systems that can tell a human when something has gone wrong.</p>
+
+<p>My own site spent three weeks serving a version two commits behind, and I had no idea.</p>
+
+<p>Here is what happened. On 6 August I pushed two changes to a subpage. Three deploys ran. All three failed. Each one recorded a build duration of zero milliseconds and the message "Page build failed." — no detail, no notification, nothing in my inbox.</p>
+
+<p>Zero milliseconds means the build never even started, so it was not my code. Something upstream fell over.</p>
+
+<p>And the site? The site was fine. HTTP 200, valid certificate, everything loading. Because the last successful build was still being served, exactly as it had been the day before. The failure had no visible surface at all. From the outside, from my own browser, from anyone else's — a healthy website.</p>
+
+<p>I only found it because I was poking at something unrelated and checked the deploy status out of curiosity.</p>
+
+<h3>The uncomfortable parallel</h3>
+
+<p>This is the same failure mode I build gates against all day, arriving from a direction I did not defend.</p>
+
+<p>An agent reports success. The tests pass. The diff looks clean. Everything on the surface says the work is done, and the only way to know otherwise is to check something the reporting party does not control — run the actual application, query the actual state, compare against something the optimiser cannot touch.</p>
+
+<p>I had that instinct about agents. I did not have it about my own deployment pipeline, which had been quietly serving stale content for twenty-one days.</p>
+
+<p>The fix, incidentally, was deleting work rather than adding it. The site is plain HTML, but every deploy was running it through a template engine it never needed — 165 seconds to publish half a megabyte. One empty file later, deploys are a straight file copy and take 19 seconds. Nine tenths of the time was spent on a step whose only real contribution was being able to fail.</p>
+
+<div class="pull">
+  <span>What I am taking from this</span>
+  <p>A system that cannot tell you it failed will let you believe it succeeded for as long as you allow. Silence is not a status. If nothing has reported a problem in three weeks, that is a claim worth testing, not a reason to relax.</p>
+</div>
+
+<div class="cta">
+  <p>Go and check the last successful deploy of the thing you are most confident about. I will wait. If the answer surprises you, <a href="mailto:jakubkornafel@gmail.com">tell me about it</a> — I collect these.</p>
+</div>]]></content:encoded>
     </item>
   </channel>
 </rss>

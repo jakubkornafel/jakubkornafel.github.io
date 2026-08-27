@@ -1,12 +1,36 @@
-date: 2026-08-06
+date: 2026-08-27
 kind: Note
-title: Three failed deploys nobody saw
-dek: 
+title: My own site lied to me for three weeks
+dek: Three deploys failed. The site kept answering with 200. I only found out because I went looking for something else entirely.
+rank: 0
 ---
-<p>This site sat for three weeks serving a version two commits behind, and it looked completely healthy the whole time.</p>
-        <p>Three consecutive deploys failed, each with a build duration of zero milliseconds and the message "Page build failed." Zero milliseconds means the build never started, so it was not my code. The site kept answering with 200 because the last successful build was still being served — the failure had no visible surface at all.</p>
-        <p>The fix was removing a step that never needed to be there: the site is plain HTML with no template engine, yet every deploy ran it through one, taking 165 seconds for half a megabyte. One empty <code>.nojekyll</code> file later, deploys are a file copy and take 19 seconds.</p>
-        <div class="pull">
-          <span>What this is really about</span>
-          <p>A system that cannot tell you it failed will let you believe it succeeded for as long as you let it. That is the same argument as the one for evaluator agents, arriving from a completely different direction.</p>
-        </div>
+<p>I spend my working life building systems that can tell a human when something has gone wrong.</p>
+
+<p>My own site spent three weeks serving a version two commits behind, and I had no idea.</p>
+
+<p>Here is what happened. On 6 August I pushed two changes to a subpage. Three deploys ran. All three failed. Each one recorded a build duration of zero milliseconds and the message "Page build failed." — no detail, no notification, nothing in my inbox.</p>
+
+<p>Zero milliseconds means the build never even started, so it was not my code. Something upstream fell over.</p>
+
+<p>And the site? The site was fine. HTTP 200, valid certificate, everything loading. Because the last successful build was still being served, exactly as it had been the day before. The failure had no visible surface at all. From the outside, from my own browser, from anyone else's — a healthy website.</p>
+
+<p>I only found it because I was poking at something unrelated and checked the deploy status out of curiosity.</p>
+
+<h3>The uncomfortable parallel</h3>
+
+<p>This is the same failure mode I build gates against all day, arriving from a direction I did not defend.</p>
+
+<p>An agent reports success. The tests pass. The diff looks clean. Everything on the surface says the work is done, and the only way to know otherwise is to check something the reporting party does not control — run the actual application, query the actual state, compare against something the optimiser cannot touch.</p>
+
+<p>I had that instinct about agents. I did not have it about my own deployment pipeline, which had been quietly serving stale content for twenty-one days.</p>
+
+<p>The fix, incidentally, was deleting work rather than adding it. The site is plain HTML, but every deploy was running it through a template engine it never needed — 165 seconds to publish half a megabyte. One empty file later, deploys are a straight file copy and take 19 seconds. Nine tenths of the time was spent on a step whose only real contribution was being able to fail.</p>
+
+<div class="pull">
+  <span>What I am taking from this</span>
+  <p>A system that cannot tell you it failed will let you believe it succeeded for as long as you allow. Silence is not a status. If nothing has reported a problem in three weeks, that is a claim worth testing, not a reason to relax.</p>
+</div>
+
+<div class="cta">
+  <p>Go and check the last successful deploy of the thing you are most confident about. I will wait. If the answer surprises you, <a href="mailto:jakubkornafel@gmail.com">tell me about it</a> — I collect these.</p>
+</div>
