@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"
      xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Jakub Kornafel — Log</title>
+    <title>Jakub Kornafel — Log (EN)</title>
     <link>https://jakubkornafel.com/log/</link>
     <atom:link href="https://jakubkornafel.com/log/feed.xml" rel="self" type="application/rss+xml"/>
     <description>What I am building, what broke, and what the evidence actually supports.</description>
@@ -14,7 +14,7 @@
       <guid isPermaLink="true">https://jakubkornafel.com/log/harness-before-the-harness/</guid>
       <pubDate>Thu, 27 Aug 2026 00:00:00 +0000</pubDate>
       <category>Build</category>
-      <description>We started sketching it in November 2025. My team lead could not see the value, and he was not being unreasonable — the vocabulary for what we were building would not exist for another six months.</description>
+      <description>We started sketching it in November 2025. My team lead could not see the value, and he was not being unreasonable — the vocabulary for what we were building would not exist for another eight months.</description>
       <content:encoded><![CDATA[<p>"I don't see the value."</p>
 
 <p>My team lead said it plainly, more than once, and he was not being difficult. He was describing the situation accurately. I was weeks into building something I could not name, whose entire output was the absence of things going wrong.</p>

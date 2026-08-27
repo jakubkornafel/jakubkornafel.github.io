@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Liczba, którą wszyscy cytują, mierzy coś innego — Jakub Kornafel</title>
+<meta name="description" content="Zmień harness, a benchmark drgnie o trzy punkty. Zmień model, a drgnie o dwadzieścia pięć. Czyli harness prawie nie ma znaczenia — chyba że spojrzysz na to, czego benchmark nigdy nie mierzy.">
+<meta property="og:title" content="Liczba, którą wszyscy cytują, mierzy coś innego — Jakub Kornafel">
+<meta property="og:description" content="Zmień harness, a benchmark drgnie o trzy punkty. Zmień model, a drgnie o dwadzieścia pięć. Czyli harness prawie nie ma znaczenia — chyba że spojrzysz na to, czego benchmark nigdy nie mierzy.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://jakubkornafel.com/log/pl/the-measurement-nobody-publishes/">
+<meta property="og:image" content="https://jakubkornafel.com/assets/og-log.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="pl">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" hreflang="en" href="https://jakubkornafel.com/log/the-measurement-nobody-publishes/">
+<link rel="alternate" hreflang="pl" href="https://jakubkornafel.com/log/pl/the-measurement-nobody-publishes/">
+<link rel="alternate" hreflang="es" href="https://jakubkornafel.com/log/es/the-measurement-nobody-publishes/">
+<link rel="alternate" type="application/rss+xml" title="Jakub Kornafel — Log (PL)" href="https://jakubkornafel.com/log/pl/feed.xml">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%2312161D'/><text y='23' x='16' text-anchor='middle' font-family='monospace' font-size='17' fill='%23F4F5F7'>jk</text></svg>">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../assets/fonts/archivo.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../assets/fonts/sourceserif4.woff2">
+<link rel="stylesheet" href="../../../assets/log.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <a class="mark" href="/">Jakub Kornafel</a>
+    <nav>
+      <a href="/#systems">Systems</a>
+      <a href="/#record">Record</a>
+      <a href="/log/pl/">Log</a>
+      <a href="/#work">Work together</a>
+    </nav>
+  </header>
+</div>
+<div class="wrap"><nav class="langs" aria-label="Language"><a href="/log/the-measurement-nobody-publishes/" hreflang="en">EN</a><a href="/log/pl/the-measurement-nobody-publishes/" hreflang="pl" aria-current="true">PL</a><a href="/log/es/the-measurement-nobody-publishes/" hreflang="es">ES</a></nav></div>
+
+<main>
+  <div class="wrap">
+    <article class="post">
+      <a class="back" href="/log/pl/">&larr; Log</a>
+      <p class="entry-meta"><span class="date">2026-08-27</span><span class="kind note">Note</span></p>
+      <h1>Liczba, którą wszyscy cytują, mierzy coś innego</h1>
+      <p class="dek">Zmień harness, a benchmark drgnie o trzy punkty. Zmień model, a drgnie o dwadzieścia pięć. Czyli harness prawie nie ma znaczenia — chyba że spojrzysz na to, czego benchmark nigdy nie mierzy.</p>
+      <div class="body">
+<p>Ktoś zadał mi w tym tygodniu uczciwe pytanie: o ile dobrze zbudowany harness realnie poprawia agenta kodującego? Podaj liczbę.</p>
+
+<p>Poszedłem więc po liczby.</p>
+
+<p>Na publicznych rankingach da się czasem znaleźć ten sam model uruchomiony pod dwoma różnymi harnessami. Różnica to trzy do ośmiu punktów procentowych. Tymczasem zostaw harness bez zmian, a podmień model pod spodem — wynik rusza się o dwadzieścia pięć.</p>
+
+<p>Przeczytaj tylko tyle, a wniosek pisze się sam: harness prawie nie ma znaczenia, kup lepszy model, idź do domu.</p>
+
+<h3>Tyle że nikt z nas nie martwi się akurat o to</h3>
+
+<p>Te benchmarki mierzą jedno zadanie, w jednym kontenerze, które albo przechodzi, albo nie. Nikt na produkcji nie traci snu przez jedno zadanie w jednym kontenerze.</p>
+
+<p>Ludzie tracą sen przez system, który wywraca się co kilka dni. Przez wynik, którego nie da się powtórzyć w następny wtorek. Przez werdykt, którego po fakcie nikt nie potrafi zaudytować. Przez przebieg, który raportuje sukces, po cichu wymyśliwszy plik, który rzekomo edytował.</p>
+
+<p>Na to — na stabilność, powtarzalność, audytowalność — nie ma żadnego publicznego benchmarku. Najbliższa próba, jaką znalazłem, ma trzy tygodnie, a jej własny prerejestrowany audyt wyszedł nierozstrzygający.</p>
+
+<p>Tam, gdzie liczby jednak są, nie są małe. Jedno badanie zbiło regresje o 70%, podając agentowi jeden plik z kontekstem. Inne zmierzyło spadek nieudanych zadań o 9,5% po dodaniu krytyka, który sprawdza plan przed wykonaniem. Oba to zmiany w harnessie. Żadna nie pojawia się w rankingu.</p>
+
+<div class="pull">
+  <span>Uczciwe stanowisko</span>
+  <p>Liczba, której chcesz, jeszcze nie istnieje. Liczby, które istnieją, mierzą co innego, a przepaść między nimi to dokładnie miejsce, w którym żyją systemy produkcyjne.</p>
+</div>
+
+<p>To znaczy, że na razie ciężar spoczywa na Tobie. Mierz to, na czym naprawdę Ci zależy — częstotliwość awarii, ile pracy idzie na poprawki, jak często werdykt przeżywa przegląd — bo nikt tego za Ciebie nie opublikuje.</p>
+
+<div class="cta">
+  <p><b>Jeśli masz taki pomiar i wygląda źle</b>, naprawdę chciałbym go zobaczyć. To jest problem, nad którym pracuję. <a href="mailto:jakubkornafel@gmail.com">jakubkornafel@gmail.com</a></p>
+</div>
+      </div>
+    </article>
+  </div>
+</main>
+
+<div class="wrap">
+  <footer>
+    <span>Jakub Kornafel · Málaga, Spain · Warsaw, Poland</span>
+    <span><a href="/log/pl/feed.xml">RSS</a> · jakubkornafel@gmail.com</span>
+  </footer>
+</div>
+
+</body>
+</html>

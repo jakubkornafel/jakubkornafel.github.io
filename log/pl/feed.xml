@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"
+     xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Jakub Kornafel — Log (PL)</title>
+    <link>https://jakubkornafel.com/log/pl/</link>
+    <atom:link href="https://jakubkornafel.com/log/pl/feed.xml" rel="self" type="application/rss+xml"/>
+    <description>Co buduję, co się zepsuło i co z tego naprawdę wynika z dowodów.</description>
+    <language>pl</language>
+    <lastBuildDate>Thu, 27 Aug 2026 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Prawie mnie zwolniono za budowanie kategorii, która nie miała jeszcze nazwy</title>
+      <link>https://jakubkornafel.com/log/pl/harness-before-the-harness/</link>
+      <guid isPermaLink="true">https://jakubkornafel.com/log/pl/harness-before-the-harness/</guid>
+      <pubDate>Thu, 27 Aug 2026 00:00:00 +0000</pubDate>
+      <category>Build</category>
+      <description>Zaczęliśmy to szkicować w listopadzie 2025. Mój team leader nie widział w tym wartości — i nie był nierozsądny. Słownictwo opisujące to, co budowaliśmy, miało powstać dopiero osiem miesięcy później.</description>
+      <content:encoded><![CDATA[<p>„Nie widzę w tym wartości".</p>
+
+<p>Mój team leader powiedział to wprost, nie raz. I nie był złośliwy — opisywał sytuację trafnie. Od tygodni budowałem coś, czego nie umiałem nazwać, a czego jedynym efektem był brak rzeczy, które przestawały się psuć.</p>
+
+<p>Spróbuj tego obronić w rozmowie o etatach.</p>
+
+<h3>Gdzie się to zaczęło</h3>
+
+<p>Listopad 2025. Zaproszenie w kalendarzu zatytułowane „Agentic Coding Setup" — ja, Szymon i Jacek, godzina.</p>
+
+<p>Na sesjach roboczych 24 i 26 listopada mieliśmy już kształt. Notatki z tamtych rozmów czyta się dziś dziwnie: repozytorium praktyk niezależne od dostawcy, żeby nowa osoba była produktywna od pierwszego dnia. Model, który nazwaliśmy delegate, review, own — człowiek przegląda to, co wyprodukował agent, a własność nigdy nie przechodzi. Cztery agenty jako pierwszy cel, każdy z własnym katalogiem, narzędziami i instrukcjami. Szablony dokumentów przekazywanych między rolami.</p>
+
+<p>Nie budowaliśmy agenta. Budowaliśmy proces, w którym agent pracuje.</p>
+
+<p>I powiem to wprost: nie zrobiłem tego sam. Szymon i Jacek budowali to ze mną — struktura repozytorium, tooling agentów, backend pisany przez jednego z nich, kiedy reszta spierała się o role, i połowa argumentów, dzięki którym wyszło lepiej niż mój pierwszy szkic.</p>
+
+<h3>Czym to właściwie było</h3>
+
+<p>Agentic SDLC framework. Cała droga od surowego pomysłu do gotowej do wdrożenia paczki architektury, rozłożona na wyspecjalizowane role, które przekazują sobie pracę pod regułami.</p>
+
+<p>Strukturalnie był to graf. Każda rola to węzeł — research, reverse engineering, definicja produktu, architektura i recenzent, którym celowo nie był żaden z nich. Krawędzie były typowane: praca szła dalej tylko wtedy, gdy niosła identyfikatory pozwalające prześledzić każde twierdzenie do źródła. Stan mieszkał w plikach, które przeżywały pojedynczy przebieg, więc nic istotnego nie siedziało w oknie rozmowy. Przejścia miały bramki, a bramka mogła odmówić i odesłać pracę do konkretnego wcześniejszego węzła.</p>
+
+<p>W styczniu 2026 nie miałem na to żadnego języka. Mówiłem „pipeline" i patrzyłem, jak ludziom mętnieje wzrok.</p>
+
+<h3>Dlaczego nikt tego nie widział</h3>
+
+<p>Ekscytujące podejście było wtedy inne: agenty puszczone na kodzie, bez bramki, bez niezależnej weryfikacji, wdrażamy to, co wyjdzie. Produkowało mnóstwo kodu bardzo szybko. Kładło też system co kilka dni, a co kilka dni ktoś tracił wieczór na ustalanie dlaczego.</p>
+
+<p>Nasza obietnica, przetłumaczona uczciwie, brzmiała: to sprawi, że tamto przestanie się dziać. Obietnica o nieobecności. A na nieobecność nie ma demo — nie ma zrzutu ekranu, nie ma wykresu, nie ma momentu na przeglądzie, w którym ktoś klaszcze.</p>
+
+<p>Potem system położył się na tyle poważnie, że pytanie zmieniło się z „czy ta praca ma wartość" na „czy możesz na to zerknąć".</p>
+
+<p>Framework zrobił rzecz nieefektowną. Nie pozwolił pracy iść dalej, dopóki nie sprawdził jej ktoś inny niż autor. Uruchamiał prawdziwą aplikację w przeglądarce, zamiast pytać agenta, czy jest zadowolony. Awarie ustały. Projekt wyszedł.</p>
+
+<p>Nikt tego nie pamięta, co jest normalne. Ratunki zapamiętuje się jako zdarzenia, nie jako czyjeś autorstwo.</p>
+
+<h3>Potem pojawiło się słownictwo</h3>
+
+<p>11 lutego 2026 OpenAI opublikowało tekst o harness engineering: wiedza repozytorium jako źródło prawdy, plany jako artefakty pierwszej klasy z dziennikami decyzji commitowanymi do gita.</p>
+
+<p>24 marca 2026 Anthropic opublikował tekst o projektowaniu harnessu: planner, generator i ewaluator trzymane celowo osobno, bo agent poproszony o ocenę własnej pracy będzie ją chwalić.</p>
+
+<p>4 lipca 2026 ktoś wreszcie nazwał drugą połowę. Graph engineering: projektowanie systemów agentowych jako jawnych grafów zamiast domyślnych pętli. Węzły jako jednostki zdolności. Krawędzie jako typowane przejścia niosące stan. Stan jako obiekt z checkpointami, a nie to, co akurat przetrwało w oknie kontekstu.</p>
+
+<p>Przeczytaj to jeszcze raz. Węzły, typowane krawędzie, checkpointowany stan, ewaluator poza generatorem, bramki, które mogą odmówić. To jest dokładnie ta rzecz, której nie umieliśmy wytłumaczyć w listopadzie, opisana w słowniku, który przyszedł osiem miesięcy później.</p>
+
+<p>Pierwszy commit ma datę 21 stycznia 2026. Do 17 lutego framework przemielił prawdziwy projekt produkcyjny od początku do końca. Jest historia w gicie, czyli więcej, niż ma większość ludzi mówiących, że byli wcześnie.</p>
+
+<p>I tu potrzeba precyzji, bo to ona czyni tezę obronną: OpenAI opisuje pracę, która zaczęła się w sierpniu 2025, przed naszą. To nie jest pierwszeństwo. To zbieżność — różni ludzie trafiają na te same tryby awarii i dochodzą do tej samej struktury, nie mając czego przepisać.</p>
+
+<h3>Co z tego naprawdę wyniosłem</h3>
+
+<p>Nie „ufaj intuicji". To plakat, nie wniosek.</p>
+
+<p>Intuicja była w porządku. Kolejność była fatalna. Pracowaliśmy w kategorii bez nazwy, a nienazwana kategoria nie przetrwa rozmowy o budżecie — druga strona nie ma czego chwycić. Mój team leader nie przeoczył czegoś oczywistego. To ja nie zrobiłem tego widocznym.</p>
+
+<div class="pull">
+  <span>Co zrobiłbym inaczej</span>
+  <p>Nazwać rzecz, a potem przykręcić ją do liczby, która już krwawi na czyjejś tablicy — awarie na tydzień, godziny stracone na poprawki — pierwszego dnia. Nie po to, żeby później wygrać spór. Po to, żeby praca była czytelna, póki jeszcze jest wybór, czy ją finansować.</p>
+</div>
+
+<div class="cta">
+  <p><b>Jeśli Twoje agenty produkują kod szybciej, niż ktokolwiek jest w stanie go sprawdzić</b>, to jest rozmowa, na którą czekam. Napisz, co to za system i jaki jest termin — <a href="mailto:jakubkornafel@gmail.com">jakubkornafel@gmail.com</a>. Dostaniesz tak albo nie, plus miejsce, w którym moim zdaniem siedzi ryzyko.</p>
+</div>]]></content:encoded>
+    </item>
+    <item>
+      <title>Bramka bez limitu wydatków nie jest bramką</title>
+      <link>https://jakubkornafel.com/log/pl/gate-without-a-spend-ceiling/</link>
+      <guid isPermaLink="true">https://jakubkornafel.com/log/pl/gate-without-a-spend-ceiling/</guid>
+      <pubDate>Thu, 27 Aug 2026 00:00:00 +0000</pubDate>
+      <category>Build</category>
+      <description>Mój pipeline umiał powiedzieć, czy praca jest dobra. Nie umiał powiedzieć, że dojście do tej odpowiedzi kosztowało cztery godziny i osiem nieudanych podejść.</description>
+      <content:encoded><![CDATA[<p>Mój pipeline miał bramki, z których byłem dumny. Kryteria, progi, recenzenta, który nie był autorem, werdykt umiejący powiedzieć nie.</p>
+
+<p>Potem zadałem mu pytanie, na które nie umiał odpowiedzieć: <em>ile to kosztowało?</em></p>
+
+<p>Wiedział, że artefakt jest wystarczająco dobry. Nie miał pojęcia, czy dojście do tego werdyktu zajęło czterdzieści minut czy cztery godziny, dwanaście dolarów czy dwieście. Nie odróżniał czystej akceptacji za pierwszym podejściem od przebiegu, który dokuśtykał do mety przy dziesiątej próbie z tym samym nierozwiązanym problemem.</p>
+
+<p>To nie są te same wyniki. Tylko jeden z nich jest działającym systemem.</p>
+
+<h3>Limit, który ogranicza nie to, co trzeba</h3>
+
+<p>Miałem limity iteracji — maksymalnie dziesięć pętli na fazę. To sprawiało wrażenie kontroli. Nie jest nią. Limit iteracji ogranicza, ile razy pętla się wykona, a nie ile kosztuje każde obejście, a w moim pipelinie jedna runda przeglądu rozgałęzia się na osiem weryfikatorów działających równolegle. Ten jeden krok potrafi kosztować więcej niż wszystkie wcześniejsze fazy razem wzięte — i żaden limit tego nie zauważa.</p>
+
+<p>Wdrożyłem więc księgę wydatków. Budżet deklarowany, zanim praca w ogóle ruszy. Sprawdzany przy przejściu między fazami i przy każdym powrocie w pętli, nigdy w środku pracy. Przekrocz krawędź, będąc już ponad limitem, a przebieg zatrzymuje się z jawnym werdyktem, zamiast po cichu dojechać do końca i wystawić Ci rachunek.</p>
+
+<p>Nie doceniłem analizy trasy. Mierzy ona wydatek, który nie posunął przebiegu do przodu — wszystko, co pochłonęły podejścia zakończone powrotem w pętli — i wskazuje powody, które się powtarzają. Ta ostatnia liczba jest tą niewygodną. Przebieg, który zaliczył bramkę przy dziesiątej identycznej próbie, to przebieg nieudany z przypiętą odznaką sukcesu, a w moich starych raportach nic by tego nie pokazało.</p>
+
+<h3>Dlaczego to więcej warte, niż wygląda</h3>
+
+<p>Jest badanie z marca, które kazało mi przemyśleć, jak w ogóle cokolwiek dokładam do agenta.</p>
+
+<p>Badacze dali agentowi kodującemu jedną dodatkową rzecz: mapę tego, które testy pokrywają który kod, podaną jako zwykły plik tekstowy do przeczytania. Regresje — testy, które wcześniej przechodziły i przestały — spadły z 6,08% do 1,82%. Siedemdziesiąt procent mniej z jednego pliku.</p>
+
+<p>To samo badanie miało drugą gałąź. Zamiast mapy dano agentowi instrukcje proceduralne: pracuj test-first, trzymaj się tej dyscypliny. Regresje wzrosły do 9,94%. Gorzej, niż gdyby nie zrobiono nic.</p>
+
+<div class="pull">
+  <span>Zasada, którą zostawiam</span>
+  <p>Dawaj agentowi kontekst, nie procedurę. Mówienie mu, jak ma się zachowywać, mierzalnie pogorszyło wynik. Mówienie mu, co jest prawdą, poprawiło go o 70%. Każda instrukcja, którą mam ochotę napisać, przechodzi teraz najpierw ten test.</p>
+</div>
+
+<p>Dlatego też budżet mieszka w pliku stanu, a nie w promptcie proszącym agenta, żeby uważał na pieniądze. Agent nie potrafi uważać na liczbę, której nie widzi.</p>
+
+<div class="cta">
+  <p><b>Jeśli uruchamiasz agenty i nie umiesz powiedzieć, ile kosztował Cię zeszły tydzień</b>, nie prowadzisz autonomicznego systemu — nabijasz rachunek. Buduję tę część, która potrafi powiedzieć nie. <a href="mailto:jakubkornafel@gmail.com">Napisz, co to za system i jaki jest termin.</a></p>
+</div>]]></content:encoded>
+    </item>
+    <item>
+      <title>Liczba, którą wszyscy cytują, mierzy coś innego</title>
+      <link>https://jakubkornafel.com/log/pl/the-measurement-nobody-publishes/</link>
+      <guid isPermaLink="true">https://jakubkornafel.com/log/pl/the-measurement-nobody-publishes/</guid>
+      <pubDate>Thu, 27 Aug 2026 00:00:00 +0000</pubDate>
+      <category>Note</category>
+      <description>Zmień harness, a benchmark drgnie o trzy punkty. Zmień model, a drgnie o dwadzieścia pięć. Czyli harness prawie nie ma znaczenia — chyba że spojrzysz na to, czego benchmark nigdy nie mierzy.</description>
+      <content:encoded><![CDATA[<p>Ktoś zadał mi w tym tygodniu uczciwe pytanie: o ile dobrze zbudowany harness realnie poprawia agenta kodującego? Podaj liczbę.</p>
+
+<p>Poszedłem więc po liczby.</p>
+
+<p>Na publicznych rankingach da się czasem znaleźć ten sam model uruchomiony pod dwoma różnymi harnessami. Różnica to trzy do ośmiu punktów procentowych. Tymczasem zostaw harness bez zmian, a podmień model pod spodem — wynik rusza się o dwadzieścia pięć.</p>
+
+<p>Przeczytaj tylko tyle, a wniosek pisze się sam: harness prawie nie ma znaczenia, kup lepszy model, idź do domu.</p>
+
+<h3>Tyle że nikt z nas nie martwi się akurat o to</h3>
+
+<p>Te benchmarki mierzą jedno zadanie, w jednym kontenerze, które albo przechodzi, albo nie. Nikt na produkcji nie traci snu przez jedno zadanie w jednym kontenerze.</p>
+
+<p>Ludzie tracą sen przez system, który wywraca się co kilka dni. Przez wynik, którego nie da się powtórzyć w następny wtorek. Przez werdykt, którego po fakcie nikt nie potrafi zaudytować. Przez przebieg, który raportuje sukces, po cichu wymyśliwszy plik, który rzekomo edytował.</p>
+
+<p>Na to — na stabilność, powtarzalność, audytowalność — nie ma żadnego publicznego benchmarku. Najbliższa próba, jaką znalazłem, ma trzy tygodnie, a jej własny prerejestrowany audyt wyszedł nierozstrzygający.</p>
+
+<p>Tam, gdzie liczby jednak są, nie są małe. Jedno badanie zbiło regresje o 70%, podając agentowi jeden plik z kontekstem. Inne zmierzyło spadek nieudanych zadań o 9,5% po dodaniu krytyka, który sprawdza plan przed wykonaniem. Oba to zmiany w harnessie. Żadna nie pojawia się w rankingu.</p>
+
+<div class="pull">
+  <span>Uczciwe stanowisko</span>
+  <p>Liczba, której chcesz, jeszcze nie istnieje. Liczby, które istnieją, mierzą co innego, a przepaść między nimi to dokładnie miejsce, w którym żyją systemy produkcyjne.</p>
+</div>
+
+<p>To znaczy, że na razie ciężar spoczywa na Tobie. Mierz to, na czym naprawdę Ci zależy — częstotliwość awarii, ile pracy idzie na poprawki, jak często werdykt przeżywa przegląd — bo nikt tego za Ciebie nie opublikuje.</p>
+
+<div class="cta">
+  <p><b>Jeśli masz taki pomiar i wygląda źle</b>, naprawdę chciałbym go zobaczyć. To jest problem, nad którym pracuję. <a href="mailto:jakubkornafel@gmail.com">jakubkornafel@gmail.com</a></p>
+</div>]]></content:encoded>
+    </item>
+    <item>
+      <title>Moja własna strona okłamywała mnie przez trzy tygodnie</title>
+      <link>https://jakubkornafel.com/log/pl/three-failed-deploys/</link>
+      <guid isPermaLink="true">https://jakubkornafel.com/log/pl/three-failed-deploys/</guid>
+      <pubDate>Thu, 27 Aug 2026 00:00:00 +0000</pubDate>
+      <category>Note</category>
+      <description>Trzy wdrożenia się wywaliły. Strona dalej odpowiadała kodem 200. Dowiedziałem się tylko dlatego, że szukałem czegoś zupełnie innego.</description>
+      <content:encoded><![CDATA[<p>Zawodowo buduję systemy, które potrafią powiedzieć człowiekowi, że coś poszło źle.</p>
+
+<p>Moja własna strona przez trzy tygodnie serwowała wersję sprzed dwóch commitów, a ja nie miałem o tym pojęcia.</p>
+
+<p>Było tak. 6 sierpnia wypchnąłem dwie zmiany na podstronę. Ruszyły trzy wdrożenia. Wszystkie trzy się wywaliły. Każde zapisało czas budowania zero milisekund i komunikat „Page build failed." — bez szczegółów, bez powiadomienia, nic w skrzynce.</p>
+
+<p>Zero milisekund znaczy, że budowanie w ogóle nie ruszyło, więc to nie był mój kod. Coś padło wyżej.</p>
+
+<p>A strona? Strona miała się świetnie. HTTP 200, ważny certyfikat, wszystko się ładuje. Bo wciąż serwowana była ostatnia udana wersja, dokładnie tak jak dzień wcześniej. Awaria nie miała żadnej widocznej powierzchni. Z zewnątrz, z mojej przeglądarki, z czyjejkolwiek — zdrowa strona.</p>
+
+<p>Znalazłem to tylko dlatego, że dłubałem przy czymś niezwiązanym i z ciekawości sprawdziłem status wdrożeń.</p>
+
+<h3>Niewygodna analogia</h3>
+
+<p>To jest dokładnie ten tryb awarii, przeciwko któremu całymi dniami stawiam bramki, tyle że nadchodzący ze strony, której nie broniłem.</p>
+
+<p>Agent raportuje sukces. Testy przechodzą. Diff wygląda czysto. Wszystko na powierzchni mówi, że praca jest zrobiona, a jedyny sposób, żeby dowiedzieć się inaczej, to sprawdzić coś, czego raportujący nie kontroluje — uruchomić prawdziwą aplikację, odpytać prawdziwy stan, porównać z czymś, do czego optymalizujący nie ma dostępu.</p>
+
+<p>Miałem tę intuicję wobec agentów. Nie miałem jej wobec własnego pipeline'u wdrożeniowego, który przez dwadzieścia jeden dni po cichu serwował nieaktualną treść.</p>
+
+<p>Naprawa, nawiasem mówiąc, polegała na usuwaniu pracy, a nie dokładaniu. Strona to czysty HTML, ale każde wdrożenie przepuszczało ją przez silnik szablonów, którego nigdy nie potrzebowała — 165 sekund na opublikowanie pół megabajta. Jeden pusty plik później wdrożenie to zwykłe kopiowanie plików i trwa 19 sekund. Dziewięć dziesiątych czasu szło na krok, którego jedynym realnym wkładem była zdolność do wywalenia się.</p>
+
+<div class="pull">
+  <span>Co z tego biorę</span>
+  <p>System, który nie potrafi powiedzieć, że zawiódł, będzie Ci pozwalał wierzyć, że się udało, tak długo, jak mu na to pozwolisz. Cisza to nie status. Jeśli od trzech tygodni nic nie zgłosiło problemu, to jest twierdzenie warte sprawdzenia, a nie powód do spokoju.</p>
+</div>
+
+<div class="cta">
+  <p>Idź i sprawdź ostatnie udane wdrożenie tej rzeczy, której jesteś najbardziej pewny. Zaczekam. Jeśli odpowiedź Cię zaskoczy, <a href="mailto:jakubkornafel@gmail.com">napisz mi o tym</a> — zbieram takie historie.</p>
+</div>]]></content:encoded>
+    </item>
+  </channel>
+</rss>

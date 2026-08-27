@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
-build.py — Generate the log: index, one page per entry, and the RSS feed.
+build.py — Generate the log in every language: index, entry pages, RSS feed.
 
-Usage:  python3 log/build.py          (run from the repository root)
+Usage:  python3 log/build.py          (run from anywhere)
 
-To add an entry, drop a file in log/entries/<slug>.html shaped like this:
+To add an entry, drop a file in log/entries/<lang>/<slug>.html shaped like this:
 
     date: 2026-08-27
     kind: Note
@@ -15,8 +15,11 @@ To add an entry, drop a file in log/entries/<slug>.html shaped like this:
     <p>The body, as plain HTML paragraphs.</p>
 
 `rank` is optional and only breaks ties within one date — higher shows first.
-The slug becomes the URL: /log/<slug>/. Nothing else needs editing —
-the index, the entry pages and feed.xml are all regenerated from these files.
+
+English lives at /log/<slug>/, the other languages at /log/<lang>/<slug>/.
+A slug that exists in several languages is linked between them automatically;
+one that exists in only one language simply has no counterpart, and the
+language buttons fall back to that language's index.
 """
 
 import html
@@ -27,8 +30,62 @@ from pathlib import Path
 SITE = "https://jakubkornafel.com"
 AUTHOR = "Jakub Kornafel"
 ROOT = Path(__file__).resolve().parent.parent
-ENTRIES_DIR = ROOT / "log" / "entries"
 LOG_DIR = ROOT / "log"
+ENTRIES_DIR = LOG_DIR / "entries"
+
+# The first language is the default and lives at the root of /log/.
+LANGS = {
+    "en": {
+        "label": "EN",
+        "html_lang": "en",
+        "path": "/log/",
+        "title": f"Log — {AUTHOR}",
+        "kicker": "Working log · started August 2026",
+        "heading": "Log",
+        "intro": "What I am building, what broke, and what the evidence actually supports. "
+        "Entries are dated and finished when they are useful, not when they are polished. "
+        "There is no schedule, and I would rather write nothing than write filler.",
+        "description": "A working log: what I am building, what broke, and what the evidence "
+        "actually supports. Dated entries, no schedule.",
+        "more": "Read this entry &rarr;",
+        "back": "&larr; Log",
+        "feed_description": "What I am building, what broke, and what the evidence actually supports.",
+    },
+    "pl": {
+        "label": "PL",
+        "html_lang": "pl",
+        "path": "/log/pl/",
+        "title": f"Log — {AUTHOR}",
+        "kicker": "Dziennik pracy · od sierpnia 2026",
+        "heading": "Log",
+        "intro": "Co buduję, co się zepsuło i co z tego naprawdę wynika z dowodów. Wpisy mają "
+        "datę i powstają wtedy, kiedy są przydatne, a nie kiedy są dopieszczone. Nie ma "
+        "harmonogramu — wolę nie napisać nic niż napisać wypełniacz.",
+        "description": "Dziennik pracy: co buduję, co się zepsuło i co z tego wynika. "
+        "Datowane wpisy, bez harmonogramu.",
+        "more": "Czytaj wpis &rarr;",
+        "back": "&larr; Log",
+        "feed_description": "Co buduję, co się zepsuło i co z tego naprawdę wynika z dowodów.",
+    },
+    "es": {
+        "label": "ES",
+        "html_lang": "es",
+        "path": "/log/es/",
+        "title": f"Log — {AUTHOR}",
+        "kicker": "Diario de trabajo · desde agosto de 2026",
+        "heading": "Log",
+        "intro": "Qué estoy construyendo, qué se rompió y qué sostienen realmente las pruebas. "
+        "Las entradas llevan fecha y se terminan cuando son útiles, no cuando están pulidas. "
+        "No hay calendario: prefiero no escribir nada antes que escribir relleno.",
+        "description": "Diario de trabajo: qué construyo, qué se rompió y qué sostienen las "
+        "pruebas. Entradas con fecha, sin calendario.",
+        "more": "Leer la entrada &rarr;",
+        "back": "&larr; Log",
+        "feed_description": "Qué estoy construyendo, qué se rompió y qué sostienen realmente las pruebas.",
+    },
+}
+
+DEFAULT_LANG = "en"
 
 FAVICON = (
     "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'>"
@@ -37,10 +94,19 @@ FAVICON = (
 )
 
 
-def read_entries():
-    """Parse every entry file into a dict. Newest first, stable for equal dates."""
+def entry_url(lang, slug=None):
+    base = LANGS[lang]["path"]
+    return f"{base}{slug}/" if slug else base
+
+
+def output_dir(lang):
+    return LOG_DIR if lang == DEFAULT_LANG else LOG_DIR / lang
+
+
+def read_entries(lang):
+    directory = ENTRIES_DIR / lang
     entries = []
-    for path in sorted(ENTRIES_DIR.glob("*.html")):
+    for path in sorted(directory.glob("*.html")):
         raw = path.read_text(encoding="utf-8")
         front, _, body = raw.partition("\n---\n")
         meta = {}
@@ -71,11 +137,39 @@ def read_entries():
     return entries
 
 
-def head(title, description, url, og_image=f"{SITE}/assets/og-log.png", depth=1):
-    """Shared <head>. depth is how many directories below the site root the page sits."""
+def available(slug):
+    """Languages this slug has been written in."""
+    return [lang for lang in LANGS if (ENTRIES_DIR / lang / f"{slug}.html").exists()]
+
+
+def lang_switch(current, slug=None):
+    """Buttons that stay on the same entry where a translation exists."""
+    langs_with_slug = available(slug) if slug else list(LANGS)
+    buttons = []
+    for lang, conf in LANGS.items():
+        target = entry_url(lang, slug) if slug and lang in langs_with_slug else entry_url(lang)
+        current_attr = ' aria-current="true"' if lang == current else ""
+        buttons.append(f'<a href="{target}" hreflang="{lang}"{current_attr}>{conf["label"]}</a>')
+    return (
+        '<div class="wrap"><nav class="langs" aria-label="Language">'
+        + "".join(buttons)
+        + "</nav></div>\n"
+    )
+
+
+def alternates(slug=None):
+    langs = available(slug) if slug else list(LANGS)
+    return "\n".join(
+        f'<link rel="alternate" hreflang="{lang}" href="{SITE}{entry_url(lang, slug)}">'
+        for lang in langs
+    )
+
+
+def head(lang, title, description, url, slug=None, depth=1):
+    conf = LANGS[lang]
     up = "../" * depth
     return f"""<!DOCTYPE html>
-<html lang="en">
+<html lang="{conf['html_lang']}">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -84,12 +178,14 @@ def head(title, description, url, og_image=f"{SITE}/assets/og-log.png", depth=1)
 <meta property="og:title" content="{html.escape(title)}">
 <meta property="og:description" content="{html.escape(description)}">
 <meta property="og:type" content="article">
-<meta property="og:url" content="{url}">
-<meta property="og:image" content="{og_image}">
+<meta property="og:url" content="{SITE}{url}">
+<meta property="og:image" content="{SITE}/assets/og-log.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:locale" content="{conf['html_lang']}">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="alternate" type="application/rss+xml" title="{AUTHOR} — Log" href="{SITE}/log/feed.xml">
+{alternates(slug)}
+<link rel="alternate" type="application/rss+xml" title="{AUTHOR} — Log ({conf['label']})" href="{SITE}{conf['path']}feed.xml">
 <link rel="icon" href="{FAVICON}">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="{up}assets/fonts/archivo.woff2">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="{up}assets/fonts/sourceserif4.woff2">
@@ -99,15 +195,15 @@ def head(title, description, url, og_image=f"{SITE}/assets/og-log.png", depth=1)
 """
 
 
-def masthead(current_log=True):
-    mark = 'aria-current="page"' if current_log else ""
+def masthead(lang, on_index):
+    mark = ' aria-current="page"' if on_index else ""
     return f"""<div class="wrap">
   <header class="masthead">
     <a class="mark" href="/">{AUTHOR}</a>
     <nav>
       <a href="/#systems">Systems</a>
       <a href="/#record">Record</a>
-      <a href="/log/" {mark}>Log</a>
+      <a href="{entry_url(lang)}"{mark}>Log</a>
       <a href="/#work">Work together</a>
     </nav>
   </header>
@@ -115,10 +211,11 @@ def masthead(current_log=True):
 """
 
 
-FOOTER = """<div class="wrap">
+def footer(lang):
+    return f"""<div class="wrap">
   <footer>
     <span>Jakub Kornafel · Málaga, Spain · Warsaw, Poland</span>
-    <span><a href="/log/feed.xml">RSS</a> · jakubkornafel@gmail.com</span>
+    <span><a href="{LANGS[lang]['path']}feed.xml">RSS</a> · jakubkornafel@gmail.com</span>
   </footer>
 </div>
 
@@ -127,37 +224,33 @@ FOOTER = """<div class="wrap">
 """
 
 
-def build_index(entries):
+def build_index(lang, entries):
+    conf = LANGS[lang]
     items = []
     for entry in entries:
+        url = entry_url(lang, entry["slug"])
         items.append(
             f"""      <article class="item">
         <p class="entry-meta"><span class="date">{entry['date']}</span>"""
             f"""<span class="kind {entry['kind'].lower()}">{entry['kind']}</span></p>
-        <h2><a href="/log/{entry['slug']}/">{entry['title']}</a></h2>
+        <h2><a href="{url}">{entry['title']}</a></h2>
         <p>{entry['excerpt']}</p>
-        <a class="more" href="/log/{entry['slug']}/">Read this entry &rarr;</a>
+        <a class="more" href="{url}">{conf['more']}</a>
       </article>"""
         )
 
+    depth = 1 if lang == DEFAULT_LANG else 2
     page = (
-        head(
-            f"Log — {AUTHOR}",
-            "A working log: what I am building, what broke, and what the evidence actually "
-            "supports. Dated entries, no schedule.",
-            f"{SITE}/log/",
-            depth=1,
-        )
-        + masthead()
+        head(lang, conf["title"], conf["description"], conf["path"], depth=depth)
+        + masthead(lang, on_index=True)
+        + lang_switch(lang)
         + f"""
 <main>
   <div class="wrap">
     <section class="hero">
-      <p class="kicker">Working log · started August 2026</p>
-      <h1>Log</h1>
-      <p>What I am building, what broke, and what the evidence actually supports. Entries are
-      dated and finished when they are useful, not when they are polished. There is no schedule,
-      and I would rather write nothing than write filler.</p>
+      <p class="kicker">{conf['kicker']}</p>
+      <h1>{conf['heading']}</h1>
+      <p>{conf['intro']}</p>
     </section>
 
     <section class="list">
@@ -167,29 +260,38 @@ def build_index(entries):
 </main>
 
 """
-        + FOOTER
+        + footer(lang)
     )
-    (LOG_DIR / "index.html").write_text(page, encoding="utf-8")
+
+    directory = output_dir(lang)
+    directory.mkdir(parents=True, exist_ok=True)
+    (directory / "index.html").write_text(page, encoding="utf-8")
 
 
-def build_entry_pages(entries):
+def build_entry_pages(lang, entries):
+    conf = LANGS[lang]
+    depth = 2 if lang == DEFAULT_LANG else 3
     for entry in entries:
-        directory = LOG_DIR / entry["slug"]
-        directory.mkdir(exist_ok=True)
+        directory = output_dir(lang) / entry["slug"]
+        directory.mkdir(parents=True, exist_ok=True)
         dek = f'      <p class="dek">{entry["dek"]}</p>\n' if entry["dek"] else ""
+        url = entry_url(lang, entry["slug"])
         page = (
             head(
+                lang,
                 f"{entry['title']} — {AUTHOR}",
                 entry["excerpt"] or entry["title"],
-                f"{SITE}/log/{entry['slug']}/",
-                depth=2,
+                url,
+                slug=entry["slug"],
+                depth=depth,
             )
-            + masthead(current_log=False)
+            + masthead(lang, on_index=False)
+            + lang_switch(lang, entry["slug"])
             + f"""
 <main>
   <div class="wrap">
     <article class="post">
-      <a class="back" href="/log/">&larr; Log</a>
+      <a class="back" href="{entry_url(lang)}">{conf['back']}</a>
       <p class="entry-meta"><span class="date">{entry['date']}</span>"""
             f"""<span class="kind {entry['kind'].lower()}">{entry['kind']}</span></p>
       <h1>{entry['title']}</h1>
@@ -201,7 +303,7 @@ def build_entry_pages(entries):
 </main>
 
 """
-            + FOOTER
+            + footer(lang)
         )
         (directory / "index.html").write_text(page, encoding="utf-8")
 
@@ -214,10 +316,11 @@ def rfc822(date_string):
     return stamp.strftime("%a, %d %b %Y %H:%M:%S +0000")
 
 
-def build_feed(entries):
+def build_feed(lang, entries):
+    conf = LANGS[lang]
     items = []
     for entry in entries:
-        link = f"{SITE}/log/{entry['slug']}/"
+        link = f"{SITE}{entry_url(lang, entry['slug'])}"
         items.append(
             f"""    <item>
       <title>{html.escape(entry['title'])}</title>
@@ -235,29 +338,35 @@ def build_feed(entries):
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"
      xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>{AUTHOR} — Log</title>
-    <link>{SITE}/log/</link>
-    <atom:link href="{SITE}/log/feed.xml" rel="self" type="application/rss+xml"/>
-    <description>What I am building, what broke, and what the evidence actually supports.</description>
-    <language>en</language>
+    <title>{AUTHOR} — Log ({conf['label']})</title>
+    <link>{SITE}{conf['path']}</link>
+    <atom:link href="{SITE}{conf['path']}feed.xml" rel="self" type="application/rss+xml"/>
+    <description>{html.escape(conf['feed_description'])}</description>
+    <language>{conf['html_lang']}</language>
     <lastBuildDate>{newest}</lastBuildDate>
 {chr(10).join(items)}
   </channel>
 </rss>
 """
-    (LOG_DIR / "feed.xml").write_text(feed, encoding="utf-8")
+    (output_dir(lang) / "feed.xml").write_text(feed, encoding="utf-8")
 
 
 def main():
-    entries = read_entries()
-    if not entries:
-        raise SystemExit(f"error: no entries found in {ENTRIES_DIR}")
-    build_index(entries)
-    build_entry_pages(entries)
-    build_feed(entries)
-    print(f"built {len(entries)} entries:")
-    for entry in entries:
-        print(f"  /log/{entry['slug']}/  {entry['date']}  {entry['kind']}  {entry['title']}")
+    total = 0
+    for lang in LANGS:
+        entries = read_entries(lang)
+        if not entries:
+            print(f"{lang}: no entries, skipped")
+            continue
+        build_index(lang, entries)
+        build_entry_pages(lang, entries)
+        build_feed(lang, entries)
+        total += len(entries)
+        print(f"{lang}: {len(entries)} entries at {LANGS[lang]['path']}")
+        for entry in entries:
+            print(f"   {entry_url(lang, entry['slug'])}  {entry['date']}  {entry['title']}")
+    if not total:
+        raise SystemExit(f"error: no entries found under {ENTRIES_DIR}")
 
 
 if __name__ == "__main__":

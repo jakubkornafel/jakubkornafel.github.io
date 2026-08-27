@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Una puerta sin techo de gasto no es una puerta — Jakub Kornafel</title>
+<meta name="description" content="Mi pipeline sabía decirte si el trabajo era bueno. No sabía decirte que llegar a esa respuesta había costado cuatro horas y ocho intentos fallidos.">
+<meta property="og:title" content="Una puerta sin techo de gasto no es una puerta — Jakub Kornafel">
+<meta property="og:description" content="Mi pipeline sabía decirte si el trabajo era bueno. No sabía decirte que llegar a esa respuesta había costado cuatro horas y ocho intentos fallidos.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://jakubkornafel.com/log/es/gate-without-a-spend-ceiling/">
+<meta property="og:image" content="https://jakubkornafel.com/assets/og-log.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="es">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" hreflang="en" href="https://jakubkornafel.com/log/gate-without-a-spend-ceiling/">
+<link rel="alternate" hreflang="pl" href="https://jakubkornafel.com/log/pl/gate-without-a-spend-ceiling/">
+<link rel="alternate" hreflang="es" href="https://jakubkornafel.com/log/es/gate-without-a-spend-ceiling/">
+<link rel="alternate" type="application/rss+xml" title="Jakub Kornafel — Log (ES)" href="https://jakubkornafel.com/log/es/feed.xml">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%2312161D'/><text y='23' x='16' text-anchor='middle' font-family='monospace' font-size='17' fill='%23F4F5F7'>jk</text></svg>">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../assets/fonts/archivo.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../assets/fonts/sourceserif4.woff2">
+<link rel="stylesheet" href="../../../assets/log.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <a class="mark" href="/">Jakub Kornafel</a>
+    <nav>
+      <a href="/#systems">Systems</a>
+      <a href="/#record">Record</a>
+      <a href="/log/es/">Log</a>
+      <a href="/#work">Work together</a>
+    </nav>
+  </header>
+</div>
+<div class="wrap"><nav class="langs" aria-label="Language"><a href="/log/gate-without-a-spend-ceiling/" hreflang="en">EN</a><a href="/log/pl/gate-without-a-spend-ceiling/" hreflang="pl">PL</a><a href="/log/es/gate-without-a-spend-ceiling/" hreflang="es" aria-current="true">ES</a></nav></div>
+
+<main>
+  <div class="wrap">
+    <article class="post">
+      <a class="back" href="/log/es/">&larr; Log</a>
+      <p class="entry-meta"><span class="date">2026-08-27</span><span class="kind build">Build</span></p>
+      <h1>Una puerta sin techo de gasto no es una puerta</h1>
+      <p class="dek">Mi pipeline sabía decirte si el trabajo era bueno. No sabía decirte que llegar a esa respuesta había costado cuatro horas y ocho intentos fallidos.</p>
+      <div class="body">
+<p>Mi pipeline tenía puertas de las que estaba orgulloso. Criterios, umbrales, un revisor que no era el autor, un veredicto capaz de decir que no.</p>
+
+<p>Entonces le hice una pregunta que no supo responder: <em>¿cuánto ha costado esto?</em></p>
+
+<p>Sabía que el artefacto era lo bastante bueno. No tenía ni idea de si llegar a ese veredicto había llevado cuarenta minutos o cuatro horas, doce dólares o doscientos. No distinguía una aprobación limpia a la primera de una ejecución que cruzó la meta cojeando en su décimo intento contra el mismo problema sin resolver.</p>
+
+<p>Esas dos ejecuciones no son el mismo resultado. Solo una de ellas es un sistema que funciona.</p>
+
+<h3>El límite que acota lo que no toca</h3>
+
+<p>Tenía límites de iteración: diez bucles por fase como máximo. Aquello parecía control. No lo es. Un límite de iteraciones acota cuántas veces se ejecuta un bucle, no lo que cuesta cada vuelta, y en mi pipeline una ronda de revisión se abre en abanico a ocho verificadores en paralelo. Ese único paso puede costar más que todas las fases anteriores juntas, y ningún límite en ninguna parte se entera.</p>
+
+<p>Así que puse en marcha un libro de cuentas. Un presupuesto declarado antes de que empiece el trabajo. Comprobado al cruzar entre fases y en cada vuelta atrás, nunca a mitad de trabajo. Si cruzas una arista estando ya por encima del techo, la ejecución se detiene con un veredicto explícito en lugar de terminar en silencio y presentarte la factura.</p>
+
+<p>Lo que subestimé fue el análisis de ruta. Mide el gasto que no hizo avanzar la ejecución — todo lo consumido por intentos que acabaron en una vuelta atrás — y señala los motivos que se repiten. Ese último número es el incómodo. Una ejecución que aprueba al décimo reintento idéntico es una ejecución fallida con una medalla de aprobado, y nada en mis informes antiguos lo habría mostrado.</p>
+
+<h3>Por qué esto vale más de lo que parece</h3>
+
+<p>Hay un estudio de marzo que me hizo replantearme cómo le añado nada a un agente.</p>
+
+<p>Los investigadores le dieron a un agente de programación una sola cosa extra: un mapa de qué pruebas cubren qué código, entregado como un fichero de texto plano que el agente podía leer. Las regresiones — pruebas que antes pasaban y dejaron de pasar — cayeron del 6,08% al 1,82%. Un 70% menos con un fichero.</p>
+
+<p>El mismo estudio tenía una segunda rama. En lugar del mapa, le dieron al agente instrucciones de procedimiento: trabaja con las pruebas primero, sigue esta disciplina. Las regresiones subieron al 9,94%. Peor que no hacer nada.</p>
+
+<div class="pull">
+  <span>La regla que me quedo</span>
+  <p>Dale contexto a un agente, no procedimiento. Decirle cómo comportarse empeoró las cosas de forma medible. Decirle qué es cierto las mejoró un 70%. Cada instrucción que me tienta escribir pasa ahora esa prueba antes que ninguna otra.</p>
+</div>
+
+<p>Que es también la razón por la que el presupuesto vive en el fichero de estado y no en un prompt que le pide al agente que tenga cuidado con el dinero. Un agente no puede tener cuidado con un número que no ve.</p>
+
+<div class="cta">
+  <p><b>Si tienes agentes en marcha y no sabes decir cuánto te costó la semana pasada</b>, no estás gobernando un sistema autónomo: estás acumulando factura. Yo construyo la parte que sabe decir que no. <a href="mailto:jakubkornafel@gmail.com">Cuéntame cuál es el sistema y cuál es la fecha límite.</a></p>
+</div>
+      </div>
+    </article>
+  </div>
+</main>
+
+<div class="wrap">
+  <footer>
+    <span>Jakub Kornafel · Málaga, Spain · Warsaw, Poland</span>
+    <span><a href="/log/es/feed.xml">RSS</a> · jakubkornafel@gmail.com</span>
+  </footer>
+</div>
+
+</body>
+</html>

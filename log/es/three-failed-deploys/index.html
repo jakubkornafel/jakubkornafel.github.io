@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mi propia web me mintió durante tres semanas — Jakub Kornafel</title>
+<meta name="description" content="Tres despliegues fallaron. La web seguía respondiendo con un 200. Me enteré solo porque andaba buscando otra cosa completamente distinta.">
+<meta property="og:title" content="Mi propia web me mintió durante tres semanas — Jakub Kornafel">
+<meta property="og:description" content="Tres despliegues fallaron. La web seguía respondiendo con un 200. Me enteré solo porque andaba buscando otra cosa completamente distinta.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://jakubkornafel.com/log/es/three-failed-deploys/">
+<meta property="og:image" content="https://jakubkornafel.com/assets/og-log.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="es">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" hreflang="en" href="https://jakubkornafel.com/log/three-failed-deploys/">
+<link rel="alternate" hreflang="pl" href="https://jakubkornafel.com/log/pl/three-failed-deploys/">
+<link rel="alternate" hreflang="es" href="https://jakubkornafel.com/log/es/three-failed-deploys/">
+<link rel="alternate" type="application/rss+xml" title="Jakub Kornafel — Log (ES)" href="https://jakubkornafel.com/log/es/feed.xml">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%2312161D'/><text y='23' x='16' text-anchor='middle' font-family='monospace' font-size='17' fill='%23F4F5F7'>jk</text></svg>">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../assets/fonts/archivo.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../assets/fonts/sourceserif4.woff2">
+<link rel="stylesheet" href="../../../assets/log.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <a class="mark" href="/">Jakub Kornafel</a>
+    <nav>
+      <a href="/#systems">Systems</a>
+      <a href="/#record">Record</a>
+      <a href="/log/es/">Log</a>
+      <a href="/#work">Work together</a>
+    </nav>
+  </header>
+</div>
+<div class="wrap"><nav class="langs" aria-label="Language"><a href="/log/three-failed-deploys/" hreflang="en">EN</a><a href="/log/pl/three-failed-deploys/" hreflang="pl">PL</a><a href="/log/es/three-failed-deploys/" hreflang="es" aria-current="true">ES</a></nav></div>
+
+<main>
+  <div class="wrap">
+    <article class="post">
+      <a class="back" href="/log/es/">&larr; Log</a>
+      <p class="entry-meta"><span class="date">2026-08-27</span><span class="kind note">Note</span></p>
+      <h1>Mi propia web me mintió durante tres semanas</h1>
+      <p class="dek">Tres despliegues fallaron. La web seguía respondiendo con un 200. Me enteré solo porque andaba buscando otra cosa completamente distinta.</p>
+      <div class="body">
+<p>Me dedico a construir sistemas capaces de avisar a una persona de que algo ha salido mal.</p>
+
+<p>Mi propia web pasó tres semanas sirviendo una versión dos commits por detrás, y yo sin enterarme.</p>
+
+<p>Esto es lo que pasó. El 6 de agosto subí dos cambios a una subpágina. Se lanzaron tres despliegues. Los tres fallaron. Cada uno registró una duración de build de cero milisegundos y el mensaje «Page build failed.»: sin detalle, sin notificación, nada en mi bandeja de entrada.</p>
+
+<p>Cero milisegundos significa que el build ni siquiera llegó a empezar, así que no era mi código. Algo se había caído más arriba.</p>
+
+<p>¿Y la web? La web, perfecta. HTTP 200, certificado válido, todo cargando. Porque se seguía sirviendo el último build correcto, exactamente igual que el día anterior. El fallo no tenía ninguna superficie visible. Desde fuera, desde mi propio navegador, desde el de cualquiera: una web sana.</p>
+
+<p>Lo encontré solo porque estaba trasteando con otra cosa y miré el estado de los despliegues por curiosidad.</p>
+
+<h3>El paralelismo incómodo</h3>
+
+<p>Es el mismo modo de fallo contra el que levanto puertas todo el día, llegando por un flanco que no había defendido.</p>
+
+<p>Un agente informa de éxito. Las pruebas pasan. El diff se ve limpio. Todo en la superficie dice que el trabajo está hecho, y la única forma de saber lo contrario es comprobar algo que quien informa no controla: ejecutar la aplicación real, consultar el estado real, contrastarlo con algo que el optimizador no pueda tocar.</p>
+
+<p>Ese instinto lo tenía con los agentes. No lo tenía con mi propio pipeline de despliegue, que llevaba veintiún días sirviendo contenido caducado en silencio.</p>
+
+<p>El arreglo, por cierto, consistió en quitar trabajo, no en añadirlo. La web es HTML plano, pero cada despliegue la pasaba por un motor de plantillas que nunca necesitó: 165 segundos para publicar medio megabyte. Un fichero vacío después, los despliegues son una copia directa de ficheros y tardan 19 segundos. Nueve décimas partes del tiempo se iban en un paso cuya única aportación real era poder fallar.</p>
+
+<div class="pull">
+  <span>Lo que me llevo de esto</span>
+  <p>Un sistema que no sabe decirte que ha fallado te dejará creer que ha funcionado todo el tiempo que tú se lo permitas. El silencio no es un estado. Si nada ha informado de un problema en tres semanas, eso es una afirmación que conviene poner a prueba, no un motivo para relajarse.</p>
+</div>
+
+<div class="cta">
+  <p>Ve a comprobar el último despliegue correcto de aquello de lo que estés más seguro. Te espero. Si la respuesta te sorprende, <a href="mailto:jakubkornafel@gmail.com">cuéntamelo</a>: colecciono estas historias.</p>
+</div>
+      </div>
+    </article>
+  </div>
+</main>
+
+<div class="wrap">
+  <footer>
+    <span>Jakub Kornafel · Málaga, Spain · Warsaw, Poland</span>
+    <span><a href="/log/es/feed.xml">RSS</a> · jakubkornafel@gmail.com</span>
+  </footer>
+</div>
+
+</body>
+</html>
