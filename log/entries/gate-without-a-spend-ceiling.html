@@ -1,0 +1,14 @@
+date: 2026-08-27
+kind: Build
+title: A gate without a spend ceiling is not a gate
+dek: Iteration caps bound how many times a loop runs, not what it costs. So I shipped a ledger that stops a run at a declared ceiling and reports where the money went.
+rank: 2
+---
+<p>The pipeline already capped iterations per phase. That turns out to bound the wrong thing: one review round fanning out to eight parallel verifiers can cost more than the four phases before it, and no cap notices. Evaluation answered "is this good enough" and never "at what price".</p>
+        <p>What went in: a budget declared before work starts, checked at phase boundaries and on every loop-back, never mid-phase. A run that crosses an edge already over budget stops with an explicit verdict instead of quietly finishing. Cost and wall clock are recorded per phase, and the final report carries them, so no verdict leaves without its price.</p>
+        <p>The part I did not expect to matter most is the route analysis. It measures spend that did not move the run forward — everything consumed by iterations that ended in a loop-back — and flags reasons that repeat. A run that reached a pass on the tenth identical retry is a failing run wearing a passing badge, and nothing in the old reports would have shown that.</p>
+        <p>There is good evidence this class of change is worth more than it looks. A study this March added one thing to a coding agent — a map of which tests cover which code, handed over as a plain skill file — and regressions fell from 6.08% to 1.82%. The same study's other branch gave the agent procedural instructions to work test-first instead, and regressions rose to 9.94%, worse than no intervention at all.</p>
+        <div class="pull">
+          <span>The rule I am keeping</span>
+          <p>Give the agent context, not procedure. Telling it how to behave made things worse; telling it what is true made things better by 70%.</p>
+        </div>

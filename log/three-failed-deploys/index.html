@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Three failed deploys nobody saw — Jakub Kornafel</title>
+<meta name="description" content="This site sat for three weeks serving a version two commits behind, and it looked completely healthy the whole time.">
+<meta property="og:title" content="Three failed deploys nobody saw — Jakub Kornafel">
+<meta property="og:description" content="This site sat for three weeks serving a version two commits behind, and it looked completely healthy the whole time.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://jakubkornafel.com/log/three-failed-deploys/">
+<meta property="og:image" content="https://jakubkornafel.com/assets/og-log.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" type="application/rss+xml" title="Jakub Kornafel — Log" href="https://jakubkornafel.com/log/feed.xml">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%2312161D'/><text y='23' x='16' text-anchor='middle' font-family='monospace' font-size='17' fill='%23F4F5F7'>jk</text></svg>">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../assets/fonts/archivo.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../assets/fonts/sourceserif4.woff2">
+<link rel="stylesheet" href="../../assets/log.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <a class="mark" href="/">Jakub Kornafel</a>
+    <nav>
+      <a href="/#systems">Systems</a>
+      <a href="/#record">Record</a>
+      <a href="/log/" >Log</a>
+      <a href="/#work">Work together</a>
+    </nav>
+  </header>
+</div>
+
+<main>
+  <div class="wrap">
+    <article class="post">
+      <a class="back" href="/log/">&larr; Log</a>
+      <p class="entry-meta"><span class="date">2026-08-06</span><span class="kind note">Note</span></p>
+      <h1>Three failed deploys nobody saw</h1>
+      <div class="body">
+<p>This site sat for three weeks serving a version two commits behind, and it looked completely healthy the whole time.</p>
+        <p>Three consecutive deploys failed, each with a build duration of zero milliseconds and the message "Page build failed." Zero milliseconds means the build never started, so it was not my code. The site kept answering with 200 because the last successful build was still being served — the failure had no visible surface at all.</p>
+        <p>The fix was removing a step that never needed to be there: the site is plain HTML with no template engine, yet every deploy ran it through one, taking 165 seconds for half a megabyte. One empty <code>.nojekyll</code> file later, deploys are a file copy and take 19 seconds.</p>
+        <div class="pull">
+          <span>What this is really about</span>
+          <p>A system that cannot tell you it failed will let you believe it succeeded for as long as you let it. That is the same argument as the one for evaluator agents, arriving from a completely different direction.</p>
+        </div>
+      </div>
+    </article>
+  </div>
+</main>
+
+<div class="wrap">
+  <footer>
+    <span>Jakub Kornafel · Málaga, Spain · Warsaw, Poland</span>
+    <span><a href="/log/feed.xml">RSS</a> · jakubkornafel@gmail.com</span>
+  </footer>
+</div>
+
+</body>
+</html>

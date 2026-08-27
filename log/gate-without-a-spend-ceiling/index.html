@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A gate without a spend ceiling is not a gate — Jakub Kornafel</title>
+<meta name="description" content="Iteration caps bound how many times a loop runs, not what it costs. So I shipped a ledger that stops a run at a declared ceiling and reports where the money went.">
+<meta property="og:title" content="A gate without a spend ceiling is not a gate — Jakub Kornafel">
+<meta property="og:description" content="Iteration caps bound how many times a loop runs, not what it costs. So I shipped a ledger that stops a run at a declared ceiling and reports where the money went.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://jakubkornafel.com/log/gate-without-a-spend-ceiling/">
+<meta property="og:image" content="https://jakubkornafel.com/assets/og-log.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" type="application/rss+xml" title="Jakub Kornafel — Log" href="https://jakubkornafel.com/log/feed.xml">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%2312161D'/><text y='23' x='16' text-anchor='middle' font-family='monospace' font-size='17' fill='%23F4F5F7'>jk</text></svg>">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../assets/fonts/archivo.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../assets/fonts/sourceserif4.woff2">
+<link rel="stylesheet" href="../../assets/log.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <a class="mark" href="/">Jakub Kornafel</a>
+    <nav>
+      <a href="/#systems">Systems</a>
+      <a href="/#record">Record</a>
+      <a href="/log/" >Log</a>
+      <a href="/#work">Work together</a>
+    </nav>
+  </header>
+</div>
+
+<main>
+  <div class="wrap">
+    <article class="post">
+      <a class="back" href="/log/">&larr; Log</a>
+      <p class="entry-meta"><span class="date">2026-08-27</span><span class="kind build">Build</span></p>
+      <h1>A gate without a spend ceiling is not a gate</h1>
+      <p class="dek">Iteration caps bound how many times a loop runs, not what it costs. So I shipped a ledger that stops a run at a declared ceiling and reports where the money went.</p>
+      <div class="body">
+<p>The pipeline already capped iterations per phase. That turns out to bound the wrong thing: one review round fanning out to eight parallel verifiers can cost more than the four phases before it, and no cap notices. Evaluation answered "is this good enough" and never "at what price".</p>
+        <p>What went in: a budget declared before work starts, checked at phase boundaries and on every loop-back, never mid-phase. A run that crosses an edge already over budget stops with an explicit verdict instead of quietly finishing. Cost and wall clock are recorded per phase, and the final report carries them, so no verdict leaves without its price.</p>
+        <p>The part I did not expect to matter most is the route analysis. It measures spend that did not move the run forward — everything consumed by iterations that ended in a loop-back — and flags reasons that repeat. A run that reached a pass on the tenth identical retry is a failing run wearing a passing badge, and nothing in the old reports would have shown that.</p>
+        <p>There is good evidence this class of change is worth more than it looks. A study this March added one thing to a coding agent — a map of which tests cover which code, handed over as a plain skill file — and regressions fell from 6.08% to 1.82%. The same study's other branch gave the agent procedural instructions to work test-first instead, and regressions rose to 9.94%, worse than no intervention at all.</p>
+        <div class="pull">
+          <span>The rule I am keeping</span>
+          <p>Give the agent context, not procedure. Telling it how to behave made things worse; telling it what is true made things better by 70%.</p>
+        </div>
+      </div>
+    </article>
+  </div>
+</main>
+
+<div class="wrap">
+  <footer>
+    <span>Jakub Kornafel · Málaga, Spain · Warsaw, Poland</span>
+    <span><a href="/log/feed.xml">RSS</a> · jakubkornafel@gmail.com</span>
+  </footer>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Harness before the harness — Jakub Kornafel</title>
+<meta name="description" content="A pipeline I built in January turned out to implement the same four mechanisms two frontier labs described publicly weeks later. The interesting part is what the git log proves — and what it does not.">
+<meta property="og:title" content="Harness before the harness — Jakub Kornafel">
+<meta property="og:description" content="A pipeline I built in January turned out to implement the same four mechanisms two frontier labs described publicly weeks later. The interesting part is what the git log proves — and what it does not.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://jakubkornafel.com/log/harness-before-the-harness/">
+<meta property="og:image" content="https://jakubkornafel.com/assets/og-log.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" type="application/rss+xml" title="Jakub Kornafel — Log" href="https://jakubkornafel.com/log/feed.xml">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%2312161D'/><text y='23' x='16' text-anchor='middle' font-family='monospace' font-size='17' fill='%23F4F5F7'>jk</text></svg>">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../assets/fonts/archivo.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../assets/fonts/sourceserif4.woff2">
+<link rel="stylesheet" href="../../assets/log.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <a class="mark" href="/">Jakub Kornafel</a>
+    <nav>
+      <a href="/#systems">Systems</a>
+      <a href="/#record">Record</a>
+      <a href="/log/" >Log</a>
+      <a href="/#work">Work together</a>
+    </nav>
+  </header>
+</div>
+
+<main>
+  <div class="wrap">
+    <article class="post">
+      <a class="back" href="/log/">&larr; Log</a>
+      <p class="entry-meta"><span class="date">2026-08-27</span><span class="kind build">Build</span></p>
+      <h1>Harness before the harness</h1>
+      <p class="dek">A pipeline I built in January turned out to implement the same four mechanisms two frontier labs described publicly weeks later. The interesting part is what the git log proves — and what it does not.</p>
+      <div class="body">
+<p>In January I put together a multi-agent pipeline for turning a product idea into an architecture package: roles as separate agents, artifacts handed between stages with cross-reference IDs, an evaluator that is not the generator, gates that can say no, and a loop that resets context between iterations rather than compacting it.</p>
+        <p>On 11 February OpenAI published a piece on harness engineering. On 24 March Anthropic published one on harness design. Between them they name the same mechanisms: repository knowledge as the system of record, plans as first-class artifacts with progress and decision logs checked in, an evaluator separated from the generator because an agent asked to judge its own work praises it, and concrete grading criteria instead of an impression.</p>
+        <p>The first commit is dated 21 January, and by 17 February the pipeline had run a real production project end to end. So the dates hold. What they do not establish is precedence in any deeper sense: OpenAI describe work that started in August 2025, months before mine. The honest claim is convergence — two sides looking at the same failure modes and arriving at the same four fixes, with nothing public to copy from at the time.</p>
+        <div class="pull">
+          <span>What I took from it</span>
+          <p>Trusting a technical hunch is cheap. Making it falsifiable early is the expensive part, and the part I skipped. The pipeline only became visibly valuable once a system it replaced had been falling over every few days — which is a bad way to discover you were right.</p>
+        </div>
+      </div>
+    </article>
+  </div>
+</main>
+
+<div class="wrap">
+  <footer>
+    <span>Jakub Kornafel · Málaga, Spain · Warsaw, Poland</span>
+    <span><a href="/log/feed.xml">RSS</a> · jakubkornafel@gmail.com</span>
+  </footer>
+</div>
+
+</body>
+</html>

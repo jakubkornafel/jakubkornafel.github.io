@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"
+     xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Jakub Kornafel — Log</title>
+    <link>https://jakubkornafel.com/log/</link>
+    <atom:link href="https://jakubkornafel.com/log/feed.xml" rel="self" type="application/rss+xml"/>
+    <description>What I am building, what broke, and what the evidence actually supports.</description>
+    <language>en</language>
+    <lastBuildDate>Thu, 27 Aug 2026 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Harness before the harness</title>
+      <link>https://jakubkornafel.com/log/harness-before-the-harness/</link>
+      <guid isPermaLink="true">https://jakubkornafel.com/log/harness-before-the-harness/</guid>
+      <pubDate>Thu, 27 Aug 2026 00:00:00 +0000</pubDate>
+      <category>Build</category>
+      <description>A pipeline I built in January turned out to implement the same four mechanisms two frontier labs described publicly weeks later. The interesting part is what the git log proves — and what it does not.</description>
+      <content:encoded><![CDATA[<p>In January I put together a multi-agent pipeline for turning a product idea into an architecture package: roles as separate agents, artifacts handed between stages with cross-reference IDs, an evaluator that is not the generator, gates that can say no, and a loop that resets context between iterations rather than compacting it.</p>
+        <p>On 11 February OpenAI published a piece on harness engineering. On 24 March Anthropic published one on harness design. Between them they name the same mechanisms: repository knowledge as the system of record, plans as first-class artifacts with progress and decision logs checked in, an evaluator separated from the generator because an agent asked to judge its own work praises it, and concrete grading criteria instead of an impression.</p>
+        <p>The first commit is dated 21 January, and by 17 February the pipeline had run a real production project end to end. So the dates hold. What they do not establish is precedence in any deeper sense: OpenAI describe work that started in August 2025, months before mine. The honest claim is convergence — two sides looking at the same failure modes and arriving at the same four fixes, with nothing public to copy from at the time.</p>
+        <div class="pull">
+          <span>What I took from it</span>
+          <p>Trusting a technical hunch is cheap. Making it falsifiable early is the expensive part, and the part I skipped. The pipeline only became visibly valuable once a system it replaced had been falling over every few days — which is a bad way to discover you were right.</p>
+        </div>]]></content:encoded>
+    </item>
+    <item>
+      <title>A gate without a spend ceiling is not a gate</title>
+      <link>https://jakubkornafel.com/log/gate-without-a-spend-ceiling/</link>
+      <guid isPermaLink="true">https://jakubkornafel.com/log/gate-without-a-spend-ceiling/</guid>
+      <pubDate>Thu, 27 Aug 2026 00:00:00 +0000</pubDate>
+      <category>Build</category>
+      <description>Iteration caps bound how many times a loop runs, not what it costs. So I shipped a ledger that stops a run at a declared ceiling and reports where the money went.</description>
+      <content:encoded><![CDATA[<p>The pipeline already capped iterations per phase. That turns out to bound the wrong thing: one review round fanning out to eight parallel verifiers can cost more than the four phases before it, and no cap notices. Evaluation answered "is this good enough" and never "at what price".</p>
+        <p>What went in: a budget declared before work starts, checked at phase boundaries and on every loop-back, never mid-phase. A run that crosses an edge already over budget stops with an explicit verdict instead of quietly finishing. Cost and wall clock are recorded per phase, and the final report carries them, so no verdict leaves without its price.</p>
+        <p>The part I did not expect to matter most is the route analysis. It measures spend that did not move the run forward — everything consumed by iterations that ended in a loop-back — and flags reasons that repeat. A run that reached a pass on the tenth identical retry is a failing run wearing a passing badge, and nothing in the old reports would have shown that.</p>
+        <p>There is good evidence this class of change is worth more than it looks. A study this March added one thing to a coding agent — a map of which tests cover which code, handed over as a plain skill file — and regressions fell from 6.08% to 1.82%. The same study's other branch gave the agent procedural instructions to work test-first instead, and regressions rose to 9.94%, worse than no intervention at all.</p>
+        <div class="pull">
+          <span>The rule I am keeping</span>
+          <p>Give the agent context, not procedure. Telling it how to behave made things worse; telling it what is true made things better by 70%.</p>
+        </div>]]></content:encoded>
+    </item>
+    <item>
+      <title>The measurement nobody publishes</title>
+      <link>https://jakubkornafel.com/log/the-measurement-nobody-publishes/</link>
+      <guid isPermaLink="true">https://jakubkornafel.com/log/the-measurement-nobody-publishes/</guid>
+      <pubDate>Thu, 27 Aug 2026 00:00:00 +0000</pubDate>
+      <category>Note</category>
+      <description>Every public benchmark for coding agents measures single tasks in an isolated container. Swap the harness under one model and the score moves three to eight points; swap the model under one harness and it moves twenty-five. Read only that, and the obvious conclusion is that the harness barely matters.</description>
+      <content:encoded><![CDATA[<p>Every public benchmark for coding agents measures single tasks in an isolated container. Swap the harness under one model and the score moves three to eight points; swap the model under one harness and it moves twenty-five. Read only that, and the obvious conclusion is that the harness barely matters.</p>
+        <p>But the reason I build harnesses has never been the score on one task. It is that a system stops falling over every few days, that a result is reproducible, that a verdict can be audited afterwards. There is no public benchmark for any of that. The closest attempt I found is three weeks old and its own audit came back inconclusive.</p>
+        <p>So the honest position is: the number you want does not exist yet, and the numbers that do exist are measuring something else.</p>]]></content:encoded>
+    </item>
+    <item>
+      <title>Three failed deploys nobody saw</title>
+      <link>https://jakubkornafel.com/log/three-failed-deploys/</link>
+      <guid isPermaLink="true">https://jakubkornafel.com/log/three-failed-deploys/</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 +0000</pubDate>
+      <category>Note</category>
+      <description>This site sat for three weeks serving a version two commits behind, and it looked completely healthy the whole time.</description>
+      <content:encoded><![CDATA[<p>This site sat for three weeks serving a version two commits behind, and it looked completely healthy the whole time.</p>
+        <p>Three consecutive deploys failed, each with a build duration of zero milliseconds and the message "Page build failed." Zero milliseconds means the build never started, so it was not my code. The site kept answering with 200 because the last successful build was still being served — the failure had no visible surface at all.</p>
+        <p>The fix was removing a step that never needed to be there: the site is plain HTML with no template engine, yet every deploy ran it through one, taking 165 seconds for half a megabyte. One empty <code>.nojekyll</code> file later, deploys are a file copy and take 19 seconds.</p>
+        <div class="pull">
+          <span>What this is really about</span>
+          <p>A system that cannot tell you it failed will let you believe it succeeded for as long as you let it. That is the same argument as the one for evaluator agents, arriving from a completely different direction.</p>
+        </div>]]></content:encoded>
+    </item>
+  </channel>
+</rss>

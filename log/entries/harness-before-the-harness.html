@@ -1,0 +1,13 @@
+date: 2026-08-27
+kind: Build
+title: Harness before the harness
+dek: A pipeline I built in January turned out to implement the same four mechanisms two frontier labs described publicly weeks later. The interesting part is what the git log proves — and what it does not.
+rank: 3
+---
+<p>In January I put together a multi-agent pipeline for turning a product idea into an architecture package: roles as separate agents, artifacts handed between stages with cross-reference IDs, an evaluator that is not the generator, gates that can say no, and a loop that resets context between iterations rather than compacting it.</p>
+        <p>On 11 February OpenAI published a piece on harness engineering. On 24 March Anthropic published one on harness design. Between them they name the same mechanisms: repository knowledge as the system of record, plans as first-class artifacts with progress and decision logs checked in, an evaluator separated from the generator because an agent asked to judge its own work praises it, and concrete grading criteria instead of an impression.</p>
+        <p>The first commit is dated 21 January, and by 17 February the pipeline had run a real production project end to end. So the dates hold. What they do not establish is precedence in any deeper sense: OpenAI describe work that started in August 2025, months before mine. The honest claim is convergence — two sides looking at the same failure modes and arriving at the same four fixes, with nothing public to copy from at the time.</p>
+        <div class="pull">
+          <span>What I took from it</span>
+          <p>Trusting a technical hunch is cheap. Making it falsifiable early is the expensive part, and the part I skipped. The pipeline only became visibly valuable once a system it replaced had been falling over every few days — which is a bad way to discover you were right.</p>
+        </div>

@@ -1,0 +1,12 @@
+date: 2026-08-06
+kind: Note
+title: Three failed deploys nobody saw
+dek: 
+---
+<p>This site sat for three weeks serving a version two commits behind, and it looked completely healthy the whole time.</p>
+        <p>Three consecutive deploys failed, each with a build duration of zero milliseconds and the message "Page build failed." Zero milliseconds means the build never started, so it was not my code. The site kept answering with 200 because the last successful build was still being served — the failure had no visible surface at all.</p>
+        <p>The fix was removing a step that never needed to be there: the site is plain HTML with no template engine, yet every deploy ran it through one, taking 165 seconds for half a megabyte. One empty <code>.nojekyll</code> file later, deploys are a file copy and take 19 seconds.</p>
+        <div class="pull">
+          <span>What this is really about</span>
+          <p>A system that cannot tell you it failed will let you believe it succeeded for as long as you let it. That is the same argument as the one for evaluator agents, arriving from a completely different direction.</p>
+        </div>
