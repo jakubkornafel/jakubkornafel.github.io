@@ -1,34 +1,34 @@
 date: 2026-08-27
 kind: Note
-title: Liczba, którą wszyscy cytują, mierzy coś innego
-dek: Zmień harness, a benchmark drgnie o trzy punkty. Zmień model, a drgnie o dwadzieścia pięć. Czyli harness prawie nie ma znaczenia — chyba że spojrzysz na to, czego benchmark nigdy nie mierzy.
+title: Liczba, którą wszyscy cytują, mierzy nie to, co trzeba
+dek: Podmień harness, a benchmark drgnie o trzy punkty. Podmień model, a skoczy o dwadzieścia pięć. Czyli harness nie ma znaczenia — dopóki nie spojrzysz na to, czego benchmark nie mierzy wcale.
 rank: 1
 ---
-<p>Ktoś zadał mi w tym tygodniu uczciwe pytanie: o ile dobrze zbudowany harness realnie poprawia agenta kodującego? Podaj liczbę.</p>
+<p>Dostałem w tym tygodniu uczciwe pytanie: o ile dobrze zbudowany harness poprawia agenta kodującego? Podaj liczbę.</p>
 
 <p>Poszedłem więc po liczby.</p>
 
-<p>Na publicznych rankingach da się czasem znaleźć ten sam model uruchomiony pod dwoma różnymi harnessami. Różnica to trzy do ośmiu punktów procentowych. Tymczasem zostaw harness bez zmian, a podmień model pod spodem — wynik rusza się o dwadzieścia pięć.</p>
+<p>Na publicznych rankingach da się czasem trafić ten sam model puszczony pod dwoma różnymi harnessami. Różnica: od trzech do ośmiu punktów procentowych. A wystarczy zostawić harness w spokoju i podmienić model pod spodem, żeby wynik ruszył się o dwadzieścia pięć.</p>
 
-<p>Przeczytaj tylko tyle, a wniosek pisze się sam: harness prawie nie ma znaczenia, kup lepszy model, idź do domu.</p>
+<p>Przeczytaj tylko tyle, a wniosek napisze się sam: harness prawie nie ma znaczenia, kup lepszy model, idź do domu.</p>
 
-<h3>Tyle że nikt z nas nie martwi się akurat o to</h3>
+<h3>Tylko że nikt z nas nie boi się o to</h3>
 
-<p>Te benchmarki mierzą jedno zadanie, w jednym kontenerze, które albo przechodzi, albo nie. Nikt na produkcji nie traci snu przez jedno zadanie w jednym kontenerze.</p>
+<p>Te benchmarki mierzą jedno zadanie w jednym kontenerze, które przechodzi albo nie przechodzi. Nikt na produkcji nie traci snu przez jedno zadanie w jednym kontenerze.</p>
 
-<p>Ludzie tracą sen przez system, który wywraca się co kilka dni. Przez wynik, którego nie da się powtórzyć w następny wtorek. Przez werdykt, którego po fakcie nikt nie potrafi zaudytować. Przez przebieg, który raportuje sukces, po cichu wymyśliwszy plik, który rzekomo edytował.</p>
+<p>Sen odbiera co innego. System, który wywraca się co kilka dni. Wynik, którego we wtorek nie da się powtórzyć. Werdykt, którego potem nikt nie zaudytuje. Przebieg, który melduje sukces, a plik, w którym rzekomo coś poprawił, po prostu sobie wymyślił.</p>
 
-<p>Na to — na stabilność, powtarzalność, audytowalność — nie ma żadnego publicznego benchmarku. Najbliższa próba, jaką znalazłem, ma trzy tygodnie, a jej własny prerejestrowany audyt wyszedł nierozstrzygający.</p>
+<p>I właśnie na to — na stabilność, powtarzalność, audytowalność — nie ma żadnego publicznego benchmarku. Najbliższa próba, jaką znalazłem, ma trzy tygodnie, a jej własny prerejestrowany audyt wyszedł nierozstrzygnięty.</p>
 
-<p>Tam, gdzie liczby jednak są, nie są małe. Jedno badanie zbiło regresje o 70%, podając agentowi jeden plik z kontekstem. Inne zmierzyło spadek nieudanych zadań o 9,5% po dodaniu krytyka, który sprawdza plan przed wykonaniem. Oba to zmiany w harnessie. Żadna nie pojawia się w rankingu.</p>
+<p>Tam, gdzie liczby jednak są, nie są małe. Jedno badanie ścięło regresje o 70%, podając agentowi jeden plik z kontekstem. Inne zmierzyło spadek nieudanych zadań o 9,5% po dodaniu krytyka, który sprawdza plan przed wykonaniem. Jedno i drugie to zmiana w harnessie. Ani jedna, ani druga nie pojawi się w rankingu.</p>
 
 <div class="pull">
-  <span>Uczciwe stanowisko</span>
-  <p>Liczba, której chcesz, jeszcze nie istnieje. Liczby, które istnieją, mierzą co innego, a przepaść między nimi to dokładnie miejsce, w którym żyją systemy produkcyjne.</p>
+  <span>Uczciwa odpowiedź</span>
+  <p>Liczba, której chcesz, jeszcze nie istnieje. Liczby, które istnieją, mierzą co innego. A w szczelinie między jednym a drugim mieszkają systemy produkcyjne.</p>
 </div>
 
-<p>To znaczy, że na razie ciężar spoczywa na Tobie. Mierz to, na czym naprawdę Ci zależy — częstotliwość awarii, ile pracy idzie na poprawki, jak często werdykt przeżywa przegląd — bo nikt tego za Ciebie nie opublikuje.</p>
+<p>Na razie ciężar spada więc na ciebie. Mierz to, na czym naprawdę ci zależy: jak często pada system, ile pracy wraca do poprawki, jak często werdykt broni się w przeglądzie. Nikt nie opublikuje tego za ciebie.</p>
 
 <div class="cta">
-  <p><b>Jeśli masz taki pomiar i wygląda źle</b>, naprawdę chciałbym go zobaczyć. To jest problem, nad którym pracuję. <a href="mailto:jakubkornafel@gmail.com">jakubkornafel@gmail.com</a></p>
+  <p><b>Jeśli masz taki pomiar i wygląda źle</b>, chętnie go zobaczę. Nad tym właśnie pracuję. <a href="mailto:jakubkornafel@gmail.com">jakubkornafel@gmail.com</a></p>
 </div>

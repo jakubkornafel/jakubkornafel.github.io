@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Moja własna strona okłamywała mnie przez trzy tygodnie — Jakub Kornafel</title>
-<meta name="description" content="Trzy wdrożenia się wywaliły. Strona dalej odpowiadała kodem 200. Dowiedziałem się tylko dlatego, że szukałem czegoś zupełnie innego.">
-<meta property="og:title" content="Moja własna strona okłamywała mnie przez trzy tygodnie — Jakub Kornafel">
-<meta property="og:description" content="Trzy wdrożenia się wywaliły. Strona dalej odpowiadała kodem 200. Dowiedziałem się tylko dlatego, że szukałem czegoś zupełnie innego.">
+<title>Przez trzy tygodnie moja własna strona mnie okłamywała — Jakub Kornafel</title>
+<meta name="description" content="Trzy wdrożenia padły. Strona dalej odpowiadała dwustką. Wyszło na jaw tylko dlatego, że szukałem zupełnie czego innego.">
+<meta property="og:title" content="Przez trzy tygodnie moja własna strona mnie okłamywała — Jakub Kornafel">
+<meta property="og:description" content="Trzy wdrożenia padły. Strona dalej odpowiadała dwustką. Wyszło na jaw tylko dlatego, że szukałem zupełnie czego innego.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://jakubkornafel.com/log/pl/three-failed-deploys/">
 <meta property="og:image" content="https://jakubkornafel.com/assets/og-log.png">
@@ -42,38 +42,38 @@
     <article class="post">
       <a class="back" href="/log/pl/">&larr; Log</a>
       <p class="entry-meta"><span class="date">2026-08-27</span><span class="kind note">Note</span></p>
-      <h1>Moja własna strona okłamywała mnie przez trzy tygodnie</h1>
-      <p class="dek">Trzy wdrożenia się wywaliły. Strona dalej odpowiadała kodem 200. Dowiedziałem się tylko dlatego, że szukałem czegoś zupełnie innego.</p>
+      <h1>Przez trzy tygodnie moja własna strona mnie okłamywała</h1>
+      <p class="dek">Trzy wdrożenia padły. Strona dalej odpowiadała dwustką. Wyszło na jaw tylko dlatego, że szukałem zupełnie czego innego.</p>
       <div class="body">
-<p>Zawodowo buduję systemy, które potrafią powiedzieć człowiekowi, że coś poszło źle.</p>
+<p>Zawodowo buduję systemy, które umieją powiedzieć człowiekowi, że coś poszło nie tak.</p>
 
 <p>Moja własna strona przez trzy tygodnie serwowała wersję sprzed dwóch commitów, a ja nie miałem o tym pojęcia.</p>
 
-<p>Było tak. 6 sierpnia wypchnąłem dwie zmiany na podstronę. Ruszyły trzy wdrożenia. Wszystkie trzy się wywaliły. Każde zapisało czas budowania zero milisekund i komunikat „Page build failed." — bez szczegółów, bez powiadomienia, nic w skrzynce.</p>
+<p>Przebieg wydarzeń. 6 sierpnia wypchnąłem dwie zmiany na podstronie. Ruszyły trzy wdrożenia. Wszystkie trzy padły. Każde zapisało czas builda równy zeru milisekund i komunikat „Page build failed." Bez szczegółów, bez powiadomienia, nic w skrzynce.</p>
 
-<p>Zero milisekund znaczy, że budowanie w ogóle nie ruszyło, więc to nie był mój kod. Coś padło wyżej.</p>
+<p>Zero milisekund znaczy, że build nawet nie wystartował, więc nie chodziło o mój kod. Położyło się coś wyżej.</p>
 
-<p>A strona? Strona miała się świetnie. HTTP 200, ważny certyfikat, wszystko się ładuje. Bo wciąż serwowana była ostatnia udana wersja, dokładnie tak jak dzień wcześniej. Awaria nie miała żadnej widocznej powierzchni. Z zewnątrz, z mojej przeglądarki, z czyjejkolwiek — zdrowa strona.</p>
+<p>A strona? Strona miała się świetnie. HTTP 200, ważny certyfikat, wszystko się ładuje. Bo dalej szedł ostatni udany build, dokładnie tak jak dzień wcześniej. Awaria nie miała żadnej widocznej powierzchni. Z zewnątrz, z mojej przeglądarki, z czyjejkolwiek innej — zdrowa strona.</p>
 
-<p>Znalazłem to tylko dlatego, że dłubałem przy czymś niezwiązanym i z ciekawości sprawdziłem status wdrożeń.</p>
+<p>Znalazłem to tylko dlatego, że dłubałem przy czymś zupełnie niezwiązanym i z ciekawości zajrzałem w status wdrożeń.</p>
 
-<h3>Niewygodna analogia</h3>
+<h3>Nieprzyjemna analogia</h3>
 
-<p>To jest dokładnie ten tryb awarii, przeciwko któremu całymi dniami stawiam bramki, tyle że nadchodzący ze strony, której nie broniłem.</p>
+<p>To dokładnie ten sposób psucia się, przed którym całymi dniami stawiam bramki. Przyszedł tylko od strony, której nie broniłem.</p>
 
-<p>Agent raportuje sukces. Testy przechodzą. Diff wygląda czysto. Wszystko na powierzchni mówi, że praca jest zrobiona, a jedyny sposób, żeby dowiedzieć się inaczej, to sprawdzić coś, czego raportujący nie kontroluje — uruchomić prawdziwą aplikację, odpytać prawdziwy stan, porównać z czymś, do czego optymalizujący nie ma dostępu.</p>
+<p>Agent melduje sukces. Testy przechodzą. Diff wygląda czysto. Wszystko na powierzchni mówi, że robota zrobiona, a jedyny sposób, żeby się przekonać inaczej, to sprawdzić coś, nad czym meldujący nie ma władzy: uruchomić prawdziwą aplikację, odpytać prawdziwy stan, porównać z czymś, czego optymalizujący nie dosięgnie.</p>
 
-<p>Miałem tę intuicję wobec agentów. Nie miałem jej wobec własnego pipeline'u wdrożeniowego, który przez dwadzieścia jeden dni po cichu serwował nieaktualną treść.</p>
+<p>Wobec agentów miałem ten odruch. Wobec własnego pipeline'u wdrożeniowego już nie, a on przez dwadzieścia jeden dni po cichu serwował nieświeżą treść.</p>
 
-<p>Naprawa, nawiasem mówiąc, polegała na usuwaniu pracy, a nie dokładaniu. Strona to czysty HTML, ale każde wdrożenie przepuszczało ją przez silnik szablonów, którego nigdy nie potrzebowała — 165 sekund na opublikowanie pół megabajta. Jeden pusty plik później wdrożenie to zwykłe kopiowanie plików i trwa 19 sekund. Dziewięć dziesiątych czasu szło na krok, którego jedynym realnym wkładem była zdolność do wywalenia się.</p>
+<p>Naprawa, nawiasem mówiąc, polegała na usuwaniu, nie na dokładaniu. Strona to czysty HTML, a mimo to każde wdrożenie przepuszczało ją przez silnik szablonów, którego nigdy nie potrzebowała: 165 sekund na opublikowanie pół megabajta. Jeden pusty plik później wdrożenie jest zwykłym kopiowaniem plików i trwa 19 sekund. Dziewięć dziesiątych czasu szło na krok, którego jedynym realnym wkładem była zdolność do popsucia się.</p>
 
 <div class="pull">
   <span>Co z tego biorę</span>
-  <p>System, który nie potrafi powiedzieć, że zawiódł, będzie Ci pozwalał wierzyć, że się udało, tak długo, jak mu na to pozwolisz. Cisza to nie status. Jeśli od trzech tygodni nic nie zgłosiło problemu, to jest twierdzenie warte sprawdzenia, a nie powód do spokoju.</p>
+  <p>System, który nie umie powiedzieć, że padł, będzie ci pozwalał wierzyć w sukces tak długo, jak mu na to pozwolisz. Cisza to nie status. Jeśli od trzech tygodni nic nie zgłosiło problemu, to teza do sprawdzenia, a nie powód do spokoju.</p>
 </div>
 
 <div class="cta">
-  <p>Idź i sprawdź ostatnie udane wdrożenie tej rzeczy, której jesteś najbardziej pewny. Zaczekam. Jeśli odpowiedź Cię zaskoczy, <a href="mailto:jakubkornafel@gmail.com">napisz mi o tym</a> — zbieram takie historie.</p>
+  <p>Sprawdź teraz ostatnie udane wdrożenie tej rzeczy, której jesteś najpewniejszy. Poczekam. Jeśli wynik cię zaskoczy, <a href="mailto:jakubkornafel@gmail.com">napisz do mnie</a> — zbieram takie historie.</p>
 </div>
       </div>
     </article>

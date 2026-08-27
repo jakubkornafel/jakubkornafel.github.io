@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Bramka bez limitu wydatków nie jest bramką — Jakub Kornafel</title>
-<meta name="description" content="Mój pipeline umiał powiedzieć, czy praca jest dobra. Nie umiał powiedzieć, że dojście do tej odpowiedzi kosztowało cztery godziny i osiem nieudanych podejść.">
-<meta property="og:title" content="Bramka bez limitu wydatków nie jest bramką — Jakub Kornafel">
-<meta property="og:description" content="Mój pipeline umiał powiedzieć, czy praca jest dobra. Nie umiał powiedzieć, że dojście do tej odpowiedzi kosztowało cztery godziny i osiem nieudanych podejść.">
+<title>Bramka bez limitu wydatków to nie bramka — Jakub Kornafel</title>
+<meta name="description" content="Mój pipeline umiał powiedzieć, czy praca jest dobra. Nie umiał powiedzieć, że ta odpowiedź kosztowała cztery godziny i osiem nieudanych podejść.">
+<meta property="og:title" content="Bramka bez limitu wydatków to nie bramka — Jakub Kornafel">
+<meta property="og:description" content="Mój pipeline umiał powiedzieć, czy praca jest dobra. Nie umiał powiedzieć, że ta odpowiedź kosztowała cztery godziny i osiem nieudanych podejść.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://jakubkornafel.com/log/pl/gate-without-a-spend-ceiling/">
 <meta property="og:image" content="https://jakubkornafel.com/assets/og-log.png">
@@ -42,42 +42,42 @@
     <article class="post">
       <a class="back" href="/log/pl/">&larr; Log</a>
       <p class="entry-meta"><span class="date">2026-08-27</span><span class="kind build">Build</span></p>
-      <h1>Bramka bez limitu wydatków nie jest bramką</h1>
-      <p class="dek">Mój pipeline umiał powiedzieć, czy praca jest dobra. Nie umiał powiedzieć, że dojście do tej odpowiedzi kosztowało cztery godziny i osiem nieudanych podejść.</p>
+      <h1>Bramka bez limitu wydatków to nie bramka</h1>
+      <p class="dek">Mój pipeline umiał powiedzieć, czy praca jest dobra. Nie umiał powiedzieć, że ta odpowiedź kosztowała cztery godziny i osiem nieudanych podejść.</p>
       <div class="body">
-<p>Mój pipeline miał bramki, z których byłem dumny. Kryteria, progi, recenzenta, który nie był autorem, werdykt umiejący powiedzieć nie.</p>
+<p>Miałem w pipelinie bramki, z których byłem dumny. Kryteria, progi, recenzent inny niż autor, werdykt, który potrafi odmówić.</p>
 
-<p>Potem zadałem mu pytanie, na które nie umiał odpowiedzieć: <em>ile to kosztowało?</em></p>
+<p>A potem zadałem im pytanie, na które nie umiały odpowiedzieć: <em>ile to kosztowało?</em></p>
 
-<p>Wiedział, że artefakt jest wystarczająco dobry. Nie miał pojęcia, czy dojście do tego werdyktu zajęło czterdzieści minut czy cztery godziny, dwanaście dolarów czy dwieście. Nie odróżniał czystej akceptacji za pierwszym podejściem od przebiegu, który dokuśtykał do mety przy dziesiątej próbie z tym samym nierozwiązanym problemem.</p>
+<p>Że artefakt jest wystarczająco dobry — to wiedziały. Czy dojście do tego werdyktu zajęło czterdzieści minut czy cztery godziny, dwanaście dolarów czy dwieście — nie miały pojęcia. Czystej akceptacji za pierwszym podejściem nie odróżniały od przebiegu, który dowlókł się do mety przy dziesiątej próbie z tym samym nierozwiązanym problemem.</p>
 
-<p>To nie są te same wyniki. Tylko jeden z nich jest działającym systemem.</p>
+<p>To nie są te same wyniki. Tylko jeden z nich to działający system.</p>
 
 <h3>Limit, który ogranicza nie to, co trzeba</h3>
 
-<p>Miałem limity iteracji — maksymalnie dziesięć pętli na fazę. To sprawiało wrażenie kontroli. Nie jest nią. Limit iteracji ogranicza, ile razy pętla się wykona, a nie ile kosztuje każde obejście, a w moim pipelinie jedna runda przeglądu rozgałęzia się na osiem weryfikatorów działających równolegle. Ten jeden krok potrafi kosztować więcej niż wszystkie wcześniejsze fazy razem wzięte — i żaden limit tego nie zauważa.</p>
+<p>Miałem limity iteracji — najwyżej dziesięć pętli na fazę. Wyglądało to na kontrolę. Nie jest. Limit iteracji ogranicza liczbę przebiegów pętli, a nie koszt jednej tury, a u mnie jedna runda recenzji rozchodzi się na ośmiu weryfikatorów pracujących równolegle. Ten jeden krok potrafi kosztować więcej niż wszystkie wcześniejsze fazy razem i żaden limit tego nie zauważa.</p>
 
-<p>Wdrożyłem więc księgę wydatków. Budżet deklarowany, zanim praca w ogóle ruszy. Sprawdzany przy przejściu między fazami i przy każdym powrocie w pętli, nigdy w środku pracy. Przekrocz krawędź, będąc już ponad limitem, a przebieg zatrzymuje się z jawnym werdyktem, zamiast po cichu dojechać do końca i wystawić Ci rachunek.</p>
+<p>Dopisałem więc księgę wydatków. Budżet zadeklarowany przed startem. Sprawdzany przy przejściu między fazami i przy każdym cofnięciu, nigdy w środku pracy. Przekroczysz krawędź, będąc już nad limitem, i przebieg staje z jawnym werdyktem, zamiast po cichu dojechać do końca i wystawić ci rachunek.</p>
 
-<p>Nie doceniłem analizy trasy. Mierzy ona wydatek, który nie posunął przebiegu do przodu — wszystko, co pochłonęły podejścia zakończone powrotem w pętli — i wskazuje powody, które się powtarzają. Ta ostatnia liczba jest tą niewygodną. Przebieg, który zaliczył bramkę przy dziesiątej identycznej próbie, to przebieg nieudany z przypiętą odznaką sukcesu, a w moich starych raportach nic by tego nie pokazało.</p>
+<p>Najbardziej niedoszacowałem analizy trasy. Liczy ona wydatek, który nie posunął przebiegu do przodu — wszystko, co poszło na próby zakończone cofnięciem — i wyłapuje powtarzające się powody. Ta ostatnia liczba jest nieprzyjemna. Przebieg, który zaliczył bramkę przy dziesiątym identycznym podejściu, to przebieg nieudany z przypiętą plakietką „zdane". W moich starych raportach nie było tego widać w ogóle.</p>
 
-<h3>Dlaczego to więcej warte, niż wygląda</h3>
+<h3>Dlaczego to warte więcej, niż wygląda</h3>
 
-<p>Jest badanie z marca, które kazało mi przemyśleć, jak w ogóle cokolwiek dokładam do agenta.</p>
+<p>Jest marcowe badanie, przez które przemyślałem od nowa, co w ogóle dokładam agentowi.</p>
 
-<p>Badacze dali agentowi kodującemu jedną dodatkową rzecz: mapę tego, które testy pokrywają który kod, podaną jako zwykły plik tekstowy do przeczytania. Regresje — testy, które wcześniej przechodziły i przestały — spadły z 6,08% do 1,82%. Siedemdziesiąt procent mniej z jednego pliku.</p>
+<p>Badacze dali agentowi kodującemu jedną dodatkową rzecz: mapę tego, które testy pokrywają który kod, podaną jako zwykły plik tekstowy do przeczytania. Regresje — testy, które wcześniej przechodziły i przestały — spadły z 6,08% do 1,82%. Spadek o 70% z jednego pliku.</p>
 
-<p>To samo badanie miało drugą gałąź. Zamiast mapy dano agentowi instrukcje proceduralne: pracuj test-first, trzymaj się tej dyscypliny. Regresje wzrosły do 9,94%. Gorzej, niż gdyby nie zrobiono nic.</p>
+<p>To samo badanie miało drugą gałąź. Zamiast mapy agent dostał instrukcje proceduralne: pracuj testami naprzód, trzymaj się tej dyscypliny. Regresje wzrosły do 9,94%. Czyli gorzej, niż gdyby nie robić nic.</p>
 
 <div class="pull">
   <span>Zasada, którą zostawiam</span>
-  <p>Dawaj agentowi kontekst, nie procedurę. Mówienie mu, jak ma się zachowywać, mierzalnie pogorszyło wynik. Mówienie mu, co jest prawdą, poprawiło go o 70%. Każda instrukcja, którą mam ochotę napisać, przechodzi teraz najpierw ten test.</p>
+  <p>Dawaj agentowi kontekst, nie procedurę. Mówienie mu, jak ma się zachowywać, mierzalnie pogorszyło sprawę. Mówienie mu, co jest prawdą, poprawiło ją o 70%. Każdą instrukcję, którą mam ochotę napisać, przepuszczam teraz przez ten test.</p>
 </div>
 
-<p>Dlatego też budżet mieszka w pliku stanu, a nie w promptcie proszącym agenta, żeby uważał na pieniądze. Agent nie potrafi uważać na liczbę, której nie widzi.</p>
+<p>Dlatego budżet siedzi w pliku ze stanem, a nie w promptcie proszącym agenta, żeby uważał na pieniądze. Nikt nie będzie uważał na liczbę, której nie widzi.</p>
 
 <div class="cta">
-  <p><b>Jeśli uruchamiasz agenty i nie umiesz powiedzieć, ile kosztował Cię zeszły tydzień</b>, nie prowadzisz autonomicznego systemu — nabijasz rachunek. Buduję tę część, która potrafi powiedzieć nie. <a href="mailto:jakubkornafel@gmail.com">Napisz, co to za system i jaki jest termin.</a></p>
+  <p><b>Jeśli puszczasz agenty i nie umiesz powiedzieć, ile kosztował cię zeszły tydzień</b>, to nie prowadzisz autonomicznego systemu — nabijasz rachunek. Buduję tę część, która potrafi odmówić. <a href="mailto:jakubkornafel@gmail.com">Napisz, co masz za system i jaki masz termin.</a></p>
 </div>
       </div>
     </article>
