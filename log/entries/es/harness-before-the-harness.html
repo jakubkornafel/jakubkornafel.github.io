@@ -1,70 +1,70 @@
 date: 2026-08-27
 kind: Build
-title: Casi me despiden por construir una categoría que aún no tenía nombre
-dek: Empezamos a esbozarlo en noviembre de 2025. Mi team lead no le veía el valor, y no le faltaba razón: el vocabulario de lo que estábamos construyendo no existiría hasta ocho meses después.
+title: Casi me quedo sin trabajo por construir algo que aún no tenía nombre
+dek: Los primeros bocetos son de noviembre de 2025. Mi team lead no le veía el valor, y tenía sus motivos: el vocabulario para explicar aquello tardó ocho meses en aparecer.
 rank: 3
 ---
 <p>«No le veo el valor».</p>
 
-<p>Mi team lead lo dijo sin rodeos, más de una vez, y no estaba poniéndose difícil. Estaba describiendo la situación con exactitud. Yo llevaba semanas construyendo algo que no sabía nombrar y cuyo único resultado era la ausencia de cosas saliendo mal.</p>
+<p>Mi team lead lo dijo así, sin adornos, y no una sola vez. No estaba siendo cabezota. Describía la realidad. Yo llevaba semanas metido en algo que no sabía nombrar y cuyo único producto iba a ser que dejaran de pasar cosas.</p>
 
-<p>Defiende eso en una conversación sobre plantilla.</p>
+<p>Prueba a defender eso cuando la conversación gira hacia cuánta gente hace falta en el equipo.</p>
 
-<h3>Dónde empezó</h3>
+<h3>Cómo empezó esto</h3>
 
-<p>Noviembre de 2025. Una invitación de calendario titulada «Agentic Coding Setup»: Szymon, Jacek y yo, una hora.</p>
+<p>Noviembre de 2025. Una invitación de calendario: «Agentic Coding Setup». Szymon, Jacek y yo. Una hora.</p>
 
-<p>Para las sesiones de trabajo del 24 y el 26 de noviembre ya teníamos la forma. Las notas de aquellas llamadas se leen raro ahora: un repositorio de práctica independiente del proveedor, para que una persona nueva fuera productiva de inmediato. Un modelo que llamábamos delegate, review, own: el humano revisa lo que ha producido el agente, y la propiedad no se transfiere nunca. Cuatro agentes como primer objetivo, cada uno con su carpeta, sus herramientas y sus instrucciones. Plantillas para los documentos que cada rol entrega al siguiente.</p>
+<p>En las sesiones de trabajo del 24 y el 26 de noviembre ya teníamos la forma entera. Releer aquellas notas hoy resulta raro: un repositorio de prácticas independiente de qué herramienta acabe ganando, para que alguien nuevo arrancara sin calentamiento. Un modelo que bautizamos <em>delega, revisa, responde</em> — el humano revisa lo que ha producido el agente y la responsabilidad no se traspasa nunca. Cuatro agentes para empezar, cada uno con su carpeta, sus herramientas y sus instrucciones. Plantillas para los documentos que cada rol entrega al siguiente.</p>
 
-<p>No estábamos construyendo un agente. Estábamos construyendo el proceso dentro del cual trabaja un agente.</p>
+<p>No estábamos construyendo un agente. Construíamos el proceso dentro del que trabaja un agente.</p>
 
-<p>Y lo digo claro: no lo construí solo. Szymon y Jacek lo construyeron conmigo — la estructura del repositorio, las herramientas de los agentes, el backend que escribió uno de ellos mientras los demás discutíamos sobre roles, y la mitad de los argumentos que hicieron aquello mejor que mi primer borrador.</p>
+<p>Y que quede claro: esto no lo hice solo. Szymon y Jacek lo levantaron conmigo — la estructura del repositorio, el instrumental de los agentes, el backend que escribió uno de ellos mientras los demás discutíamos sobre roles, y la mitad de las discusiones que dejaron aquello mejor que mi primer borrador.</p>
 
-<h3>Qué era en realidad</h3>
+<h3>Qué era aquello, en concreto</h3>
 
-<p>Un framework de SDLC agéntico. Todo el camino de una idea en bruto a un paquete de arquitectura implementable, descompuesto en roles especializados que se pasan el trabajo bajo reglas.</p>
+<p>Un framework de SDLC agéntico. El trayecto completo de una idea en bruto hasta un paquete de arquitectura implementable, troceado en roles especializados que se pasan el trabajo con reglas.</p>
 
-<p>Estructuralmente era un grafo. Cada rol era un nodo: investigación, ingeniería inversa, definición de producto, arquitectura y un revisor que a propósito no era ninguno de ellos. Las aristas estaban tipadas: el trabajo solo avanzaba si llevaba los identificadores que permiten rastrear cualquier afirmación hasta su origen. El estado vivía en ficheros que sobrevivían a cualquier ejecución, así que nada importante vivía dentro de una ventana de conversación. Las transiciones tenían puertas, y una puerta podía negarse y devolver el trabajo a un nodo anterior concreto.</p>
+<p>Por dentro, un grafo. Cada rol, un nodo: investigación, ingeniería inversa, definición de producto, arquitectura y un revisor que a propósito no era ninguno de los anteriores. Las aristas tenían tipo, así que el trabajo solo avanzaba si llevaba encima los identificadores que permiten seguir cualquier afirmación hasta su origen. El estado vivía en ficheros que sobrevivían a la ejecución, para que nada importante se quedara dentro de una ventana de conversación. En cada transición había una puerta, y una puerta podía negarse y devolver el trabajo a un nodo anterior concreto.</p>
 
-<p>En enero de 2026 yo no tenía lenguaje para eso. Decía «el pipeline» y veía cómo se les nublaba la mirada.</p>
+<p>En enero de 2026 no tenía ni una palabra para todo eso. Decía «el pipeline» y veía cómo a la gente se le iba la mirada.</p>
 
 <h3>Por qué nadie lo veía</h3>
 
-<p>El enfoque emocionante por entonces era el otro: agentes sueltos sobre el código, sin puerta, sin verificación independiente, se despliega lo que salga. Producía muchísimo código muy rápido. También tumbaba el sistema cada pocos días, y cada pocos días alguien perdía una tarde averiguando por qué.</p>
+<p>Lo que se llevaba entonces era justo lo contrario: soltar agentes sobre el código, sin puertas, sin verificación independiente, y desplegar lo que saliera. Código salía muchísimo y muy deprisa. También se caía el sistema cada pocos días, y cada pocos días alguien se dejaba la tarde en averiguar por qué.</p>
 
-<p>Nuestra propuesta, traducida con honestidad, era: esto hará que eso deje de pasar. Una promesa sobre una ausencia. Y para una ausencia no hay demo: ni captura de pantalla, ni gráfico, ni momento en una revisión en el que alguien aplauda.</p>
+<p>Nuestra promesa, traducida con honestidad, era: esto va a dejar de pasar. Una promesa sobre una ausencia. Y una ausencia no se enseña — no hay captura, no hay gráfica, no hay momento en la revisión en el que alguien aplauda.</p>
 
-<p>Luego el sistema se cayó lo bastante fuerte como para que la pregunta pasara de si el trabajo tenía valor a si podía echarle un vistazo.</p>
+<p>Hasta que el sistema se cayó lo bastante fuerte como para que cambiara la pregunta. Ya no era si aquel trabajo valía algo, sino si podía echarle un ojo.</p>
 
-<p>El framework hizo lo poco vistoso. No dejó avanzar el trabajo hasta que algo distinto del autor lo hubiera comprobado. Ejecutaba la aplicación real en un navegador en lugar de preguntarle al agente si estaba satisfecho. Las caídas pararon. El proyecto salió.</p>
+<p>El framework hizo entonces lo suyo, sin fuegos artificiales. No dejaba pasar nada que no hubiera comprobado alguien distinto del autor. Abría la aplicación de verdad en un navegador en lugar de preguntarle al agente si estaba contento consigo mismo. Las caídas se acabaron. El proyecto salió a producción.</p>
 
-<p>Nadie lo recuerda, y es lo normal. Los rescates se recuerdan como sucesos, no como autoría.</p>
+<p>Nadie se acuerda, y es lo normal. Los rescates se recuerdan como sucesos, no como obra de alguien.</p>
 
-<h3>Luego apareció el vocabulario</h3>
+<h3>Ocho meses después llegaron las palabras</h3>
 
-<p>El 11 de febrero de 2026, OpenAI publicó un texto sobre harness engineering: el conocimiento del repositorio como sistema de registro, los planes como artefactos de primera clase con registros de decisiones commiteados a git.</p>
+<p>El 11 de febrero de 2026, OpenAI publicó un texto sobre <em>harness engineering</em>: el conocimiento del repositorio como fuente de verdad, los planes como artefactos de pleno derecho, los registros de decisiones guardados en git.</p>
 
-<p>El 24 de marzo de 2026, Anthropic publicó otro sobre diseño de harness: un planificador, un generador y un evaluador mantenidos deliberadamente aparte, porque a un agente al que le pides que califique su propio trabajo lo va a elogiar.</p>
+<p>El 24 de marzo de 2026, Anthropic publicó otro sobre diseño de harness: planificador, generador y evaluador separados a propósito, porque a un agente al que le pides que puntúe su propio trabajo lo va a alabar.</p>
 
-<p>El 4 de julio de 2026, alguien puso por fin nombre a la otra mitad. Graph engineering: diseñar sistemas agénticos como grafos explícitos en lugar de bucles implícitos. Nodos como unidades de capacidad. Aristas como transiciones tipadas que transportan estado. El estado como un objeto con checkpoints, y no como lo que sobreviviera en la ventana de contexto.</p>
+<p>El 4 de julio de 2026 alguien puso nombre por fin a la otra mitad. <em>Graph engineering</em>: diseñar sistemas agénticos como grafos explícitos en vez de bucles implícitos. Nodos como unidades de capacidad. Aristas como transiciones tipadas que llevan estado. El estado como objeto con checkpoints, y no como lo que haya sobrevivido en la ventana de contexto.</p>
 
-<p>Vuelve a leerlo. Nodos, aristas tipadas, estado con checkpoints, un evaluador fuera del generador, puertas que pueden negarse. Eso es aquello que no supimos explicar en noviembre, descrito con un vocabulario que llegó ocho meses más tarde.</p>
+<p>Léelo otra vez. Nodos, aristas tipadas, estado con checkpoints, un evaluador fuera del generador, puertas que pueden negarse. Es exactamente aquello que no supimos explicar en noviembre, contado con un vocabulario que tardó ocho meses en llegar.</p>
 
-<p>El primer commit lleva fecha del 21 de enero de 2026. Para el 17 de febrero el framework había llevado un proyecto real de producción de principio a fin. Hay un historial de git, que es más de lo que tiene casi todo el mundo cuando dice que llegó pronto.</p>
+<p>El primer commit lleva fecha del 21 de enero de 2026. El 17 de febrero el framework ya había llevado un proyecto real de producción de punta a punta. Hay historial en git, que es bastante más de lo que suele haber detrás de un «yo ya estaba en esto».</p>
 
-<p>Y aquí la precisión importa, porque es lo que lo hace defendible: OpenAI describe un trabajo que empezó en agosto de 2025, antes que el nuestro. Esto no es precedencia. Es convergencia: gente distinta chocando con los mismos modos de fallo y llegando a la misma estructura, sin nada público de lo que copiar.</p>
+<p>Y aquí conviene ser exacto, porque solo lo exacto se defiende: OpenAI describe un trabajo que arrancó en agosto de 2025, antes que el nuestro. Esto no va de quién llegó primero. Es convergencia — gente distinta que tropieza con los mismos fallos y termina en la misma estructura, sin nada público de donde copiar.</p>
 
-<h3>Qué me llevé de verdad</h3>
+<h3>Lo que me llevé de verdad</h3>
 
-<p>No «confía en tu instinto». Eso es un póster, no una lección.</p>
+<p>Desde luego no «fíate de tu instinto». Eso es una frase de póster, no una lección.</p>
 
-<p>El instinto estaba bien. El orden fue pésimo. Trabajábamos en una categoría sin nombre, y una categoría sin nombre no sobrevive a una conversación de presupuesto: no hay nada a lo que la otra persona pueda agarrarse. Mi team lead no estaba dejando de ver algo evidente. Era yo el que no lo estaba haciendo visible.</p>
+<p>El instinto iba bien. El orden fue nefasto. Trabajábamos en una categoría sin nombre, y una categoría sin nombre no aguanta una conversación de presupuesto: la otra persona no tiene de dónde agarrarse. Mi team lead no dejó de ver nada evidente. Fui yo quien no supo enseñarlo.</p>
 
 <div class="pull">
   <span>Qué haría distinto</span>
-  <p>Ponerle nombre a la cosa y, el primer día, atornillarla a un número que ya esté sangrando en el panel de alguien: caídas por semana, horas perdidas en rehacer trabajo. No para ganar la discusión más tarde. Para que el trabajo sea legible mientras todavía hay una decisión sobre si financiarlo.</p>
+  <p>Ponerle nombre y, el primer día, atornillarlo a un número que ya esté sangrando en el panel de alguien: caídas por semana, horas perdidas en rehacer trabajo. No para ganar la discusión más tarde. Para que el trabajo se vea mientras todavía se puede decidir si se financia.</p>
 </div>
 
 <div class="cta">
-  <p><b>Si tus agentes escriben código más rápido de lo que nadie alcanza a revisarlo</b>, esa es la conversación que quiero tener. Cuéntame cuál es el sistema y cuál es la fecha límite: <a href="mailto:jakubkornafel@gmail.com">jakubkornafel@gmail.com</a>. Te llevas un sí o un no, y dónde creo que está el riesgo de verdad.</p>
+  <p><b>Si tus agentes sueltan código más rápido de lo que nadie llega a revisarlo</b>, esa es la conversación que estoy esperando. Escríbeme qué sistema tienes y qué fecha límite manejas — <a href="mailto:jakubkornafel@gmail.com">jakubkornafel@gmail.com</a>. Te llevas un sí o un no, y de paso dónde creo que está el riesgo de verdad.</p>
 </div>

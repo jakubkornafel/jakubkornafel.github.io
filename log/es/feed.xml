@@ -9,191 +9,191 @@
     <language>es</language>
     <lastBuildDate>Thu, 27 Aug 2026 00:00:00 +0000</lastBuildDate>
     <item>
-      <title>Casi me despiden por construir una categoría que aún no tenía nombre</title>
+      <title>Casi me quedo sin trabajo por construir algo que aún no tenía nombre</title>
       <link>https://jakubkornafel.com/log/es/harness-before-the-harness/</link>
       <guid isPermaLink="true">https://jakubkornafel.com/log/es/harness-before-the-harness/</guid>
       <pubDate>Thu, 27 Aug 2026 00:00:00 +0000</pubDate>
       <category>Build</category>
-      <description>Empezamos a esbozarlo en noviembre de 2025. Mi team lead no le veía el valor, y no le faltaba razón: el vocabulario de lo que estábamos construyendo no existiría hasta ocho meses después.</description>
+      <description>Los primeros bocetos son de noviembre de 2025. Mi team lead no le veía el valor, y tenía sus motivos: el vocabulario para explicar aquello tardó ocho meses en aparecer.</description>
       <content:encoded><![CDATA[<p>«No le veo el valor».</p>
 
-<p>Mi team lead lo dijo sin rodeos, más de una vez, y no estaba poniéndose difícil. Estaba describiendo la situación con exactitud. Yo llevaba semanas construyendo algo que no sabía nombrar y cuyo único resultado era la ausencia de cosas saliendo mal.</p>
+<p>Mi team lead lo dijo así, sin adornos, y no una sola vez. No estaba siendo cabezota. Describía la realidad. Yo llevaba semanas metido en algo que no sabía nombrar y cuyo único producto iba a ser que dejaran de pasar cosas.</p>
 
-<p>Defiende eso en una conversación sobre plantilla.</p>
+<p>Prueba a defender eso cuando la conversación gira hacia cuánta gente hace falta en el equipo.</p>
 
-<h3>Dónde empezó</h3>
+<h3>Cómo empezó esto</h3>
 
-<p>Noviembre de 2025. Una invitación de calendario titulada «Agentic Coding Setup»: Szymon, Jacek y yo, una hora.</p>
+<p>Noviembre de 2025. Una invitación de calendario: «Agentic Coding Setup». Szymon, Jacek y yo. Una hora.</p>
 
-<p>Para las sesiones de trabajo del 24 y el 26 de noviembre ya teníamos la forma. Las notas de aquellas llamadas se leen raro ahora: un repositorio de práctica independiente del proveedor, para que una persona nueva fuera productiva de inmediato. Un modelo que llamábamos delegate, review, own: el humano revisa lo que ha producido el agente, y la propiedad no se transfiere nunca. Cuatro agentes como primer objetivo, cada uno con su carpeta, sus herramientas y sus instrucciones. Plantillas para los documentos que cada rol entrega al siguiente.</p>
+<p>En las sesiones de trabajo del 24 y el 26 de noviembre ya teníamos la forma entera. Releer aquellas notas hoy resulta raro: un repositorio de prácticas independiente de qué herramienta acabe ganando, para que alguien nuevo arrancara sin calentamiento. Un modelo que bautizamos <em>delega, revisa, responde</em> — el humano revisa lo que ha producido el agente y la responsabilidad no se traspasa nunca. Cuatro agentes para empezar, cada uno con su carpeta, sus herramientas y sus instrucciones. Plantillas para los documentos que cada rol entrega al siguiente.</p>
 
-<p>No estábamos construyendo un agente. Estábamos construyendo el proceso dentro del cual trabaja un agente.</p>
+<p>No estábamos construyendo un agente. Construíamos el proceso dentro del que trabaja un agente.</p>
 
-<p>Y lo digo claro: no lo construí solo. Szymon y Jacek lo construyeron conmigo — la estructura del repositorio, las herramientas de los agentes, el backend que escribió uno de ellos mientras los demás discutíamos sobre roles, y la mitad de los argumentos que hicieron aquello mejor que mi primer borrador.</p>
+<p>Y que quede claro: esto no lo hice solo. Szymon y Jacek lo levantaron conmigo — la estructura del repositorio, el instrumental de los agentes, el backend que escribió uno de ellos mientras los demás discutíamos sobre roles, y la mitad de las discusiones que dejaron aquello mejor que mi primer borrador.</p>
 
-<h3>Qué era en realidad</h3>
+<h3>Qué era aquello, en concreto</h3>
 
-<p>Un framework de SDLC agéntico. Todo el camino de una idea en bruto a un paquete de arquitectura implementable, descompuesto en roles especializados que se pasan el trabajo bajo reglas.</p>
+<p>Un framework de SDLC agéntico. El trayecto completo de una idea en bruto hasta un paquete de arquitectura implementable, troceado en roles especializados que se pasan el trabajo con reglas.</p>
 
-<p>Estructuralmente era un grafo. Cada rol era un nodo: investigación, ingeniería inversa, definición de producto, arquitectura y un revisor que a propósito no era ninguno de ellos. Las aristas estaban tipadas: el trabajo solo avanzaba si llevaba los identificadores que permiten rastrear cualquier afirmación hasta su origen. El estado vivía en ficheros que sobrevivían a cualquier ejecución, así que nada importante vivía dentro de una ventana de conversación. Las transiciones tenían puertas, y una puerta podía negarse y devolver el trabajo a un nodo anterior concreto.</p>
+<p>Por dentro, un grafo. Cada rol, un nodo: investigación, ingeniería inversa, definición de producto, arquitectura y un revisor que a propósito no era ninguno de los anteriores. Las aristas tenían tipo, así que el trabajo solo avanzaba si llevaba encima los identificadores que permiten seguir cualquier afirmación hasta su origen. El estado vivía en ficheros que sobrevivían a la ejecución, para que nada importante se quedara dentro de una ventana de conversación. En cada transición había una puerta, y una puerta podía negarse y devolver el trabajo a un nodo anterior concreto.</p>
 
-<p>En enero de 2026 yo no tenía lenguaje para eso. Decía «el pipeline» y veía cómo se les nublaba la mirada.</p>
+<p>En enero de 2026 no tenía ni una palabra para todo eso. Decía «el pipeline» y veía cómo a la gente se le iba la mirada.</p>
 
 <h3>Por qué nadie lo veía</h3>
 
-<p>El enfoque emocionante por entonces era el otro: agentes sueltos sobre el código, sin puerta, sin verificación independiente, se despliega lo que salga. Producía muchísimo código muy rápido. También tumbaba el sistema cada pocos días, y cada pocos días alguien perdía una tarde averiguando por qué.</p>
+<p>Lo que se llevaba entonces era justo lo contrario: soltar agentes sobre el código, sin puertas, sin verificación independiente, y desplegar lo que saliera. Código salía muchísimo y muy deprisa. También se caía el sistema cada pocos días, y cada pocos días alguien se dejaba la tarde en averiguar por qué.</p>
 
-<p>Nuestra propuesta, traducida con honestidad, era: esto hará que eso deje de pasar. Una promesa sobre una ausencia. Y para una ausencia no hay demo: ni captura de pantalla, ni gráfico, ni momento en una revisión en el que alguien aplauda.</p>
+<p>Nuestra promesa, traducida con honestidad, era: esto va a dejar de pasar. Una promesa sobre una ausencia. Y una ausencia no se enseña — no hay captura, no hay gráfica, no hay momento en la revisión en el que alguien aplauda.</p>
 
-<p>Luego el sistema se cayó lo bastante fuerte como para que la pregunta pasara de si el trabajo tenía valor a si podía echarle un vistazo.</p>
+<p>Hasta que el sistema se cayó lo bastante fuerte como para que cambiara la pregunta. Ya no era si aquel trabajo valía algo, sino si podía echarle un ojo.</p>
 
-<p>El framework hizo lo poco vistoso. No dejó avanzar el trabajo hasta que algo distinto del autor lo hubiera comprobado. Ejecutaba la aplicación real en un navegador en lugar de preguntarle al agente si estaba satisfecho. Las caídas pararon. El proyecto salió.</p>
+<p>El framework hizo entonces lo suyo, sin fuegos artificiales. No dejaba pasar nada que no hubiera comprobado alguien distinto del autor. Abría la aplicación de verdad en un navegador en lugar de preguntarle al agente si estaba contento consigo mismo. Las caídas se acabaron. El proyecto salió a producción.</p>
 
-<p>Nadie lo recuerda, y es lo normal. Los rescates se recuerdan como sucesos, no como autoría.</p>
+<p>Nadie se acuerda, y es lo normal. Los rescates se recuerdan como sucesos, no como obra de alguien.</p>
 
-<h3>Luego apareció el vocabulario</h3>
+<h3>Ocho meses después llegaron las palabras</h3>
 
-<p>El 11 de febrero de 2026, OpenAI publicó un texto sobre harness engineering: el conocimiento del repositorio como sistema de registro, los planes como artefactos de primera clase con registros de decisiones commiteados a git.</p>
+<p>El 11 de febrero de 2026, OpenAI publicó un texto sobre <em>harness engineering</em>: el conocimiento del repositorio como fuente de verdad, los planes como artefactos de pleno derecho, los registros de decisiones guardados en git.</p>
 
-<p>El 24 de marzo de 2026, Anthropic publicó otro sobre diseño de harness: un planificador, un generador y un evaluador mantenidos deliberadamente aparte, porque a un agente al que le pides que califique su propio trabajo lo va a elogiar.</p>
+<p>El 24 de marzo de 2026, Anthropic publicó otro sobre diseño de harness: planificador, generador y evaluador separados a propósito, porque a un agente al que le pides que puntúe su propio trabajo lo va a alabar.</p>
 
-<p>El 4 de julio de 2026, alguien puso por fin nombre a la otra mitad. Graph engineering: diseñar sistemas agénticos como grafos explícitos en lugar de bucles implícitos. Nodos como unidades de capacidad. Aristas como transiciones tipadas que transportan estado. El estado como un objeto con checkpoints, y no como lo que sobreviviera en la ventana de contexto.</p>
+<p>El 4 de julio de 2026 alguien puso nombre por fin a la otra mitad. <em>Graph engineering</em>: diseñar sistemas agénticos como grafos explícitos en vez de bucles implícitos. Nodos como unidades de capacidad. Aristas como transiciones tipadas que llevan estado. El estado como objeto con checkpoints, y no como lo que haya sobrevivido en la ventana de contexto.</p>
 
-<p>Vuelve a leerlo. Nodos, aristas tipadas, estado con checkpoints, un evaluador fuera del generador, puertas que pueden negarse. Eso es aquello que no supimos explicar en noviembre, descrito con un vocabulario que llegó ocho meses más tarde.</p>
+<p>Léelo otra vez. Nodos, aristas tipadas, estado con checkpoints, un evaluador fuera del generador, puertas que pueden negarse. Es exactamente aquello que no supimos explicar en noviembre, contado con un vocabulario que tardó ocho meses en llegar.</p>
 
-<p>El primer commit lleva fecha del 21 de enero de 2026. Para el 17 de febrero el framework había llevado un proyecto real de producción de principio a fin. Hay un historial de git, que es más de lo que tiene casi todo el mundo cuando dice que llegó pronto.</p>
+<p>El primer commit lleva fecha del 21 de enero de 2026. El 17 de febrero el framework ya había llevado un proyecto real de producción de punta a punta. Hay historial en git, que es bastante más de lo que suele haber detrás de un «yo ya estaba en esto».</p>
 
-<p>Y aquí la precisión importa, porque es lo que lo hace defendible: OpenAI describe un trabajo que empezó en agosto de 2025, antes que el nuestro. Esto no es precedencia. Es convergencia: gente distinta chocando con los mismos modos de fallo y llegando a la misma estructura, sin nada público de lo que copiar.</p>
+<p>Y aquí conviene ser exacto, porque solo lo exacto se defiende: OpenAI describe un trabajo que arrancó en agosto de 2025, antes que el nuestro. Esto no va de quién llegó primero. Es convergencia — gente distinta que tropieza con los mismos fallos y termina en la misma estructura, sin nada público de donde copiar.</p>
 
-<h3>Qué me llevé de verdad</h3>
+<h3>Lo que me llevé de verdad</h3>
 
-<p>No «confía en tu instinto». Eso es un póster, no una lección.</p>
+<p>Desde luego no «fíate de tu instinto». Eso es una frase de póster, no una lección.</p>
 
-<p>El instinto estaba bien. El orden fue pésimo. Trabajábamos en una categoría sin nombre, y una categoría sin nombre no sobrevive a una conversación de presupuesto: no hay nada a lo que la otra persona pueda agarrarse. Mi team lead no estaba dejando de ver algo evidente. Era yo el que no lo estaba haciendo visible.</p>
+<p>El instinto iba bien. El orden fue nefasto. Trabajábamos en una categoría sin nombre, y una categoría sin nombre no aguanta una conversación de presupuesto: la otra persona no tiene de dónde agarrarse. Mi team lead no dejó de ver nada evidente. Fui yo quien no supo enseñarlo.</p>
 
 <div class="pull">
   <span>Qué haría distinto</span>
-  <p>Ponerle nombre a la cosa y, el primer día, atornillarla a un número que ya esté sangrando en el panel de alguien: caídas por semana, horas perdidas en rehacer trabajo. No para ganar la discusión más tarde. Para que el trabajo sea legible mientras todavía hay una decisión sobre si financiarlo.</p>
+  <p>Ponerle nombre y, el primer día, atornillarlo a un número que ya esté sangrando en el panel de alguien: caídas por semana, horas perdidas en rehacer trabajo. No para ganar la discusión más tarde. Para que el trabajo se vea mientras todavía se puede decidir si se financia.</p>
 </div>
 
 <div class="cta">
-  <p><b>Si tus agentes escriben código más rápido de lo que nadie alcanza a revisarlo</b>, esa es la conversación que quiero tener. Cuéntame cuál es el sistema y cuál es la fecha límite: <a href="mailto:jakubkornafel@gmail.com">jakubkornafel@gmail.com</a>. Te llevas un sí o un no, y dónde creo que está el riesgo de verdad.</p>
+  <p><b>Si tus agentes sueltan código más rápido de lo que nadie llega a revisarlo</b>, esa es la conversación que estoy esperando. Escríbeme qué sistema tienes y qué fecha límite manejas — <a href="mailto:jakubkornafel@gmail.com">jakubkornafel@gmail.com</a>. Te llevas un sí o un no, y de paso dónde creo que está el riesgo de verdad.</p>
 </div>]]></content:encoded>
     </item>
     <item>
-      <title>Una puerta sin techo de gasto no es una puerta</title>
+      <title>Una puerta que no cuenta el dinero no es una puerta</title>
       <link>https://jakubkornafel.com/log/es/gate-without-a-spend-ceiling/</link>
       <guid isPermaLink="true">https://jakubkornafel.com/log/es/gate-without-a-spend-ceiling/</guid>
       <pubDate>Thu, 27 Aug 2026 00:00:00 +0000</pubDate>
       <category>Build</category>
-      <description>Mi pipeline sabía decirte si el trabajo era bueno. No sabía decirte que llegar a esa respuesta había costado cuatro horas y ocho intentos fallidos.</description>
-      <content:encoded><![CDATA[<p>Mi pipeline tenía puertas de las que estaba orgulloso. Criterios, umbrales, un revisor que no era el autor, un veredicto capaz de decir que no.</p>
+      <description>Mi pipeline sabía decirte si el trabajo estaba bien. No sabía decirte que esa respuesta había costado cuatro horas y ocho intentos fallidos.</description>
+      <content:encoded><![CDATA[<p>Tenía en el pipeline unas puertas de las que estaba orgulloso. Criterios, umbrales, un revisor que no era el autor, un veredicto capaz de decir que no.</p>
 
-<p>Entonces le hice una pregunta que no supo responder: <em>¿cuánto ha costado esto?</em></p>
+<p>Luego les hice una pregunta que no supieron responder: <em>¿esto cuánto ha costado?</em></p>
 
-<p>Sabía que el artefacto era lo bastante bueno. No tenía ni idea de si llegar a ese veredicto había llevado cuarenta minutos o cuatro horas, doce dólares o doscientos. No distinguía una aprobación limpia a la primera de una ejecución que cruzó la meta cojeando en su décimo intento contra el mismo problema sin resolver.</p>
+<p>Que el artefacto estaba a la altura, eso lo sabían. Si llegar hasta ahí había llevado cuarenta minutos o cuatro horas, doce dólares o doscientos, ni idea. Una aprobación limpia al primer intento y una ejecución que cruza la meta a rastras en el décimo asalto contra el mismo problema sin resolver les parecían la misma cosa.</p>
 
-<p>Esas dos ejecuciones no son el mismo resultado. Solo una de ellas es un sistema que funciona.</p>
+<p>Y no lo son. Solo una de las dos es un sistema que funciona.</p>
 
 <h3>El límite que acota lo que no toca</h3>
 
-<p>Tenía límites de iteración: diez bucles por fase como máximo. Aquello parecía control. No lo es. Un límite de iteraciones acota cuántas veces se ejecuta un bucle, no lo que cuesta cada vuelta, y en mi pipeline una ronda de revisión se abre en abanico a ocho verificadores en paralelo. Ese único paso puede costar más que todas las fases anteriores juntas, y ningún límite en ninguna parte se entera.</p>
+<p>Tenía límites de iteración: diez vueltas por fase como mucho. Aquello parecía control. No lo es. Un límite de iteraciones acota cuántas veces gira el bucle, no lo que cuesta cada vuelta, y en mi pipeline una ronda de revisión se abre en abanico sobre ocho verificadores que corren en paralelo. Ese paso, él solo, puede costar más que todas las fases anteriores juntas, y ahí no hay límite que se entere.</p>
 
-<p>Así que puse en marcha un libro de cuentas. Un presupuesto declarado antes de que empiece el trabajo. Comprobado al cruzar entre fases y en cada vuelta atrás, nunca a mitad de trabajo. Si cruzas una arista estando ya por encima del techo, la ejecución se detiene con un veredicto explícito en lugar de terminar en silencio y presentarte la factura.</p>
+<p>Así que escribí un libro de cuentas. Presupuesto declarado antes de empezar. Se comprueba al pasar de una fase a otra y en cada vuelta atrás, nunca a media faena. Si cruzas una arista estando ya por encima del techo, la ejecución se para con un veredicto explícito, en vez de llegar al final calladita y pasarte la factura.</p>
 
-<p>Lo que subestimé fue el análisis de ruta. Mide el gasto que no hizo avanzar la ejecución — todo lo consumido por intentos que acabaron en una vuelta atrás — y señala los motivos que se repiten. Ese último número es el incómodo. Una ejecución que aprueba al décimo reintento idéntico es una ejecución fallida con una medalla de aprobado, y nada en mis informes antiguos lo habría mostrado.</p>
+<p>Lo que subestimé fue el análisis de ruta. Contabiliza el gasto que no movió la ejecución hacia delante — todo lo que se comieron los intentos terminados en una vuelta atrás — y marca los motivos que se repiten. Ese último número escuece. Una ejecución que aprueba al décimo reintento idéntico es una ejecución fallida con una medalla prestada, y mis informes de antes no lo enseñaban por ninguna parte.</p>
 
 <h3>Por qué esto vale más de lo que parece</h3>
 
-<p>Hay un estudio de marzo que me hizo replantearme cómo le añado nada a un agente.</p>
+<p>Hay un estudio de marzo que me obligó a repensar qué le añado a un agente y por qué.</p>
 
-<p>Los investigadores le dieron a un agente de programación una sola cosa extra: un mapa de qué pruebas cubren qué código, entregado como un fichero de texto plano que el agente podía leer. Las regresiones — pruebas que antes pasaban y dejaron de pasar — cayeron del 6,08% al 1,82%. Un 70% menos con un fichero.</p>
+<p>A un agente de programación le dieron una sola cosa de más: un mapa de qué pruebas cubren qué código, entregado como fichero de texto plano, para leerlo y ya está. Las regresiones — pruebas que antes pasaban y dejaron de pasar — bajaron del 6,08% al 1,82%. Un 70% menos con un fichero.</p>
 
-<p>El mismo estudio tenía una segunda rama. En lugar del mapa, le dieron al agente instrucciones de procedimiento: trabaja con las pruebas primero, sigue esta disciplina. Las regresiones subieron al 9,94%. Peor que no hacer nada.</p>
+<p>El mismo estudio tenía una segunda rama. En lugar del mapa, instrucciones de procedimiento: trabaja con las pruebas por delante, cíñete a esta disciplina. Las regresiones subieron al 9,94%. Peor que no tocar nada.</p>
 
 <div class="pull">
   <span>La regla que me quedo</span>
-  <p>Dale contexto a un agente, no procedimiento. Decirle cómo comportarse empeoró las cosas de forma medible. Decirle qué es cierto las mejoró un 70%. Cada instrucción que me tienta escribir pasa ahora esa prueba antes que ninguna otra.</p>
+  <p>Dale contexto al agente, no procedimiento. Decirle cómo comportarse empeoró las cosas, y se puede medir. Decirle qué es cierto las mejoró un 70%. Cada instrucción que me apetece escribir pasa ahora por ese filtro antes que por ningún otro.</p>
 </div>
 
-<p>Que es también la razón por la que el presupuesto vive en el fichero de estado y no en un prompt que le pide al agente que tenga cuidado con el dinero. Un agente no puede tener cuidado con un número que no ve.</p>
+<p>Por eso mismo el presupuesto vive en el fichero de estado y no en un prompt que le pide al agente que tenga cuidado con el dinero. Nadie cuida un número que no ve.</p>
 
 <div class="cta">
-  <p><b>Si tienes agentes en marcha y no sabes decir cuánto te costó la semana pasada</b>, no estás gobernando un sistema autónomo: estás acumulando factura. Yo construyo la parte que sabe decir que no. <a href="mailto:jakubkornafel@gmail.com">Cuéntame cuál es el sistema y cuál es la fecha límite.</a></p>
+  <p><b>Si tienes agentes corriendo y no sabes decir cuánto te costó la semana pasada</b>, no gobiernas un sistema autónomo: acumulas factura. Yo construyo la pieza que sabe decir que no. <a href="mailto:jakubkornafel@gmail.com">Escríbeme qué sistema tienes y qué fecha límite manejas.</a></p>
 </div>]]></content:encoded>
     </item>
     <item>
-      <title>El número que todo el mundo cita está midiendo otra cosa</title>
+      <title>Todos citan el mismo número y ese número mide otra cosa</title>
       <link>https://jakubkornafel.com/log/es/the-measurement-nobody-publishes/</link>
       <guid isPermaLink="true">https://jakubkornafel.com/log/es/the-measurement-nobody-publishes/</guid>
       <pubDate>Thu, 27 Aug 2026 00:00:00 +0000</pubDate>
       <category>Note</category>
-      <description>Cambia el harness y el benchmark se mueve tres puntos. Cambia el modelo y se mueve veinticinco. O sea que el harness apenas importa, salvo que mires lo que el benchmark no mide nunca.</description>
-      <content:encoded><![CDATA[<p>Esta semana alguien me hizo una pregunta justa: ¿cuánto mejora en realidad a un agente de programación un harness bien construido? Dame un número.</p>
+      <description>Cambia el harness y el benchmark se mueve tres puntos. Cambia el modelo y se mueve veinticinco. Conclusión: el harness da igual. Salvo que mires lo que ese benchmark no mide nunca.</description>
+      <content:encoded><![CDATA[<p>Esta semana me hicieron una pregunta legítima: ¿cuánto mejora a un agente de programación un harness bien construido? Un número, por favor.</p>
 
-<p>Así que fui a buscar los números.</p>
+<p>Fui a buscar el número.</p>
 
-<p>En las clasificaciones públicas se encuentra de vez en cuando el mismo modelo corriendo bajo dos harnesses distintos. La diferencia es de tres a ocho puntos porcentuales. En cambio, deja el harness fijo y cambia el modelo de debajo: la puntuación se mueve veinticinco.</p>
+<p>En las clasificaciones públicas aparece de vez en cuando el mismo modelo corriendo bajo dos harnesses distintos. La distancia entre uno y otro va de tres a ocho puntos porcentuales. Ahora deja el harness quieto y cambia el modelo de debajo. La puntuación se mueve veinticinco.</p>
 
-<p>Si lees solo eso, la conclusión se escribe sola: el harness apenas importa, compra un modelo mejor y vete a casa.</p>
+<p>Si te quedas ahí, la conclusión se escribe sola: el harness casi da igual, compra un modelo mejor y vete a casa.</p>
 
-<h3>Salvo que no es eso lo que nos quita el sueño a ninguno</h3>
+<h3>Solo que no es eso lo que nos quita el sueño</h3>
 
-<p>Esos benchmarks miden una tarea, en un contenedor, que pasa o no pasa. Nadie en producción pierde el sueño por una tarea en un contenedor.</p>
+<p>Esos benchmarks miden una tarea, dentro de un contenedor, que pasa o no pasa. Nadie en producción duerme mal por una tarea dentro de un contenedor.</p>
 
-<p>Por lo que se pierde el sueño es por un sistema que se cae cada pocos días. Por un resultado que no se puede reproducir el martes que viene. Por un veredicto que después nadie puede auditar. Por una ejecución que informa de éxito habiéndose inventado en silencio el fichero que dice haber editado.</p>
+<p>Se duerme mal por otras cosas. Un sistema que se viene abajo cada pocos días. Un resultado que el martes que viene ya no sale igual. Un veredicto que después no hay quien audite. Una ejecución que informa de éxito y resulta que el fichero que dice haber tocado se lo ha inventado.</p>
 
-<p>Para eso — estabilidad, reproducibilidad, auditabilidad — no hay ningún benchmark público. El intento más cercano que he encontrado tiene tres semanas, y su propia auditoría preregistrada salió no concluyente.</p>
+<p>Pues para eso — estabilidad, reproducibilidad, auditabilidad — no existe ningún benchmark público. El intento más cercano que he encontrado tiene tres semanas, y su propia auditoría preregistrada terminó sin conclusión.</p>
 
-<p>Donde sí existen números, no son pequeños. Un estudio redujo las regresiones un 70% entregándole al agente un único fichero de contexto. Otro midió una caída del 9,5% en tareas fallidas al añadir un crítico que revisa el plan antes de la ejecución. Los dos son cambios de harness. Ninguno aparece en una clasificación.</p>
+<p>Donde sí hay cifras, no son pequeñas. Un estudio recortó las regresiones un 70% dándole al agente un único fichero de contexto. Otro midió un 9,5% menos de tareas fallidas al meter un crítico que revisa el plan antes de ejecutarlo. Los dos son cambios de harness. Ninguno de los dos sale en una clasificación.</p>
 
 <div class="pull">
-  <span>La postura honesta</span>
-  <p>El número que quieres todavía no existe. Los números que existen están midiendo otra cosa, y la distancia entre unos y otros es exactamente donde viven los sistemas en producción.</p>
+  <span>La respuesta honesta</span>
+  <p>El número que quieres todavía no existe. Los números que existen miden otra cosa. Y en el hueco entre unos y otros es donde viven los sistemas de producción.</p>
 </div>
 
-<p>Lo que significa que, por ahora, la carga es tuya. Mide lo que de verdad te importa — frecuencia de caídas, cuánto trabajo hay que rehacer, cuántas veces un veredicto sobrevive a la revisión — porque nadie va a publicarlo por ti.</p>
+<p>De momento, entonces, el trabajo es tuyo. Mide lo que de verdad te importa — cada cuánto se cae el sistema, cuánto trabajo vuelve para rehacerse, cuántas veces un veredicto aguanta la revisión — porque nadie lo va a publicar por ti.</p>
 
 <div class="cta">
-  <p><b>Si tienes esa medición y pinta mal</b>, me gustaría verla de verdad. Ese es el problema en el que trabajo. <a href="mailto:jakubkornafel@gmail.com">jakubkornafel@gmail.com</a></p>
+  <p><b>Si tienes esa medición y pinta mal</b>, me gustaría verla. Es justo el problema en el que trabajo. <a href="mailto:jakubkornafel@gmail.com">jakubkornafel@gmail.com</a></p>
 </div>]]></content:encoded>
     </item>
     <item>
-      <title>Mi propia web me mintió durante tres semanas</title>
+      <title>Mi propia web me estuvo mintiendo tres semanas</title>
       <link>https://jakubkornafel.com/log/es/three-failed-deploys/</link>
       <guid isPermaLink="true">https://jakubkornafel.com/log/es/three-failed-deploys/</guid>
       <pubDate>Thu, 27 Aug 2026 00:00:00 +0000</pubDate>
       <category>Note</category>
-      <description>Tres despliegues fallaron. La web seguía respondiendo con un 200. Me enteré solo porque andaba buscando otra cosa completamente distinta.</description>
-      <content:encoded><![CDATA[<p>Me dedico a construir sistemas capaces de avisar a una persona de que algo ha salido mal.</p>
+      <description>Tres despliegues fallaron. La web seguía contestando 200. Me enteré de casualidad, mientras buscaba otra cosa.</description>
+      <content:encoded><![CDATA[<p>Me gano la vida construyendo sistemas que sepan avisar a una persona de que algo ha salido mal.</p>
 
-<p>Mi propia web pasó tres semanas sirviendo una versión dos commits por detrás, y yo sin enterarme.</p>
+<p>Mi propia web estuvo tres semanas sirviendo una versión dos commits por detrás. Y yo, tan tranquilo.</p>
 
-<p>Esto es lo que pasó. El 6 de agosto subí dos cambios a una subpágina. Se lanzaron tres despliegues. Los tres fallaron. Cada uno registró una duración de build de cero milisegundos y el mensaje «Page build failed.»: sin detalle, sin notificación, nada en mi bandeja de entrada.</p>
+<p>Lo que pasó, por orden. El 6 de agosto subí dos cambios a una subpágina. Arrancaron tres despliegues. Los tres fallaron. Cada uno anotó una duración de build de cero milisegundos y el mensaje «Page build failed.». Ni un detalle, ni un aviso, nada en el correo.</p>
 
-<p>Cero milisegundos significa que el build ni siquiera llegó a empezar, así que no era mi código. Algo se había caído más arriba.</p>
+<p>Cero milisegundos quiere decir que el build ni llegó a empezar, así que mi código no tenía nada que ver. Se había caído algo más arriba.</p>
 
-<p>¿Y la web? La web, perfecta. HTTP 200, certificado válido, todo cargando. Porque se seguía sirviendo el último build correcto, exactamente igual que el día anterior. El fallo no tenía ninguna superficie visible. Desde fuera, desde mi propio navegador, desde el de cualquiera: una web sana.</p>
+<p>¿Y la web? La web, estupenda. HTTP 200, certificado en regla, todo cargando. Seguía sirviéndose el último build correcto, igual que el día anterior. El fallo no tenía superficie visible por ningún lado. Desde fuera, desde mi navegador, desde el de cualquiera: una web sana.</p>
 
-<p>Lo encontré solo porque estaba trasteando con otra cosa y miré el estado de los despliegues por curiosidad.</p>
+<p>Lo descubrí porque andaba enredando con otra cosa y miré el estado de los despliegues por curiosidad.</p>
 
-<h3>El paralelismo incómodo</h3>
+<h3>El paralelismo que incomoda</h3>
 
-<p>Es el mismo modo de fallo contra el que levanto puertas todo el día, llegando por un flanco que no había defendido.</p>
+<p>Es el mismo modo de fallo contra el que levanto puertas todos los días. Solo que llegó por un flanco que yo no había defendido.</p>
 
-<p>Un agente informa de éxito. Las pruebas pasan. El diff se ve limpio. Todo en la superficie dice que el trabajo está hecho, y la única forma de saber lo contrario es comprobar algo que quien informa no controla: ejecutar la aplicación real, consultar el estado real, contrastarlo con algo que el optimizador no pueda tocar.</p>
+<p>El agente informa de éxito. Las pruebas pasan. El diff se ve limpio. Todo lo que asoma en la superficie dice que el trabajo está hecho, y la única forma de saber lo contrario es comprobar algo que quien informa no controla: abrir la aplicación de verdad, consultar el estado de verdad, contrastar con algo que el optimizador no alcance.</p>
 
-<p>Ese instinto lo tenía con los agentes. No lo tenía con mi propio pipeline de despliegue, que llevaba veintiún días sirviendo contenido caducado en silencio.</p>
+<p>Ese reflejo lo tenía con los agentes. Con mi propio pipeline de despliegue, no. Y ahí estaba, veintiún días sirviendo contenido rancio sin decir ni mu.</p>
 
-<p>El arreglo, por cierto, consistió en quitar trabajo, no en añadirlo. La web es HTML plano, pero cada despliegue la pasaba por un motor de plantillas que nunca necesitó: 165 segundos para publicar medio megabyte. Un fichero vacío después, los despliegues son una copia directa de ficheros y tardan 19 segundos. Nueve décimas partes del tiempo se iban en un paso cuya única aportación real era poder fallar.</p>
+<p>El arreglo, por cierto, consistió en quitar, no en añadir. La web es HTML plano y aun así cada despliegue la pasaba por un motor de plantillas que nunca hizo falta: 165 segundos para publicar medio megabyte. Un fichero vacío después, el despliegue es una copia de ficheros y tarda 19 segundos. Nueve décimas partes del tiempo se iban en un paso cuya única aportación real era poder fallar.</p>
 
 <div class="pull">
-  <span>Lo que me llevo de esto</span>
-  <p>Un sistema que no sabe decirte que ha fallado te dejará creer que ha funcionado todo el tiempo que tú se lo permitas. El silencio no es un estado. Si nada ha informado de un problema en tres semanas, eso es una afirmación que conviene poner a prueba, no un motivo para relajarse.</p>
+  <span>Lo que me llevo</span>
+  <p>Un sistema que no sabe decirte que ha fallado te dejará creer que todo va bien tanto tiempo como tú se lo permitas. El silencio no es un estado. Si en tres semanas nada ha dado señal de problema, eso es una afirmación que conviene poner a prueba, no una razón para relajarse.</p>
 </div>
 
 <div class="cta">
-  <p>Ve a comprobar el último despliegue correcto de aquello de lo que estés más seguro. Te espero. Si la respuesta te sorprende, <a href="mailto:jakubkornafel@gmail.com">cuéntamelo</a>: colecciono estas historias.</p>
+  <p>Ve ahora a mirar el último despliegue correcto de aquello de lo que estés más seguro. Te espero. Si el resultado te sorprende, <a href="mailto:jakubkornafel@gmail.com">cuéntamelo</a> — colecciono estas historias.</p>
 </div>]]></content:encoded>
     </item>
   </channel>

@@ -1,36 +1,36 @@
 date: 2026-08-27
 kind: Note
-title: Mi propia web me mintió durante tres semanas
-dek: Tres despliegues fallaron. La web seguía respondiendo con un 200. Me enteré solo porque andaba buscando otra cosa completamente distinta.
+title: Mi propia web me estuvo mintiendo tres semanas
+dek: Tres despliegues fallaron. La web seguía contestando 200. Me enteré de casualidad, mientras buscaba otra cosa.
 rank: 0
 ---
-<p>Me dedico a construir sistemas capaces de avisar a una persona de que algo ha salido mal.</p>
+<p>Me gano la vida construyendo sistemas que sepan avisar a una persona de que algo ha salido mal.</p>
 
-<p>Mi propia web pasó tres semanas sirviendo una versión dos commits por detrás, y yo sin enterarme.</p>
+<p>Mi propia web estuvo tres semanas sirviendo una versión dos commits por detrás. Y yo, tan tranquilo.</p>
 
-<p>Esto es lo que pasó. El 6 de agosto subí dos cambios a una subpágina. Se lanzaron tres despliegues. Los tres fallaron. Cada uno registró una duración de build de cero milisegundos y el mensaje «Page build failed.»: sin detalle, sin notificación, nada en mi bandeja de entrada.</p>
+<p>Lo que pasó, por orden. El 6 de agosto subí dos cambios a una subpágina. Arrancaron tres despliegues. Los tres fallaron. Cada uno anotó una duración de build de cero milisegundos y el mensaje «Page build failed.». Ni un detalle, ni un aviso, nada en el correo.</p>
 
-<p>Cero milisegundos significa que el build ni siquiera llegó a empezar, así que no era mi código. Algo se había caído más arriba.</p>
+<p>Cero milisegundos quiere decir que el build ni llegó a empezar, así que mi código no tenía nada que ver. Se había caído algo más arriba.</p>
 
-<p>¿Y la web? La web, perfecta. HTTP 200, certificado válido, todo cargando. Porque se seguía sirviendo el último build correcto, exactamente igual que el día anterior. El fallo no tenía ninguna superficie visible. Desde fuera, desde mi propio navegador, desde el de cualquiera: una web sana.</p>
+<p>¿Y la web? La web, estupenda. HTTP 200, certificado en regla, todo cargando. Seguía sirviéndose el último build correcto, igual que el día anterior. El fallo no tenía superficie visible por ningún lado. Desde fuera, desde mi navegador, desde el de cualquiera: una web sana.</p>
 
-<p>Lo encontré solo porque estaba trasteando con otra cosa y miré el estado de los despliegues por curiosidad.</p>
+<p>Lo descubrí porque andaba enredando con otra cosa y miré el estado de los despliegues por curiosidad.</p>
 
-<h3>El paralelismo incómodo</h3>
+<h3>El paralelismo que incomoda</h3>
 
-<p>Es el mismo modo de fallo contra el que levanto puertas todo el día, llegando por un flanco que no había defendido.</p>
+<p>Es el mismo modo de fallo contra el que levanto puertas todos los días. Solo que llegó por un flanco que yo no había defendido.</p>
 
-<p>Un agente informa de éxito. Las pruebas pasan. El diff se ve limpio. Todo en la superficie dice que el trabajo está hecho, y la única forma de saber lo contrario es comprobar algo que quien informa no controla: ejecutar la aplicación real, consultar el estado real, contrastarlo con algo que el optimizador no pueda tocar.</p>
+<p>El agente informa de éxito. Las pruebas pasan. El diff se ve limpio. Todo lo que asoma en la superficie dice que el trabajo está hecho, y la única forma de saber lo contrario es comprobar algo que quien informa no controla: abrir la aplicación de verdad, consultar el estado de verdad, contrastar con algo que el optimizador no alcance.</p>
 
-<p>Ese instinto lo tenía con los agentes. No lo tenía con mi propio pipeline de despliegue, que llevaba veintiún días sirviendo contenido caducado en silencio.</p>
+<p>Ese reflejo lo tenía con los agentes. Con mi propio pipeline de despliegue, no. Y ahí estaba, veintiún días sirviendo contenido rancio sin decir ni mu.</p>
 
-<p>El arreglo, por cierto, consistió en quitar trabajo, no en añadirlo. La web es HTML plano, pero cada despliegue la pasaba por un motor de plantillas que nunca necesitó: 165 segundos para publicar medio megabyte. Un fichero vacío después, los despliegues son una copia directa de ficheros y tardan 19 segundos. Nueve décimas partes del tiempo se iban en un paso cuya única aportación real era poder fallar.</p>
+<p>El arreglo, por cierto, consistió en quitar, no en añadir. La web es HTML plano y aun así cada despliegue la pasaba por un motor de plantillas que nunca hizo falta: 165 segundos para publicar medio megabyte. Un fichero vacío después, el despliegue es una copia de ficheros y tarda 19 segundos. Nueve décimas partes del tiempo se iban en un paso cuya única aportación real era poder fallar.</p>
 
 <div class="pull">
-  <span>Lo que me llevo de esto</span>
-  <p>Un sistema que no sabe decirte que ha fallado te dejará creer que ha funcionado todo el tiempo que tú se lo permitas. El silencio no es un estado. Si nada ha informado de un problema en tres semanas, eso es una afirmación que conviene poner a prueba, no un motivo para relajarse.</p>
+  <span>Lo que me llevo</span>
+  <p>Un sistema que no sabe decirte que ha fallado te dejará creer que todo va bien tanto tiempo como tú se lo permitas. El silencio no es un estado. Si en tres semanas nada ha dado señal de problema, eso es una afirmación que conviene poner a prueba, no una razón para relajarse.</p>
 </div>
 
 <div class="cta">
-  <p>Ve a comprobar el último despliegue correcto de aquello de lo que estés más seguro. Te espero. Si la respuesta te sorprende, <a href="mailto:jakubkornafel@gmail.com">cuéntamelo</a>: colecciono estas historias.</p>
+  <p>Ve ahora a mirar el último despliegue correcto de aquello de lo que estés más seguro. Te espero. Si el resultado te sorprende, <a href="mailto:jakubkornafel@gmail.com">cuéntamelo</a> — colecciono estas historias.</p>
 </div>

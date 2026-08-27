@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>El número que todo el mundo cita está midiendo otra cosa — Jakub Kornafel</title>
-<meta name="description" content="Cambia el harness y el benchmark se mueve tres puntos. Cambia el modelo y se mueve veinticinco. O sea que el harness apenas importa, salvo que mires lo que el benchmark no mide nunca.">
-<meta property="og:title" content="El número que todo el mundo cita está midiendo otra cosa — Jakub Kornafel">
-<meta property="og:description" content="Cambia el harness y el benchmark se mueve tres puntos. Cambia el modelo y se mueve veinticinco. O sea que el harness apenas importa, salvo que mires lo que el benchmark no mide nunca.">
+<title>Todos citan el mismo número y ese número mide otra cosa — Jakub Kornafel</title>
+<meta name="description" content="Cambia el harness y el benchmark se mueve tres puntos. Cambia el modelo y se mueve veinticinco. Conclusión: el harness da igual. Salvo que mires lo que ese benchmark no mide nunca.">
+<meta property="og:title" content="Todos citan el mismo número y ese número mide otra cosa — Jakub Kornafel">
+<meta property="og:description" content="Cambia el harness y el benchmark se mueve tres puntos. Cambia el modelo y se mueve veinticinco. Conclusión: el harness da igual. Salvo que mires lo que ese benchmark no mide nunca.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://jakubkornafel.com/log/es/the-measurement-nobody-publishes/">
 <meta property="og:image" content="https://jakubkornafel.com/assets/og-log.png">
@@ -43,36 +43,36 @@
     <article class="post">
       <a class="back" href="/log/es/">&larr; Log</a>
       <p class="entry-meta"><span class="date">2026-08-27</span><span class="kind note">Note</span></p>
-      <h1>El número que todo el mundo cita está midiendo otra cosa</h1>
-      <p class="dek">Cambia el harness y el benchmark se mueve tres puntos. Cambia el modelo y se mueve veinticinco. O sea que el harness apenas importa, salvo que mires lo que el benchmark no mide nunca.</p>
+      <h1>Todos citan el mismo número y ese número mide otra cosa</h1>
+      <p class="dek">Cambia el harness y el benchmark se mueve tres puntos. Cambia el modelo y se mueve veinticinco. Conclusión: el harness da igual. Salvo que mires lo que ese benchmark no mide nunca.</p>
       <div class="body">
-<p>Esta semana alguien me hizo una pregunta justa: ¿cuánto mejora en realidad a un agente de programación un harness bien construido? Dame un número.</p>
+<p>Esta semana me hicieron una pregunta legítima: ¿cuánto mejora a un agente de programación un harness bien construido? Un número, por favor.</p>
 
-<p>Así que fui a buscar los números.</p>
+<p>Fui a buscar el número.</p>
 
-<p>En las clasificaciones públicas se encuentra de vez en cuando el mismo modelo corriendo bajo dos harnesses distintos. La diferencia es de tres a ocho puntos porcentuales. En cambio, deja el harness fijo y cambia el modelo de debajo: la puntuación se mueve veinticinco.</p>
+<p>En las clasificaciones públicas aparece de vez en cuando el mismo modelo corriendo bajo dos harnesses distintos. La distancia entre uno y otro va de tres a ocho puntos porcentuales. Ahora deja el harness quieto y cambia el modelo de debajo. La puntuación se mueve veinticinco.</p>
 
-<p>Si lees solo eso, la conclusión se escribe sola: el harness apenas importa, compra un modelo mejor y vete a casa.</p>
+<p>Si te quedas ahí, la conclusión se escribe sola: el harness casi da igual, compra un modelo mejor y vete a casa.</p>
 
-<h3>Salvo que no es eso lo que nos quita el sueño a ninguno</h3>
+<h3>Solo que no es eso lo que nos quita el sueño</h3>
 
-<p>Esos benchmarks miden una tarea, en un contenedor, que pasa o no pasa. Nadie en producción pierde el sueño por una tarea en un contenedor.</p>
+<p>Esos benchmarks miden una tarea, dentro de un contenedor, que pasa o no pasa. Nadie en producción duerme mal por una tarea dentro de un contenedor.</p>
 
-<p>Por lo que se pierde el sueño es por un sistema que se cae cada pocos días. Por un resultado que no se puede reproducir el martes que viene. Por un veredicto que después nadie puede auditar. Por una ejecución que informa de éxito habiéndose inventado en silencio el fichero que dice haber editado.</p>
+<p>Se duerme mal por otras cosas. Un sistema que se viene abajo cada pocos días. Un resultado que el martes que viene ya no sale igual. Un veredicto que después no hay quien audite. Una ejecución que informa de éxito y resulta que el fichero que dice haber tocado se lo ha inventado.</p>
 
-<p>Para eso — estabilidad, reproducibilidad, auditabilidad — no hay ningún benchmark público. El intento más cercano que he encontrado tiene tres semanas, y su propia auditoría preregistrada salió no concluyente.</p>
+<p>Pues para eso — estabilidad, reproducibilidad, auditabilidad — no existe ningún benchmark público. El intento más cercano que he encontrado tiene tres semanas, y su propia auditoría preregistrada terminó sin conclusión.</p>
 
-<p>Donde sí existen números, no son pequeños. Un estudio redujo las regresiones un 70% entregándole al agente un único fichero de contexto. Otro midió una caída del 9,5% en tareas fallidas al añadir un crítico que revisa el plan antes de la ejecución. Los dos son cambios de harness. Ninguno aparece en una clasificación.</p>
+<p>Donde sí hay cifras, no son pequeñas. Un estudio recortó las regresiones un 70% dándole al agente un único fichero de contexto. Otro midió un 9,5% menos de tareas fallidas al meter un crítico que revisa el plan antes de ejecutarlo. Los dos son cambios de harness. Ninguno de los dos sale en una clasificación.</p>
 
 <div class="pull">
-  <span>La postura honesta</span>
-  <p>El número que quieres todavía no existe. Los números que existen están midiendo otra cosa, y la distancia entre unos y otros es exactamente donde viven los sistemas en producción.</p>
+  <span>La respuesta honesta</span>
+  <p>El número que quieres todavía no existe. Los números que existen miden otra cosa. Y en el hueco entre unos y otros es donde viven los sistemas de producción.</p>
 </div>
 
-<p>Lo que significa que, por ahora, la carga es tuya. Mide lo que de verdad te importa — frecuencia de caídas, cuánto trabajo hay que rehacer, cuántas veces un veredicto sobrevive a la revisión — porque nadie va a publicarlo por ti.</p>
+<p>De momento, entonces, el trabajo es tuyo. Mide lo que de verdad te importa — cada cuánto se cae el sistema, cuánto trabajo vuelve para rehacerse, cuántas veces un veredicto aguanta la revisión — porque nadie lo va a publicar por ti.</p>
 
 <div class="cta">
-  <p><b>Si tienes esa medición y pinta mal</b>, me gustaría verla de verdad. Ese es el problema en el que trabajo. <a href="mailto:jakubkornafel@gmail.com">jakubkornafel@gmail.com</a></p>
+  <p><b>Si tienes esa medición y pinta mal</b>, me gustaría verla. Es justo el problema en el que trabajo. <a href="mailto:jakubkornafel@gmail.com">jakubkornafel@gmail.com</a></p>
 </div>
       </div>
     </article>
