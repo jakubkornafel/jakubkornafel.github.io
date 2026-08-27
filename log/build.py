@@ -218,6 +218,7 @@ def masthead(lang, on_index):
     <a class="mark" href="/">{AUTHOR}</a>
     <nav>
       <a href="/#systems">Systems</a>
+      <a href="/#community">Community</a>
       <a href="/#record">Record</a>
       <a href="{entry_url(lang)}"{mark}>Log</a>
       <a href="/research/who-checks-the-agent/">Research</a>

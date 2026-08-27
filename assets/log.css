@@ -120,3 +120,9 @@ footer{border-top:1px solid var(--rule); padding:2rem 0 3rem; display:flex; just
   .masthead{gap:.6rem}
   .masthead nav{gap:1rem; flex-wrap:wrap; font-size:.75rem}
 }
+
+/* diagram we wpisie */
+.diagram{margin:2.5rem 0 0; max-width:none}
+.diagram img{width:100%; height:auto; border:1px solid var(--rule); border-radius:4px; background:var(--card)}
+.diagram figcaption{font-family:var(--mono); font-size:.8125rem; line-height:1.5; color:var(--graphite);
+  margin-top:.85rem; max-width:62ch}

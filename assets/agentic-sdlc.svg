@@ -1,0 +1,166 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 920" width="980" height="920" role="img" aria-labelledby="ttl dsc">
+  <title id="ttl">From a written constitution to a running pipeline: the agentic SDLC in two layers</title>
+  <desc id="dsc">Layer one, November 2025: a written constitution for an agentic software development lifecycle — six agent roles across the lifecycle, a delegate-review-own rule where ownership never transfers, deny-by-default permissions, layered prompts, evaluations per agent and decision logs kept in the repository. Layer two, January 2026: the implementation on one path — four producing roles handing work forward through go or no-go gates, an independent review that fans out to eight parallel verifiers and can send work back to a named earlier role, one verifier driving the running application in a browser, and all state kept in files so a fresh agent can resume after any interruption.</desc>
+
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#12161D"/>
+    </marker>
+    <marker id="ar-o" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#C2410C"/>
+    </marker>
+    <marker id="ar-t" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#98A1AE"/>
+    </marker>
+    <style>
+      .node   { fill:#FFFFFF; stroke:#12161D; stroke-width:1.5 }
+      .small  { fill:#FFFFFF; stroke:#12161D; stroke-width:1.25 }
+      .h      { font-family:Archivo,"Helvetica Neue",Helvetica,Arial,sans-serif; font-weight:800; font-size:21px; fill:#12161D }
+      .name   { font-family:Archivo,"Helvetica Neue",Helvetica,Arial,sans-serif; font-weight:700; font-size:17px; fill:#12161D }
+      .name-s { font-family:Archivo,"Helvetica Neue",Helvetica,Arial,sans-serif; font-weight:700; font-size:13.5px; fill:#12161D }
+      .role   { font-family:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace; font-size:10px; letter-spacing:.07em; fill:#5C6573 }
+      .gate   { font-family:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace; font-size:9.5px; letter-spacing:.08em; fill:#12161D }
+      .note   { font-family:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace; font-size:10.5px; letter-spacing:.05em; fill:#5C6573 }
+      .stamp  { font-family:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace; font-size:11px; letter-spacing:.12em; fill:#C2410C; font-weight:500 }
+      .accent { fill:#C2410C }
+      .band   { fill:#EDEFF3; stroke:#DCE0E7; stroke-width:1 }
+      .edge   { stroke:#12161D; stroke-width:1.5; fill:none; marker-end:url(#ar) }
+      .thin   { stroke:#98A1AE; stroke-width:1; fill:none; stroke-dasharray:3 3; marker-end:url(#ar-t) }
+      .back   { stroke:#C2410C; stroke-width:1.75; fill:none; marker-end:url(#ar-o) }
+    </style>
+  </defs>
+
+  <rect width="980" height="920" fill="#F4F5F7"/>
+
+  <!-- ══ LAYER 1 — the constitution ═══════════════════════════════════ -->
+  <text class="stamp" x="56" y="44">NOVEMBER 2025 · WRITTEN FIRST</text>
+  <text class="h" x="56" y="74">The rules</text>
+  <text class="note" x="56" y="96">SIX ROLES ACROSS THE WHOLE LIFECYCLE, AND WHAT THEY ARE AND ARE NOT ALLOWED TO DO</text>
+
+  <g>
+    <rect class="small" x="56" y="112" width="132" height="46" rx="4"/>
+    <text class="name-s" x="70" y="140">Planning</text>
+    <rect class="small" x="200" y="112" width="132" height="46" rx="4"/>
+    <text class="name-s" x="214" y="140">Design</text>
+    <rect class="small" x="344" y="112" width="132" height="46" rx="4"/>
+    <text class="name-s" x="358" y="140">Build</text>
+    <rect class="small" x="488" y="112" width="132" height="46" rx="4"/>
+    <text class="name-s" x="502" y="140">Test</text>
+    <rect class="small" x="632" y="112" width="132" height="46" rx="4"/>
+    <text class="name-s" x="646" y="140">Review</text>
+    <rect class="small" x="776" y="112" width="148" height="46" rx="4"/>
+    <text class="name-s" x="790" y="140">Deployment</text>
+  </g>
+
+  <rect class="band" x="56" y="178" width="868" height="104" rx="4"/>
+  <text class="name-s" x="76" y="206">Delegate → review → own</text>
+  <text class="role" x="76" y="226">THE HUMAN REVIEWS WHAT THE</text>
+  <text class="role" x="76" y="240">AGENT PRODUCED, AND OWNERSHIP</text>
+  <text class="role" x="76" y="254">NEVER TRANSFERS</text>
+
+  <line x1="356" y1="196" x2="356" y2="264" stroke="#DCE0E7"/>
+  <text class="name-s" x="384" y="206">Deny by default</text>
+  <text class="role" x="384" y="226">RISKY ACTIONS REQUIRE EXPLICIT</text>
+  <text class="role" x="384" y="240">APPROVAL; TOOLS DECLARED WITH</text>
+  <text class="role" x="384" y="254">THEIR ACCESS LIMITS</text>
+
+  <line x1="656" y1="196" x2="656" y2="264" stroke="#DCE0E7"/>
+  <text class="name-s" x="684" y="206">Everything in the repo</text>
+  <text class="role" x="684" y="226">PROMPTS, EVALUATIONS AND</text>
+  <text class="role" x="684" y="240">DECISION LOGS LIVE IN VERSION</text>
+  <text class="role" x="684" y="254">CONTROL, SO RUNS REPRODUCE</text>
+
+  <!-- bridge -->
+  <path class="edge" d="M 490 282 L 490 330"/>
+  <text class="stamp" x="510" y="312">EIGHT WEEKS LATER</text>
+
+  <!-- ══ LAYER 2 — the implementation ════════════════════════════════ -->
+  <text class="stamp" x="56" y="356">JANUARY 2026 · BUILT</text>
+  <text class="h" x="56" y="386">The pipeline</text>
+  <text class="note" x="56" y="408">ONE PATH THROUGH THOSE RULES: FROM A RAW IDEA TO AN IMPLEMENTABLE ARCHITECTURE PACKAGE</text>
+
+  <rect class="node" x="56" y="424" width="188" height="62" rx="4"/>
+  <text class="name" x="72" y="452">Researcher</text>
+  <text class="role" x="72" y="472">WHAT IS WORTH BUILDING</text>
+
+  <rect class="node" x="288" y="424" width="188" height="62" rx="4"/>
+  <text class="name" x="304" y="452">Reverse Eng.</text>
+  <text class="role" x="304" y="472">WHAT ALREADY EXISTS</text>
+
+  <rect class="node" x="520" y="424" width="188" height="62" rx="4"/>
+  <text class="name" x="536" y="452">Product</text>
+  <text class="role" x="536" y="472">IS IT WORTH IT, AND FOR WHOM</text>
+
+  <rect class="node" x="752" y="424" width="172" height="62" rx="4"/>
+  <text class="name" x="768" y="452">Architect</text>
+  <text class="role" x="768" y="472">HOW TO BUILD IT</text>
+
+  <line class="edge" x1="244" y1="455" x2="256" y2="455"/>
+  <line class="edge" x1="270" y1="455" x2="282" y2="455"/>
+  <rect x="257" y="449" width="12" height="12" transform="rotate(45 263 455)" fill="#FFFFFF" stroke="#12161D" stroke-width="1.4"/>
+  <line class="edge" x1="476" y1="455" x2="488" y2="455"/>
+  <line class="edge" x1="502" y1="455" x2="514" y2="455"/>
+  <rect x="489" y="449" width="12" height="12" transform="rotate(45 495 455)" fill="#FFFFFF" stroke="#12161D" stroke-width="1.4"/>
+  <line class="edge" x1="708" y1="455" x2="720" y2="455"/>
+  <line class="edge" x1="734" y1="455" x2="746" y2="455"/>
+  <rect x="721" y="449" width="12" height="12" transform="rotate(45 727 455)" fill="#FFFFFF" stroke="#12161D" stroke-width="1.4"/>
+
+  <rect x="59" y="497" width="9" height="9" transform="rotate(45 63.5 501.5)" fill="#FFFFFF" stroke="#12161D" stroke-width="1.2"/>
+  <text class="gate" x="76" y="505">GO / NO-GO GATE — WORK MOVES ON ONLY IF THE ARTIFACT PASSES</text>
+  <path class="edge" d="M 838 486 L 838 518 L 150 518 L 150 558"/>
+  <text class="gate" x="646" y="512">ARCHITECTURE PACKAGE · 8 DOCUMENTS + ADRs</text>
+
+  <text class="note" x="56" y="550">INDEPENDENT REVIEW · NOT THE AUTHOR, AND IT CAN REFUSE</text>
+
+  <rect class="node" x="56" y="562" width="356" height="132" rx="4"/>
+  <text class="name" x="72" y="590">Review</text>
+  <text class="role" x="72" y="610">EIGHT VERIFIERS, RUN IN PARALLEL</text>
+  <g stroke="#12161D" stroke-width="1.6">
+    <line x1="72" y1="624" x2="72" y2="638"/><line x1="83" y1="624" x2="83" y2="638"/>
+    <line x1="94" y1="624" x2="94" y2="638"/><line x1="105" y1="624" x2="105" y2="638"/>
+    <line x1="116" y1="624" x2="116" y2="638"/><line x1="127" y1="624" x2="127" y2="638"/>
+    <line x1="138" y1="624" x2="138" y2="638"/><line x1="149" y1="624" x2="149" y2="638"/>
+  </g>
+  <text class="role" x="72" y="660">REQUIREMENTS · SECURITY · INTERFACES · DATA MODEL</text>
+  <text class="role" x="72" y="676">DEPLOYMENT · PERFORMANCE · SCALABILITY · OBSERVABILITY</text>
+
+  <rect class="node" x="452" y="562" width="150" height="52" rx="4"/>
+  <text class="name-s" x="468" y="593">Proceed</text>
+
+  <rect x="452" y="642" width="150" height="52" rx="4" fill="#FBEDE4" stroke="#C2410C" stroke-width="1.5"/>
+  <text class="name-s accent" x="468" y="673">Loop back</text>
+
+  <line class="edge" x1="412" y1="588" x2="446" y2="588"/>
+  <line class="back" x1="412" y1="668" x2="446" y2="668"/>
+
+  <rect class="node" x="642" y="562" width="282" height="132" rx="4"/>
+  <text class="name-s" x="658" y="590">Runs the actual application</text>
+  <text class="role" x="658" y="614">PLAYWRIGHT DRIVES A BROWSER — CLICKS,</text>
+  <text class="role" x="658" y="630">WAITS, SCREENSHOTS AS EVIDENCE</text>
+  <text class="role" x="658" y="660">RATHER THAN ASKING THE AGENT</text>
+  <text class="role" x="658" y="676">WHETHER IT THINKS IT WORKED</text>
+  <line class="edge" x1="602" y1="588" x2="636" y2="588"/>
+
+  <path class="back" d="M 527 694 L 527 728 L 28 728 L 28 455 L 50 455"/>
+  <text class="gate accent" x="150" y="744">RETURNS TO A NAMED EARLIER NODE · CAPPED AT 10 ITERATIONS PER PHASE</text>
+
+  <text class="note" x="56" y="790">STATE LIVES IN FILES · A FRESH AGENT EACH ITERATION READS IT BACK</text>
+  <rect class="band" x="56" y="804" width="868" height="88" rx="4"/>
+
+  <text class="name-s" x="76" y="834">architect.json</text>
+  <text class="role" x="76" y="854">PHASE · ASSUMPTIONS</text>
+  <text class="role" x="76" y="870">DECISIONS · ITERATIONS</text>
+
+  <line x1="356" y1="824" x2="356" y2="874" stroke="#DCE0E7"/>
+  <text class="name-s" x="384" y="834">progress.txt</text>
+  <text class="role" x="384" y="854">APPEND-ONLY RECORD</text>
+  <text class="role" x="384" y="870">OF WHAT ACTUALLY HAPPENED</text>
+
+  <line x1="656" y1="824" x2="656" y2="874" stroke="#DCE0E7"/>
+  <text class="name-s" x="684" y="834">numbered artifacts</text>
+  <text class="role" x="684" y="854">CROSS-REFERENCE IDS —</text>
+  <text class="role" x="684" y="870">EVERY CLAIM TRACEABLE</text>
+
+  <path class="thin" d="M 924 486 L 952 486 L 952 772 L 850 772 L 850 798"/>
+  <path class="thin" d="M 150 694 L 150 798"/>
+</svg>
