@@ -204,6 +204,7 @@ def masthead(lang, on_index):
       <a href="/#systems">Systems</a>
       <a href="/#record">Record</a>
       <a href="{entry_url(lang)}"{mark}>Log</a>
+      <a href="/research/who-checks-the-agent/">Research</a>
       <a href="/#work">Work together</a>
     </nav>
   </header>

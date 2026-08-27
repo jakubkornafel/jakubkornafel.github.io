@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Who Checks the Agent — Jakub Kornafel</title>
+<meta name="description" content="Seventeen agent harnesses reviewed against the same seven axes: who judges the result, whether the judge touches a running application, and what counts as done. With a timeline, ten corrections and the gaps that could not be closed.">
+<meta property="og:title" content="Who Checks the Agent — Jakub Kornafel">
+<meta property="og:description" content="Seventeen agent harnesses on the same seven axes. What separates them is not the model but one question: does anyone other than the author judge the result.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://jakubkornafel.com/research/who-checks-the-agent/">
+<meta property="og:image" content="https://jakubkornafel.com/assets/og-log.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%2312161D'/><text y='23' x='16' text-anchor='middle' font-family='monospace' font-size='17' fill='%23F4F5F7'>jk</text></svg>">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../assets/fonts/archivo.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../assets/fonts/sourceserif4.woff2">
+<link rel="stylesheet" href="../../assets/log.css">
+<style>
+:root{
+  --panel-alt:#ECEEF2; --mine:#FBEDE4; --soft:#E7E9EE;
+}
+
+/* research page shell */
+.research{padding:1.5rem 0 5.5rem}
+.research h1{font-family:var(--display); font-weight:800; margin:1.25rem 0 0;
+  font-size:clamp(2.1rem,5.5vw,3.6rem); line-height:1.02; letter-spacing:-.04em; max-width:16ch}
+.research .eyebrow{font-family:var(--mono); font-size:.6875rem; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--graphite); margin:0}
+.research .lede{margin:1.5rem 0 0; max-width:58ch; font-size:1.3125rem; color:#1E242E}
+.research .lede b{font-weight:600; color:var(--ink)}
+.research .standfirst{margin:2rem 0 0; max-width:62ch; color:var(--graphite)}
+
+.research section{margin-top:4rem; border-top:2px solid var(--rule-strong); padding-top:1.75rem}
+.research section h2{font-family:var(--display); font-weight:700; font-size:clamp(1.4rem,3vw,1.9rem);
+  letter-spacing:-.03em; line-height:1.1; margin:0}
+.research h3{font-family:var(--display); font-weight:700; font-size:1.1875rem;
+  letter-spacing:-.02em; line-height:1.2; margin:0}
+.research .note{margin:1.15rem 0 0; max-width:66ch; color:#1E242E}
+.research .note b{font-weight:600}
+.research code{font-family:var(--mono); font-size:.875em; background:var(--card);
+  border:1px solid var(--rule); border-radius:3px; padding:.05em .35em; word-break:break-word}
+
+/* verdict */
+.podium{display:grid; grid-template-columns:repeat(auto-fit,minmax(17rem,1fr)); gap:1rem; margin:1.75rem 0 0}
+.place{background:var(--card); border:1px solid var(--rule); border-top:3px solid var(--graphite);
+  border-radius:0 0 6px 6px; padding:1.25rem 1.35rem; display:flex; flex-direction:column; gap:.65rem}
+.place.first{border-top-color:var(--open)}
+.place .rank{font-family:var(--mono); font-weight:600; font-size:.6875rem; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--graphite)}
+.place.first .rank{color:var(--open)}
+.place p{margin:0; font-size:1rem; color:#1E242E}
+.place p b{font-weight:600; color:var(--ink)}
+
+/* tables */
+.scroll{margin:1.75rem 0 0; overflow-x:auto; border:1px solid var(--rule); border-radius:6px;
+  background:var(--card); -webkit-overflow-scrolling:touch}
+.scroll table{border-collapse:collapse; width:100%; font-size:.875rem; line-height:1.5}
+.scroll table.wide{min-width:58rem}
+.scroll thead th{text-align:left; font-family:var(--mono); font-weight:500; font-size:.6875rem;
+  letter-spacing:.1em; text-transform:uppercase; color:var(--graphite);
+  padding:.7rem .55rem; border-bottom:2px solid var(--rule-strong); white-space:nowrap}
+.scroll tbody td{padding:.7rem .55rem; border-bottom:1px solid var(--rule); vertical-align:top}
+.scroll tbody th[scope="row"]{text-align:left; padding:.7rem .55rem; border-bottom:1px solid var(--rule);
+  vertical-align:top; font-family:var(--display); font-weight:700; letter-spacing:-.01em; white-space:nowrap}
+.scroll tbody tr:last-child td, .scroll tbody tr:last-child th{border-bottom:none}
+.scroll tbody tr:nth-child(even){background:var(--panel-alt)}
+.scroll tbody tr.mine, .scroll tbody tr.mine:nth-child(even){background:var(--mine)}
+.vendor{display:block; font-family:var(--mono); font-weight:400; font-size:.625rem; letter-spacing:.12em;
+  text-transform:uppercase; color:var(--graphite); margin-bottom:.15rem}
+td.when{font-family:var(--mono); font-size:.75rem; color:var(--graphite);
+  white-space:nowrap; font-variant-numeric:tabular-nums}
+.tag{display:inline-block; font-family:var(--mono); font-size:.625rem; font-weight:500; letter-spacing:.08em;
+  padding:.15rem .35rem; border-radius:2px; background:var(--soft); color:var(--graphite); line-height:1}
+.tag.n{background:var(--mine); color:var(--open)}
+
+/* timeline */
+.timeline{margin:1.75rem 0 0; border-top:1px solid var(--rule)}
+.timeline .row{display:grid; grid-template-columns:7rem 1fr; gap:1.25rem; align-items:baseline;
+  padding:.8rem .5rem; border-bottom:1px solid var(--rule)}
+.timeline .date{font-family:var(--mono); font-size:.8125rem; color:var(--graphite); font-variant-numeric:tabular-nums}
+.timeline .what{font-size:1rem; color:#1E242E}
+.timeline .who{font-family:var(--mono); font-size:.6875rem; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--graphite); margin-right:.55rem}
+.timeline .row.mine{background:var(--mine)}
+.timeline .row.mine .what{font-weight:600; color:var(--ink)}
+.timeline .row.mine .who{color:var(--open)}
+
+/* corrections */
+.myths{margin:1.75rem 0 0; border-top:1px solid var(--rule)}
+.myth{display:grid; grid-template-columns:minmax(14rem,1fr) 1.35fr; gap:1.25rem;
+  padding:.9rem .5rem; border-bottom:1px solid var(--rule)}
+.myth .wrong{color:var(--graphite); text-decoration:line-through;
+  text-decoration-color:var(--open); text-decoration-thickness:1px; font-size:1rem}
+.myth .right{font-size:1rem; color:#1E242E}
+.myth .right b{font-weight:600; color:var(--ink)}
+
+/* gaps */
+.gaps{display:grid; grid-template-columns:repeat(auto-fit,minmax(16rem,1fr)); gap:.75rem; margin:1.75rem 0 0}
+.gap{background:var(--card); border:1px solid var(--rule); border-left:2px solid var(--ink);
+  border-radius:0 6px 6px 0; padding:.9rem 1.1rem; font-size:1rem; color:#1E242E}
+.gap b{font-weight:600; color:var(--ink)}
+
+/* method note */
+.method{margin:3.5rem 0 0; border-top:1px solid var(--rule); padding-top:1.5rem;
+  font-family:var(--mono); font-size:.8125rem; line-height:1.6; color:var(--graphite);
+  display:flex; flex-direction:column; gap:.5rem; max-width:78ch}
+
+@media (max-width:44rem){
+  .myth{grid-template-columns:1fr; gap:.35rem}
+  .timeline .row{grid-template-columns:5.5rem 1fr; gap:.85rem}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <a class="mark" href="/">Jakub Kornafel</a>
+    <nav>
+      <a href="/#systems">Systems</a>
+      <a href="/#record">Record</a>
+      <a href="/log/">Log</a>
+      <a href="/research/who-checks-the-agent/" aria-current="page">Research</a>
+      <a href="/#work">Work together</a>
+    </nav>
+  </header>
+</div>
+
+<main>
+  <div class="wrap">
+    <article class="research">
+      <a class="back" href="/">&larr; Home</a>
+      <p class="eyebrow">Market review · as of 27 August 2026</p>
+      <h1>Who Checks the Agent</h1>
+      <p class="lede">Seventeen harnesses reviewed against the same seven axes. What separates them turns out to be neither the model nor the subagent count, but one question: <b>does anyone other than the author judge the result — and does that judge touch a running application.</b> The last row of the table is an in-house pipeline, so it can be read against the market.</p>
+      <p class="standfirst">I assembled this on 27 August 2026 from vendor documentation, changelogs, source code and public leaderboards, rather than from commentary about them. The final row of the table is a pipeline I built myself, kept in so it sits under the same seven questions as everything else. Every claim points back to a primary source, so the numbers can be checked.</p>
+
+      <section>
+        <h2>The verdict</h2>
+        <div class="podium">
+          <div class="place first">
+            <span class="rank">First</span>
+            <h3>Claude Code / Agent SDK</h3>
+            <p>The only one where <b>an independent judge is a product feature</b>: after every turn, <code>/goal</code> sends the condition and the transcript to a separate model that rules met / not yet met / impossible. Plus a published, costed methodology and first place on the external Terminal-Bench 2.1 leaderboard at 83.8%.</p>
+          </div>
+          <div class="place">
+            <span class="rank">Second</span>
+            <h3>OpenAI Codex</h3>
+            <p>Better plumbing: server-side compaction, enterprise-grade permissions and audit, cheaper models. Weaker on one thing that matters here — <b>auto-review guards safety, not correctness</b>. Claims 88.8% on the same benchmark, but that number does not appear on the public leaderboard.</p>
+          </div>
+          <div class="place">
+            <span class="rank">Third</span>
+            <h3>Cursor</h3>
+            <p>Bets on parallelism and selection rather than the loop: <code>/best-of-n</code> runs several models at one problem, each in its own worktree. Its reviewer, Bugbot, sits on pull requests rather than in the loop — and <b>does not run tests</b>. No published benchmarks at all.</p>
+          </div>
+        </div>
+        <p class="note">In fairness: the winner is the vendor whose model compiled this review. That is why the case rests on externally checkable things — a public leaderboard and product documentation — rather than on impressions. If OpenAI's 88.8% were confirmed on an independent leaderboard at a comparable token budget, the top two places would swap.</p>
+      </section>
+
+      <section>
+        <h2>Seventeen harnesses, seven axes</h2>
+        <p class="note">Cell shorthand: <span class="tag n">N</span> not confirmed in a primary source, <span class="tag">ND</span> no data. Everything else comes from documentation, changelogs, or source code.</p>
+
+        <div class="scroll">
+          <table class="wide">
+            <thead>
+              <tr>
+                <th scope="col">Harness</th>
+                <th scope="col">Who judges the result</th>
+                <th scope="col">Context</th>
+                <th scope="col">Touches a running app</th>
+                <th scope="col">Orchestration and limits</th>
+                <th scope="col">Definition of done</th>
+                <th scope="col">Since</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row"><span class="vendor">Anthropic</span>Claude Code</th>
+                <td>Subagents with their own context; <code>/goal</code> — a separate small model rules after every turn</td>
+                <td>Auto-compaction plus a fresh context inside each subagent</td>
+                <td>Yes — Playwright MCP, in-app browser on desktop, computer use in the CLI</td>
+                <td>20 subagents in parallel, nesting depth 3; workflows: 16 at once, up to 1000 per run; worktree isolation</td>
+                <td>A condition up to 4000 characters, verdict met / not yet / impossible</td>
+                <td class="when">07.2025 → 05.2026</td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="vendor">Anthropic</span>Managed Agents</th>
+                <td>Writer plus an automatically provisioned <b>grader</b> in a separate window — it sees the rubric and the artifact, not the reasoning</td>
+                <td>The grader starts clean</td>
+                <td>Inspects the artifact, not the application</td>
+                <td><code>max_iterations</code> defaults to 3, capped at 20</td>
+                <td>A markdown rubric, scored criterion by criterion</td>
+                <td class="when">04.2026 beta</td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="vendor">OpenAI</span>Codex (app)</th>
+                <td>Orchestrator plus explorer / worker plus reviewer</td>
+                <td>Threads per project, forking, memories</td>
+                <td>Yes — built-in browser and computer use, clicks through a local dev server</td>
+                <td>Parallel threads, built-in git worktrees</td>
+                <td>Goal mode: objective plus constraints plus how it will be verified</td>
+                <td class="when">02.2026 → 05.2026</td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="vendor">OpenAI</span>Codex cloud / CLI</th>
+                <td>Auto-review is a <b>safety gate</b>, not a quality one</td>
+                <td><code>/compact</code>, session resume, <code>AGENTS.md</code></td>
+                <td>Tests inside a container; no browser in the CLI</td>
+                <td>Sandbox per task; circuit breaker at 3 refusals in a row or 10 out of 50</td>
+                <td>Diff plus whatever tests the user defined</td>
+                <td class="when">GA 10.2025</td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="vendor">Google</span>Antigravity</th>
+                <td>Manager plus Editor; artifacts for a human to review, no built-in critic</td>
+                <td>Knowledge Items, rules capped at 12,000 characters</td>
+                <td>Yes — a subagent drives Chrome, takes screenshots and <b>video recordings</b></td>
+                <td>Nesting up to 10 levels, native worktrees, sandbox off by default</td>
+                <td>Procedural only — "request review" versus "always proceed"</td>
+                <td class="when">11.2025 → 05.2026</td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="vendor">Google</span>Jules</th>
+                <td><b>Planning Critic</b> before execution and a <b>Critic Agent</b> after it</td>
+                <td>A fresh virtual machine per task — a hard reset</td>
+                <td>Yes — renders the frontend and returns a screenshot; a CI fixer reads logs and repairs its own PR</td>
+                <td>Free tier: 15 tasks per day, 3 in parallel</td>
+                <td>Nothing measurable; the only published number is a 9.5% drop in failed tasks</td>
+                <td class="when">GA 08.2025</td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="vendor">Google</span>Gemini CLI</th>
+                <td>Plan mode separated from execution, four built-in subagents; <b>no evaluator</b> — a hook plays the part of the gate</td>
+                <td><code>/clear</code> and <code>/compress</code>, auto-compaction at half the window, a hierarchy of context files</td>
+                <td>Yes — a browser agent with Chrome DevTools MCP bundled in, but <b>off by default</b>; capped at 100 actions per task</td>
+                <td>Parallel subagents capped at 30 turns and 10 minutes each; worktrees, choice of sandbox</td>
+                <td>The <code>AfterAgent</code> hook — a "deny" verdict or exit code 2 forces another attempt with feedback</td>
+                <td class="when">06.2025 → 02.2026</td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="vendor">Google</span>ADK</th>
+                <td>A "generate and review" pattern built into the framework</td>
+                <td>Session state plus event compaction</td>
+                <td>Conformance tests against a recorded baseline; Playwright in the toolset</td>
+                <td><code>max_iterations</code> defaults to <b>no limit at all</b>; exit by escalation</td>
+                <td>12 metrics, thresholds of 1.0 for trajectory and 0.8 for response</td>
+                <td class="when">2.0 GA 05.2026</td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="vendor">Cognition</span>Devin</th>
+                <td>A planning subagent, MultiDevin, and Devin Review with auto-fix</td>
+                <td>A 200k cap on a million-token window; machine snapshots</td>
+                <td>Yes — a full desktop, screenshots and <b>video recordings of end-to-end tests</b></td>
+                <td>A micro-VM per session; one manager and up to 10 workers; iteration limits <span class="tag">ND</span></td>
+                <td>Confidence scores: green, yellow, red</td>
+                <td class="when">GA 12.2024</td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="vendor">Cursor</span>Cursor 3</th>
+                <td>Bugbot on pull requests; several agents judged against each other</td>
+                <td>Automatic summarisation, memories, rules</td>
+                <td>A native browser tool, but <b>Bugbot does not run tests</b></td>
+                <td><code>/worktree</code>, <code>/best-of-n</code>, subagents on separate machines; iteration limits <span class="tag">ND</span></td>
+                <td>Bugbot as a blocking status check on the PR</td>
+                <td class="when">10.2025 → 04.2026</td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="vendor">GitHub</span>Copilot coding agent</th>
+                <td>A separate code review plus security scanning</td>
+                <td><code>AGENTS.md</code>, compression only in the CLI</td>
+                <td>Yes — Playwright MCP built in, screenshots in the PR description</td>
+                <td>Ephemeral environments on Actions, many sessions at once</td>
+                <td><b>Human approval is mandatory</b> — the agent cannot merge its own PR</td>
+                <td class="when">GA 09.2025</td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="vendor">Open source</span>OpenHands</th>
+                <td>An <b>explicit critic</b> scoring 0 to 1</td>
+                <td>A context condenser, with a hard reset as the fallback</td>
+                <td>Yes — browser control on by default</td>
+                <td><code>max_iteration_per_run = 500</code></td>
+                <td>Critic threshold of 0.6</td>
+                <td class="when">SDK 12.2025</td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="vendor">Open source</span>SWE-agent</th>
+                <td>Repeated attempts plus a separate model choosing the best one</td>
+                <td>History processors, observation truncation</td>
+                <td>A linter gate on edits; Playwright in the multimodal variant</td>
+                <td><b>No step limit</b> — the budget is purely monetary, 3 dollars per instance</td>
+                <td>A "submit" action plus a four-point self-check</td>
+                <td class="when">1.0 02.2025</td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="vendor">Open source</span>Aider</th>
+                <td>Architect plus editor — two models, but <b>the judge is a human</b></td>
+                <td>A repository map, summarisation by a weaker model</td>
+                <td>No — never launches the application or a browser</td>
+                <td>Strictly sequential, no subagents, <code>max_reflections = 3</code></td>
+                <td>Lint and tests exit zero, then commit</td>
+                <td class="when">09.2024</td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="vendor">Open source</span>Ralph loop</th>
+                <td>Nobody — a human judges at the end</td>
+                <td><b>A fresh context every iteration</b>, state kept in plan files</td>
+                <td>Build and tests as backpressure; browser <span class="tag">ND</span></td>
+                <td>A loop with no iteration limit</td>
+                <td>No stop condition — a green build and a tag</td>
+                <td class="when">07.2025</td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="vendor">Open source</span>LangGraph</th>
+                <td>The framework verifies nothing; interrupts to a human</td>
+                <td>Checkpointers plus a summarisation layer</td>
+                <td>No — verification lives outside the framework</td>
+                <td>Fan-out, subgraphs, recursion limit of 10007</td>
+                <td><b>No built-in success criterion</b></td>
+                <td class="when">1.0 10.2025</td>
+              </tr>
+              <tr class="mine">
+                <th scope="row"><span class="vendor">In-house</span>Internal pipeline</th>
+                <td>A QA agent plus <b>8 parallel verifiers</b>, a PROCEED / LOOP_BACK verdict and GO / NO-GO gates</td>
+                <td>A fresh agent every iteration, state kept in phase files</td>
+                <td>Yes — Playwright as the gate into the next stage, later an agent driving the browser over MCP</td>
+                <td>8 verifiers at once, <code>max_per_phase</code> ≤ 10; <b>no cost budget</b></td>
+                <td>MUST / SHOULD / MAY criteria plus scored gates with numeric thresholds</td>
+                <td class="when">01–02.2026</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="note">Two of these products are being wound down: <b>Gemini CLI is becoming Antigravity CLI</b> (announced 19.05.2026), and Gemini Code Assist dropped individual accounts on 18.06.2026. Their rows stay, because the mechanisms they describe carried over to the successor.</p>
+      </section>
+
+      <section>
+        <h2>What arrived when</h2>
+        <p class="note">Harness events only — roles, verification, orchestration, stop criteria. Model releases are left out.</p>
+
+        <div class="timeline">
+          <div class="row"><span class="date">2024-09-26</span><span class="what"><span class="who">Aider</span>Reasoning split from editing — architect plus editor, the first public division of roles</span></div>
+          <div class="row"><span class="date">2024-11-04</span><span class="what"><span class="who">Microsoft</span>Magentic-One: an orchestrator with a progress ledger asking whether the request has been satisfied</span></div>
+          <div class="row"><span class="date">2024-12-24</span><span class="what"><span class="who">Cognition</span>Devin generally available</span></div>
+          <div class="row"><span class="date">2025-04-17</span><span class="what"><span class="who">OpenHands</span>A critic model — the first explicit, numeric judge in open source</span></div>
+          <div class="row"><span class="date">2025-06-30</span><span class="what"><span class="who">Anthropic</span>Hooks in Claude Code — external gates wired into the agent's cycle</span></div>
+          <div class="row"><span class="date">2025-07-02</span><span class="what"><span class="who">GitHub</span>The agent gets its own browser and puts screenshots in the PR description</span></div>
+          <div class="row"><span class="date">2025-07-14</span><span class="what"><span class="who">Huntley</span>The Ralph loop — a fresh context every iteration, state kept in files</span></div>
+          <div class="row"><span class="date">2025-07-24</span><span class="what"><span class="who">Anthropic</span>Subagents with their own context window</span></div>
+          <div class="row"><span class="date">2025-08-08</span><span class="what"><span class="who">Google</span>Jules: an interactive plan and a Critic Agent</span></div>
+          <div class="row"><span class="date">2025-09-10</span><span class="what"><span class="who">Replit</span>Agent 3 tests its own application in a browser, 200 minutes of autonomy</span></div>
+          <div class="row"><span class="date">2025-10-16</span><span class="what"><span class="who">Anthropic</span>Agent Skills; declared an open standard that December</span></div>
+          <div class="row"><span class="date">2025-11-18</span><span class="what"><span class="who">Google</span>Antigravity — artifacts and a browser subagent that records video</span></div>
+          <div class="row"><span class="date">2025-11-26</span><span class="what"><span class="who">Anthropic</span>"Effective harnesses for long-running agents" — context resets and a feature list as state</span></div>
+          <div class="row"><span class="date">2025-12-16</span><span class="what"><span class="who">OpenHands</span>An SDK with the critic as a first-class citizen</span></div>
+          <div class="row mine"><span class="date">2026-01-21</span><span class="what"><span class="who">In-house</span>Internal pipeline — roles, gates, evaluator separated from generator</span></div>
+          <div class="row"><span class="date">2026-01-26</span><span class="what"><span class="who">Google</span>Jules: the Planning Critic, a 9.5% drop in failed tasks</span></div>
+          <div class="row"><span class="date">2026-02-11</span><span class="what"><span class="who">OpenAI</span>"Harness engineering" — repository knowledge as the system of record</span></div>
+          <div class="row mine"><span class="date">2026-02-17</span><span class="what"><span class="who">In-house</span>The pipeline runs a real production project; Playwright written in as the E2E gate</span></div>
+          <div class="row"><span class="date">2026-02-24</span><span class="what"><span class="who">Cognition</span>Devin 2.2: a full desktop and video recordings of end-to-end tests</span></div>
+          <div class="row"><span class="date">2026-03-24</span><span class="what"><span class="who">Anthropic</span>"Harness design for long-running application development" — planner, generator, evaluator</span></div>
+          <div class="row"><span class="date">2026-04-30</span><span class="what"><span class="who">OpenAI</span>Auto-review: a separate agent judges actions, with a circuit breaker after repeated refusals</span></div>
+          <div class="row"><span class="date">2026-05-06</span><span class="what"><span class="who">Anthropic</span>Outcomes — a grader scoring against a rubric in its own context window</span></div>
+          <div class="row"><span class="date">2026-05-11</span><span class="what"><span class="who">Anthropic</span><code>/goal</code> — a loop toward a condition, verified by a separate model</span></div>
+          <div class="row"><span class="date">2026-05-19</span><span class="what"><span class="who">Google</span>Antigravity 2.0 with a CLI and SDK; ADK 2.0; Gemini CLI folded into Antigravity CLI</span></div>
+          <div class="row"><span class="date">2026-05-21</span><span class="what"><span class="who">OpenAI</span>Goal mode — an objective pursued "for hours or even days"</span></div>
+          <div class="row"><span class="date">2026-07-04</span><span class="what"><span class="who">Simmons</span>Graph engineering named, with seven design practices</span></div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Corrections</h2>
+        <p class="note">Numbers that circulate in industry threads and do not match the primary source. Useful if someone throws one of them across a meeting.</p>
+
+        <div class="myths">
+          <div class="myth"><span class="wrong">OpenHands caps runs at 100 iterations</span><span class="right">100 → 250 (04.2025) → <b>500</b> (06.2025)</span></div>
+          <div class="myth"><span class="wrong">LangGraph: recursion limit of 25</span><span class="right"><b>10007</b> in the code on main. The 25 comes from a different library, and LangGraph's own docs say 1000 — contradicting the code</span></div>
+          <div class="myth"><span class="wrong">SWE-agent has a step limit</span><span class="right">It does not. The budget is <b>monetary — 3 dollars per instance</b>. The 250-step limit belongs to mini-swe-agent</span></div>
+          <div class="myth"><span class="wrong">The Ralph loop is <code>claude -p --dangerously-skip-permissions</code></span><span class="right">The original is a plain shell loop feeding a prompt file. The flag variant comes from a later field report</span></div>
+          <div class="myth"><span class="wrong">Aider supports MCP</span><span class="right">It <b>does not</b> — and it never launches an application or a browser</span></div>
+          <div class="myth"><span class="wrong">AutoGen is a live alternative to LangGraph</span><span class="right"><b>In maintenance mode since 10.2025</b>; the successor is Microsoft Agent Framework</span></div>
+          <div class="myth"><span class="wrong">There is a SWE-agent 2.x</span><span class="right">The 2.x numbering belongs to mini-swe-agent; SWE-agent has been on 1.1.0 since May 2025</span></div>
+          <div class="myth"><span class="wrong">Jules went generally available at I/O 2026</span><span class="right">It went GA <b>a year earlier</b>, in August 2025</span></div>
+          <div class="myth"><span class="wrong">Ralph has a published failure rate</span><span class="right">No such figure exists in the primary sources — only qualitative claims</span></div>
+          <div class="myth"><span class="wrong">Antigravity 3.0</span><span class="right">Absent from the official changelog; the latest release is 2.11, dated 26.08.2026</span></div>
+        </div>
+      </section>
+
+      <section>
+        <h2>What could not be established</h2>
+        <div class="gaps">
+          <div class="gap"><b>Iteration limits</b> for Devin, Cursor and the GitHub agent — undocumented in all three.</div>
+          <div class="gap"><b>Compaction thresholds</b> in Antigravity — the figures in circulation come only from community blogs.</div>
+          <div class="gap"><b>A hard timeout</b> for Codex in the cloud and in the CLI — not in the documentation.</div>
+          <div class="gap"><b>A formal definition of done</b> at GitHub — the only gate is human approval.</div>
+          <div class="gap"><b>Role architecture</b> in Replit Agent 3 and orchestration in Amazon Kiro — no public data.</div>
+          <div class="gap"><b>SWE-bench Verified</b> — the leaderboard renders client-side and could not be retrieved.</div>
+        </div>
+      </section>
+
+      <div class="method">
+        <span>Assembled 27.08.2026 from vendor documentation, changelogs, source code and leaderboards — roughly 70 direct fetches, with no search engine involved.</span>
+        <span>A companion note compares the same in-house pipeline against the publications by OpenAI, Anthropic, Simmons and Perez.</span>
+      </div>
+    </article>
+  </div>
+</main>
+
+<div class="wrap">
+  <footer>
+    <span>Jakub Kornafel · Málaga, Spain · Warsaw, Poland</span>
+    <span><a href="/log/feed.xml">RSS</a> · jakubkornafel@gmail.com</span>
+  </footer>
+</div>
+
+</body>
+</html>
