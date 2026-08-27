@@ -1,0 +1,34 @@
+date: 2026-08-27
+kind: Note
+title: Il numero che citano tutti sta misurando un'altra cosa
+dek: Cambi l'harness e il benchmark si muove di tre punti. Cambi il modello e si muove di venticinque. Quindi l'harness quasi non conta — a meno di guardare quello che il benchmark non misura mai.
+rank: 1
+---
+<p>Questa settimana mi hanno fatto una domanda legittima: di quanto migliora un agente di programmazione un harness fatto bene? Un numero, per favore.</p>
+
+<p>Sono andato a cercarlo.</p>
+
+<p>Nelle classifiche pubbliche ogni tanto compare lo stesso modello che gira sotto due harness diversi. La distanza va dai tre agli otto punti percentuali. Ora tieni fermo l'harness e cambia il modello sotto: il punteggio si sposta di venticinque.</p>
+
+<p>Se ti fermi lì, la conclusione si scrive da sola: l'harness quasi non conta, compra un modello migliore, vai a casa.</p>
+
+<h3>Solo che non è questo a toglierci il sonno</h3>
+
+<p>Quei benchmark misurano un compito, dentro un container, che passa o non passa. In produzione nessuno dorme male per un compito dentro un container.</p>
+
+<p>Si dorme male per altro. Un sistema che crolla ogni pochi giorni. Un risultato che martedì prossimo non viene più uguale. Un verdetto che poi non riesce a controllare nessuno. Un'esecuzione che dichiara successo, e il file che dice di aver modificato se l'è inventato.</p>
+
+<p>Ecco, per tutto questo — stabilità, riproducibilità, verificabilità — non esiste nessun benchmark pubblico. Il tentativo più vicino che ho trovato ha tre settimane, e la sua stessa verifica preregistrata si è chiusa senza conclusione.</p>
+
+<p>Dove invece le cifre ci sono, non sono piccole. Uno studio ha tagliato le regressioni del 70% dando all'agente un solo file di contesto. Un altro ha misurato il 9,5% di compiti falliti in meno mettendo un critico che controlla il piano prima dell'esecuzione. Sono entrambi cambiamenti di harness. Nessuno dei due finisce in classifica.</p>
+
+<div class="pull">
+  <span>La risposta onesta</span>
+  <p>Il numero che vuoi non esiste ancora. I numeri che esistono misurano un'altra cosa. E nello spazio fra gli uni e gli altri stanno i sistemi di produzione.</p>
+</div>
+
+<p>Per adesso, quindi, il lavoro tocca a te. Misura quello che ti interessa davvero — ogni quanto cade il sistema, quanto lavoro torna indietro da rifare, quante volte un verdetto regge la revisione — perché nessuno lo pubblicherà al posto tuo.</p>
+
+<div class="cta">
+  <p><b>Se hai quella misura e viene fuori brutta</b>, mi piacerebbe vederla sul serio. È esattamente il problema su cui lavoro. <a href="mailto:jakubkornafel@gmail.com">jakubkornafel@gmail.com</a></p>
+</div>

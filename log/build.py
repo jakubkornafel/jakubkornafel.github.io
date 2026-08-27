@@ -99,6 +99,22 @@ LANGS = {
         "back": "&larr; Log",
         "feed_description": "Что я строю, что сломалось и что из этого выдерживает проверку фактами.",
     },
+    "it": {
+        "label": "IT",
+        "html_lang": "it",
+        "path": "/log/it/",
+        "title": f"Log — {AUTHOR}",
+        "kicker": "Diario di lavoro · da agosto 2026",
+        "heading": "Log",
+        "intro": "Cosa sto costruendo, cosa si è rotto e cosa reggono davvero i fatti. Le voci "
+        "hanno una data e le chiudo quando servono a qualcosa, non quando sono levigate. "
+        "Non c'è un calendario: preferisco non scrivere niente che scrivere riempitivo.",
+        "description": "Diario di lavoro: cosa costruisco, cosa si è rotto e cosa reggono i fatti. "
+        "Voci datate, senza calendario.",
+        "more": "Leggi la voce &rarr;",
+        "back": "&larr; Log",
+        "feed_description": "Cosa sto costruendo, cosa si è rotto e cosa reggono davvero i fatti.",
+    },
 }
 
 DEFAULT_LANG = "en"

@@ -1,0 +1,36 @@
+date: 2026-08-27
+kind: Note
+title: Il mio sito mi ha mentito per tre settimane
+dek: Tre deploy falliti. Il sito continuava a rispondere 200. L'ho scoperto per caso, mentre cercavo tutt'altro.
+rank: 0
+---
+<p>Mi guadagno da vivere costruendo sistemi capaci di avvisare una persona quando qualcosa è andato storto.</p>
+
+<p>Il mio sito ha passato tre settimane a servire una versione indietro di due commit. E io, tranquillo.</p>
+
+<p>Com'è andata, in ordine. Il 6 agosto ho pubblicato due modifiche a una sottopagina. Sono partiti tre deploy. Tutti e tre falliti. Ognuno ha registrato una durata di build di zero millisecondi e il messaggio «Page build failed.». Nessun dettaglio, nessuna notifica, niente in posta.</p>
+
+<p>Zero millisecondi vuol dire che il build non è nemmeno partito, quindi il mio codice non c'entrava. Era caduto qualcosa più a monte.</p>
+
+<p>E il sito? Il sito benissimo. HTTP 200, certificato in regola, tutto che carica. Continuava a essere servito l'ultimo build riuscito, identico al giorno prima. Il guasto non aveva nessuna superficie visibile. Da fuori, dal mio browser, da quello di chiunque altro: un sito sano.</p>
+
+<p>L'ho scoperto perché stavo armeggiando con altro e ho guardato lo stato dei deploy per curiosità.</p>
+
+<h3>Il parallelo scomodo</h3>
+
+<p>È lo stesso modo di fallire contro cui alzo porte tutti i giorni. Solo che è arrivato da un lato che non avevo difeso.</p>
+
+<p>L'agente dichiara successo. I test passano. Il diff sembra pulito. Tutto quello che affiora in superficie dice che il lavoro è fatto, e l'unico modo per sapere il contrario è controllare qualcosa che chi riferisce non governa: aprire l'applicazione vera, interrogare lo stato vero, confrontare con qualcosa che l'ottimizzatore non può toccare.</p>
+
+<p>Quel riflesso, con gli agenti, ce l'avevo. Con la mia pipeline di deploy no. E intanto stava lì, ventun giorni a servire contenuto stantio senza fiatare.</p>
+
+<p>La riparazione, tra l'altro, è consistita nel togliere, non nell'aggiungere. Il sito è HTML puro, eppure ogni deploy lo passava per un motore di template di cui non ha mai avuto bisogno: 165 secondi per pubblicare mezzo megabyte. Un file vuoto dopo, il deploy è una copia di file e dura 19 secondi. Nove decimi del tempo se ne andavano in un passaggio il cui unico contributo reale era poter fallire.</p>
+
+<div class="pull">
+  <span>Cosa mi porto via</span>
+  <p>Un sistema che non sa dirti di aver fallito ti lascerà credere che sia andato tutto bene per tutto il tempo che glielo permetti. Il silenzio non è uno stato. Se in tre settimane niente ha segnalato un problema, quella è un'affermazione da mettere alla prova, non un motivo per rilassarsi.</p>
+</div>
+
+<div class="cta">
+  <p>Vai a guardare l'ultimo deploy riuscito della cosa di cui sei più sicuro. Ti aspetto. Se il risultato ti sorprende, <a href="mailto:jakubkornafel@gmail.com">raccontamelo</a> — io queste storie le colleziono.</p>
+</div>

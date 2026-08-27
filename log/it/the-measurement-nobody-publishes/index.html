@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Il numero che citano tutti sta misurando un&#x27;altra cosa — Jakub Kornafel</title>
+<meta name="description" content="Cambi l&#x27;harness e il benchmark si muove di tre punti. Cambi il modello e si muove di venticinque. Quindi l&#x27;harness quasi non conta — a meno di guardare quello che il benchmark non misura mai.">
+<meta property="og:title" content="Il numero che citano tutti sta misurando un&#x27;altra cosa — Jakub Kornafel">
+<meta property="og:description" content="Cambi l&#x27;harness e il benchmark si muove di tre punti. Cambi il modello e si muove di venticinque. Quindi l&#x27;harness quasi non conta — a meno di guardare quello che il benchmark non misura mai.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://jakubkornafel.com/log/it/the-measurement-nobody-publishes/">
+<meta property="og:image" content="https://jakubkornafel.com/assets/og-log.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="it">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" hreflang="en" href="https://jakubkornafel.com/log/the-measurement-nobody-publishes/">
+<link rel="alternate" hreflang="pl" href="https://jakubkornafel.com/log/pl/the-measurement-nobody-publishes/">
+<link rel="alternate" hreflang="es" href="https://jakubkornafel.com/log/es/the-measurement-nobody-publishes/">
+<link rel="alternate" hreflang="ru" href="https://jakubkornafel.com/log/ru/the-measurement-nobody-publishes/">
+<link rel="alternate" hreflang="it" href="https://jakubkornafel.com/log/it/the-measurement-nobody-publishes/">
+<link rel="alternate" type="application/rss+xml" title="Jakub Kornafel — Log (IT)" href="https://jakubkornafel.com/log/it/feed.xml">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%2312161D'/><text y='23' x='16' text-anchor='middle' font-family='monospace' font-size='17' fill='%23F4F5F7'>jk</text></svg>">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../assets/fonts/archivo.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../assets/fonts/sourceserif4.woff2">
+<link rel="stylesheet" href="../../../assets/log.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <a class="mark" href="/">Jakub Kornafel</a>
+    <nav>
+      <a href="/#systems">Systems</a>
+      <a href="/#community">Community</a>
+      <a href="/#record">Record</a>
+      <a href="/log/it/">Log</a>
+      <a href="/research/who-checks-the-agent/">Research</a>
+      <a href="/#work">Work together</a>
+    </nav>
+  </header>
+</div>
+<div class="wrap"><nav class="langs" aria-label="Language"><a href="/log/the-measurement-nobody-publishes/" hreflang="en">EN</a><a href="/log/pl/the-measurement-nobody-publishes/" hreflang="pl">PL</a><a href="/log/es/the-measurement-nobody-publishes/" hreflang="es">ES</a><a href="/log/ru/the-measurement-nobody-publishes/" hreflang="ru">RU</a><a href="/log/it/the-measurement-nobody-publishes/" hreflang="it" aria-current="true">IT</a></nav></div>
+
+<main>
+  <div class="wrap">
+    <article class="post">
+      <a class="back" href="/log/it/">&larr; Log</a>
+      <p class="entry-meta"><span class="date">2026-08-27</span><span class="kind note">Note</span></p>
+      <h1>Il numero che citano tutti sta misurando un'altra cosa</h1>
+      <p class="dek">Cambi l'harness e il benchmark si muove di tre punti. Cambi il modello e si muove di venticinque. Quindi l'harness quasi non conta — a meno di guardare quello che il benchmark non misura mai.</p>
+      <div class="body">
+<p>Questa settimana mi hanno fatto una domanda legittima: di quanto migliora un agente di programmazione un harness fatto bene? Un numero, per favore.</p>
+
+<p>Sono andato a cercarlo.</p>
+
+<p>Nelle classifiche pubbliche ogni tanto compare lo stesso modello che gira sotto due harness diversi. La distanza va dai tre agli otto punti percentuali. Ora tieni fermo l'harness e cambia il modello sotto: il punteggio si sposta di venticinque.</p>
+
+<p>Se ti fermi lì, la conclusione si scrive da sola: l'harness quasi non conta, compra un modello migliore, vai a casa.</p>
+
+<h3>Solo che non è questo a toglierci il sonno</h3>
+
+<p>Quei benchmark misurano un compito, dentro un container, che passa o non passa. In produzione nessuno dorme male per un compito dentro un container.</p>
+
+<p>Si dorme male per altro. Un sistema che crolla ogni pochi giorni. Un risultato che martedì prossimo non viene più uguale. Un verdetto che poi non riesce a controllare nessuno. Un'esecuzione che dichiara successo, e il file che dice di aver modificato se l'è inventato.</p>
+
+<p>Ecco, per tutto questo — stabilità, riproducibilità, verificabilità — non esiste nessun benchmark pubblico. Il tentativo più vicino che ho trovato ha tre settimane, e la sua stessa verifica preregistrata si è chiusa senza conclusione.</p>
+
+<p>Dove invece le cifre ci sono, non sono piccole. Uno studio ha tagliato le regressioni del 70% dando all'agente un solo file di contesto. Un altro ha misurato il 9,5% di compiti falliti in meno mettendo un critico che controlla il piano prima dell'esecuzione. Sono entrambi cambiamenti di harness. Nessuno dei due finisce in classifica.</p>
+
+<div class="pull">
+  <span>La risposta onesta</span>
+  <p>Il numero che vuoi non esiste ancora. I numeri che esistono misurano un'altra cosa. E nello spazio fra gli uni e gli altri stanno i sistemi di produzione.</p>
+</div>
+
+<p>Per adesso, quindi, il lavoro tocca a te. Misura quello che ti interessa davvero — ogni quanto cade il sistema, quanto lavoro torna indietro da rifare, quante volte un verdetto regge la revisione — perché nessuno lo pubblicherà al posto tuo.</p>
+
+<div class="cta">
+  <p><b>Se hai quella misura e viene fuori brutta</b>, mi piacerebbe vederla sul serio. È esattamente il problema su cui lavoro. <a href="mailto:jakubkornafel@gmail.com">jakubkornafel@gmail.com</a></p>
+</div>
+      </div>
+    </article>
+  </div>
+</main>
+
+<div class="wrap">
+  <footer>
+    <span>Jakub Kornafel · Málaga, Spain · Warsaw, Poland</span>
+    <span><a href="/log/it/feed.xml">RSS</a> · jakubkornafel@gmail.com</span>
+  </footer>
+</div>
+
+</body>
+</html>

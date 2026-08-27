@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ho rischiato il posto per una cosa che non aveva ancora un nome — Jakub Kornafel</title>
+<meta name="description" content="I primi schizzi sono di novembre 2025. Il mio team lead non ci vedeva valore, e aveva le sue ragioni: le parole per spiegare quel lavoro sarebbero arrivate otto mesi più tardi.">
+<meta property="og:title" content="Ho rischiato il posto per una cosa che non aveva ancora un nome — Jakub Kornafel">
+<meta property="og:description" content="I primi schizzi sono di novembre 2025. Il mio team lead non ci vedeva valore, e aveva le sue ragioni: le parole per spiegare quel lavoro sarebbero arrivate otto mesi più tardi.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://jakubkornafel.com/log/it/harness-before-the-harness/">
+<meta property="og:image" content="https://jakubkornafel.com/assets/og-log.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="it">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" hreflang="en" href="https://jakubkornafel.com/log/harness-before-the-harness/">
+<link rel="alternate" hreflang="pl" href="https://jakubkornafel.com/log/pl/harness-before-the-harness/">
+<link rel="alternate" hreflang="es" href="https://jakubkornafel.com/log/es/harness-before-the-harness/">
+<link rel="alternate" hreflang="ru" href="https://jakubkornafel.com/log/ru/harness-before-the-harness/">
+<link rel="alternate" hreflang="it" href="https://jakubkornafel.com/log/it/harness-before-the-harness/">
+<link rel="alternate" type="application/rss+xml" title="Jakub Kornafel — Log (IT)" href="https://jakubkornafel.com/log/it/feed.xml">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%2312161D'/><text y='23' x='16' text-anchor='middle' font-family='monospace' font-size='17' fill='%23F4F5F7'>jk</text></svg>">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../assets/fonts/archivo.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../assets/fonts/sourceserif4.woff2">
+<link rel="stylesheet" href="../../../assets/log.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <a class="mark" href="/">Jakub Kornafel</a>
+    <nav>
+      <a href="/#systems">Systems</a>
+      <a href="/#community">Community</a>
+      <a href="/#record">Record</a>
+      <a href="/log/it/">Log</a>
+      <a href="/research/who-checks-the-agent/">Research</a>
+      <a href="/#work">Work together</a>
+    </nav>
+  </header>
+</div>
+<div class="wrap"><nav class="langs" aria-label="Language"><a href="/log/harness-before-the-harness/" hreflang="en">EN</a><a href="/log/pl/harness-before-the-harness/" hreflang="pl">PL</a><a href="/log/es/harness-before-the-harness/" hreflang="es">ES</a><a href="/log/ru/harness-before-the-harness/" hreflang="ru">RU</a><a href="/log/it/harness-before-the-harness/" hreflang="it" aria-current="true">IT</a></nav></div>
+
+<main>
+  <div class="wrap">
+    <article class="post">
+      <a class="back" href="/log/it/">&larr; Log</a>
+      <p class="entry-meta"><span class="date">2026-08-27</span><span class="kind build">Build</span></p>
+      <h1>Ho rischiato il posto per una cosa che non aveva ancora un nome</h1>
+      <p class="dek">I primi schizzi sono di novembre 2025. Il mio team lead non ci vedeva valore, e aveva le sue ragioni: le parole per spiegare quel lavoro sarebbero arrivate otto mesi più tardi.</p>
+      <div class="body">
+<p>«Non ci vedo il valore».</p>
+
+<p>Il mio team lead lo disse così, senza giri, e non una volta sola. Non faceva l'ostruzionista: descriveva la realtà. Erano settimane che lavoravo a una cosa che non sapevo nominare, e il cui unico prodotto era che certe cose smettevano di succedere.</p>
+
+<p>Prova a difenderla, quando il discorso vira su quante persone servono in squadra.</p>
+
+<h3>Da dove è partita</h3>
+
+<p>Novembre 2025. Un invito in calendario: «Agentic Coding Setup». Io, Szymon e Jacek. Un'ora.</p>
+
+<p>Alle sessioni di lavoro del 24 e del 26 novembre la forma c'era già tutta. Rileggere quegli appunti oggi fa un effetto strano: un repository di pratiche indipendente da quale strumento vincerà, così che una persona nuova parta subito. Un modello che avevamo battezzato <em>delega, rivedi, rispondi</em> — l'umano rivede quello che l'agente ha prodotto, e la responsabilità non passa mai di mano. Quattro agenti per cominciare, ciascuno con la sua cartella, i suoi strumenti, le sue istruzioni. Modelli per i documenti che ogni ruolo consegna al successivo.</p>
+
+<p>Non stavamo costruendo un agente. Costruivamo il processo dentro cui un agente lavora.</p>
+
+<p>E mettiamola giù chiara: non l'ho fatto da solo. Szymon e Jacek l'hanno tirato su con me — la struttura del repository, gli strumenti degli agenti, il backend che uno dei due ha scritto mentre gli altri litigavamo sui ruoli, e metà delle litigate che hanno reso quella cosa migliore della mia prima bozza.</p>
+
+<h3>Che cos'era, in concreto</h3>
+
+<p>Un framework di SDLC agentico. Tutto il percorso da un'idea grezza a un pacchetto di architettura implementabile, spezzato in ruoli specializzati che si passano il lavoro secondo regole.</p>
+
+<p>Sotto, era un grafo. Ogni ruolo un nodo: ricerca, reverse engineering, definizione di prodotto, architettura, e un revisore che di proposito non era nessuno dei precedenti. Gli archi avevano un tipo: il lavoro avanzava solo se portava con sé gli identificatori che permettono di risalire da qualsiasi affermazione alla sua origine. Lo stato viveva in file che sopravvivevano alla singola esecuzione, così niente di importante restava chiuso in una finestra di conversazione. Ogni transizione aveva una porta, e una porta poteva rifiutare e rimandare il lavoro a un nodo precedente ben preciso.</p>
+
+<p>A gennaio 2026 non avevo una parola per tutto questo. Dicevo «la pipeline» e guardavo lo sguardo delle persone che si spegneva.</p>
+
+<figure class="diagram">
+  <img src="/assets/agentic-sdlc.svg" alt="The agentic SDLC in two layers" width="980" height="920" loading="lazy">
+  <figcaption>Quello che era stato messo per iscritto a novembre 2025, e quello che girava già a gennaio 2026. I ruoli sono nodi, i passaggi di consegne hanno un tipo, le porte possono rifiutare, e lo stato vive nei file invece che in una conversazione.</figcaption>
+</figure>
+
+<h3>Perché nessuno la vedeva</h3>
+
+<p>Quello che tirava allora era l'approccio opposto: agenti scatenati sul codice, nessuna porta, nessuna verifica indipendente, e in produzione quel che esce. Di codice ne usciva tantissimo e in fretta. Ogni pochi giorni il sistema andava giù, e ogni pochi giorni qualcuno ci lasciava una serata per capire perché.</p>
+
+<p>La nostra promessa, tradotta con onestà, era: questo smetterà di succedere. Una promessa su un'assenza. E un'assenza non si mostra — non c'è screenshot, non c'è grafico, non c'è il momento in cui alla revisione qualcuno applaude.</p>
+
+<p>Poi il sistema è andato giù abbastanza forte da cambiare la domanda. Non era più se quel lavoro valesse qualcosa, ma se potevo darci un'occhiata.</p>
+
+<p>Il framework ha fatto la sua parte, senza fuochi d'artificio. Non lasciava passare niente che non avesse controllato qualcuno diverso dall'autore. Apriva l'applicazione vera in un browser invece di chiedere all'agente se era soddisfatto di sé. I crash sono finiti. Il progetto è andato in produzione.</p>
+
+<p>Non se lo ricorda nessuno, ed è normale. I salvataggi si ricordano come eventi, non come lavoro di qualcuno.</p>
+
+<h3>Otto mesi dopo sono arrivate le parole</h3>
+
+<p>L'11 febbraio 2026 OpenAI ha pubblicato un testo sulla <em>harness engineering</em>: la conoscenza del repository come fonte di verità, i piani come artefatti di prima classe, i registri delle decisioni salvati in git.</p>
+
+<p>Il 24 marzo 2026 Anthropic ne ha pubblicato uno sul disegno dell'harness: pianificatore, generatore e valutatore tenuti separati apposta, perché a un agente a cui chiedi di dare un voto al proprio lavoro quel voto viene sempre buono.</p>
+
+<p>Il 4 luglio 2026 qualcuno ha finalmente dato un nome all'altra metà. <em>Graph engineering</em>: progettare i sistemi agentici come grafi espliciti invece che come cicli impliciti. Nodi come unità di capacità. Archi come transizioni tipate che trasportano stato. Lo stato come oggetto con checkpoint, e non come quello che è sopravvissuto nella finestra di contesto.</p>
+
+<p>Rileggilo. Nodi, archi tipati, stato con checkpoint, un valutatore fuori dal generatore, porte che possono rifiutare. È esattamente la cosa che a novembre non sapevamo spiegare, raccontata con un vocabolario arrivato otto mesi dopo.</p>
+
+<p>Il primo commit porta la data del 21 gennaio 2026. Il 17 febbraio il framework aveva già portato un progetto vero di produzione dall'inizio alla fine. C'è una storia git, che è parecchio più di quanto sta dietro alla maggior parte dei «io c'ero prima».</p>
+
+<p>E qui conviene essere esatti, perché solo l'esatto si difende: OpenAI descrive un lavoro cominciato ad agosto 2025, prima del nostro. Non è una questione di primato. È convergenza — persone diverse che sbattono contro gli stessi guasti e finiscono nella stessa struttura, senza niente di pubblico da cui copiare.</p>
+
+<h3>Cosa mi sono portato via davvero</h3>
+
+<p>Di sicuro non «fidati dell'istinto». Quella è una frase da poster, non una lezione.</p>
+
+<p>L'istinto andava bene. L'ordine è stato pessimo. Lavoravamo in una categoria senza nome, e una categoria senza nome non regge una conversazione sul budget: l'altra persona non ha niente a cui aggrapparsi. Il mio team lead non stava mancando di vedere l'ovvio. Ero io che non sapevo mostrarlo.</p>
+
+<div class="pull">
+  <span>Cosa farei diversamente</span>
+  <p>Dargli un nome e, il primo giorno, avvitarlo a un numero che sta già sanguinando sul cruscotto di qualcuno: crash a settimana, ore perse a rifare il lavoro. Non per vincere la discussione più avanti. Perché il lavoro si veda finché c'è ancora una scelta sul finanziarlo.</p>
+</div>
+
+<div class="cta">
+  <p><b>Se i tuoi agenti sfornano codice più in fretta di quanto chiunque riesca a controllarlo</b>, è questa la conversazione che sto aspettando. Scrivimi qual è il sistema e qual è la scadenza — <a href="mailto:jakubkornafel@gmail.com">jakubkornafel@gmail.com</a>. Ti torna un sì o un no, e dove secondo me sta il rischio vero.</p>
+</div>
+      </div>
+    </article>
+  </div>
+</main>
+
+<div class="wrap">
+  <footer>
+    <span>Jakub Kornafel · Málaga, Spain · Warsaw, Poland</span>
+    <span><a href="/log/it/feed.xml">RSS</a> · jakubkornafel@gmail.com</span>
+  </footer>
+</div>
+
+</body>
+</html>

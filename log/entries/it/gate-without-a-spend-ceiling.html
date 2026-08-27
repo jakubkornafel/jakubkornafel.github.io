@@ -1,0 +1,40 @@
+date: 2026-08-27
+kind: Build
+title: Una porta che non conta i soldi non è una porta
+dek: La mia pipeline sapeva dirti se il lavoro era buono. Non sapeva dirti che quella risposta era costata quattro ore e otto tentativi andati a vuoto.
+rank: 2
+---
+<p>Nella mia pipeline c'erano porte di cui andavo fiero. Criteri, soglie, un revisore che non era l'autore, un verdetto capace di dire di no.</p>
+
+<p>Poi ho fatto loro una domanda a cui non hanno saputo rispondere: <em>quanto è costato?</em></p>
+
+<p>Che l'artefatto fosse all'altezza, quello lo sapevano. Se arrivarci avesse richiesto quaranta minuti o quattro ore, dodici dollari o duecento, nessuna idea. Un'approvazione pulita al primo colpo e un'esecuzione che taglia il traguardo strisciando, al decimo assalto contro lo stesso problema irrisolto, per loro erano la stessa cosa.</p>
+
+<p>Non lo sono. Solo una delle due è un sistema che funziona.</p>
+
+<h3>Il limite che delimita la cosa sbagliata</h3>
+
+<p>Avevo limiti di iterazione: dieci giri per fase, non uno di più. Sembrava controllo. Non lo è. Un limite di iterazioni delimita quante volte gira il ciclo, non quanto costa ogni giro, e nella mia pipeline un solo round di revisione si apre a ventaglio su otto verificatori che corrono in parallelo. Quel passo, da solo, può costare più di tutte le fasi precedenti messe insieme, e non c'è limite che se ne accorga.</p>
+
+<p>Così ho scritto un libro mastro. Budget dichiarato prima di cominciare. Si controlla quando si passa da una fase all'altra e a ogni ritorno indietro, mai a lavoro in corso. Se attraversi un arco quando sei già oltre il tetto, l'esecuzione si ferma con un verdetto esplicito, invece di arrivare in fondo zitta e passarti il conto.</p>
+
+<p>Quello che avevo sottovalutato è l'analisi del percorso. Conta la spesa che non ha portato avanti l'esecuzione — tutto quello che si sono mangiati i tentativi finiti in un ritorno indietro — e segnala i motivi che si ripetono. È l'ultimo numero quello che brucia. Un'esecuzione che passa al decimo tentativo identico è un'esecuzione fallita con una medaglia in prestito, e nei miei vecchi report non compariva da nessuna parte.</p>
+
+<h3>Perché vale più di quanto sembri</h3>
+
+<p>C'è uno studio di marzo che mi ha costretto a ripensare cosa aggiungo a un agente, e perché.</p>
+
+<p>A un agente di programmazione hanno dato una cosa sola in più: una mappa di quali test coprono quale codice, consegnata come file di testo semplice, da leggere e basta. Le regressioni — test che prima passavano e hanno smesso — sono scese dal 6,08% all'1,82%. Il 70% in meno con un file.</p>
+
+<p>Lo stesso studio aveva un secondo ramo. Al posto della mappa, istruzioni di procedura: lavora prima sui test, attieniti a questa disciplina. Le regressioni sono salite al 9,94%. Peggio che non toccare niente.</p>
+
+<div class="pull">
+  <span>La regola che mi tengo</span>
+  <p>All'agente si dà contesto, non procedura. Dirgli come comportarsi ha peggiorato le cose, e si misura. Dirgli che cosa è vero le ha migliorate del 70%. Ogni istruzione che mi viene voglia di scrivere passa ormai da quel filtro prima che da qualunque altro.</p>
+</div>
+
+<p>Per lo stesso motivo il budget vive nel file di stato e non in un prompt che chiede all'agente di stare attento ai soldi. Nessuno sta attento a un numero che non vede.</p>
+
+<div class="cta">
+  <p><b>Se hai agenti che girano e non sai dire quanto ti è costata la settimana scorsa</b>, non stai governando un sistema autonomo: stai accumulando fattura. Io costruisco il pezzo che sa dire di no. <a href="mailto:jakubkornafel@gmail.com">Scrivimi qual è il sistema e qual è la scadenza.</a></p>
+</div>
