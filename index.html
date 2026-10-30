@@ -78,7 +78,9 @@ a:focus-visible{outline:2px solid var(--ink); outline-offset:3px; border-radius:
 
 /* hero — who, what, proof, one next step */
 .hero{padding:2rem 0 0; display:grid; gap:1.25rem 3.5rem; align-items:center}
-.hero-photo{margin:0; width:5.5rem}
+.hero-photo{margin:0; width:10rem}
+/* short phones: keep both CTAs above the fold */
+@media (max-height:46rem){ .hero-photo{width:6rem} }
 .hero-photo img{width:100%; border-radius:50%; border:1px solid var(--rule); background:var(--card)}
 .kicker{font-family:var(--mono); font-size:.75rem; letter-spacing:.16em; text-transform:uppercase; color:var(--graphite); margin:0 0 1rem}
 .hero h1{font-family:var(--display); font-weight:800; margin:0;
