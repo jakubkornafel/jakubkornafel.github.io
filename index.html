@@ -106,6 +106,13 @@ a:focus-visible{outline:2px solid var(--ink); outline-offset:3px; border-radius:
 .trust .credits-note{margin:0 0 1rem}
 .trust .credits{padding:0; gap:1rem 2.25rem}
 .trust .credits b{font-size:clamp(1.0625rem,2vw,1.3125rem)}
+.trust .credits{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1.5rem 2.5rem; align-items:start}
+@media (max-width:44rem){
+  .trust .credits{grid-template-columns:1fr; gap:0}
+  .trust .credits li{padding:.85rem 0; border-top:1px solid var(--rule)}
+  .trust .credits li:first-child{border-top:0; padding-top:0}
+  .trust .credits li:last-child{border-bottom:1px solid var(--rule)}
+}
 
 /* systems index — where each system actually stands, each a jump link */
 .band{margin:0 0 3rem; border-top:2px solid var(--rule-strong)}
